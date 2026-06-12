@@ -1,0 +1,453 @@
+/* ====================================================================
+   德意志第三帝国文字冒险游戏 — 军工战损风主题样式表 (style.qss)
+   ==================================================================== */
+
+/* 全局基础背景与字体 */
+QWidget {
+    background-color: #121212;
+    color: #e2e2e2;
+    font-family: "Microsoft YaHei", "Segoe UI", "Consolas", monospace;
+    font-size: 10pt;
+}
+
+/* 主窗口容器 */
+QMainWindow {
+    background-color: #121212;
+}
+
+/* ====================================================================
+   主菜单界面 (MenuWidget)
+   ==================================================================== */
+QWidget#MenuWidget {
+    background-color: #121212;
+}
+
+QLabel#menuTitle {
+    color: #dfdfdf;
+    font-size: 26pt;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+    font-family: "Microsoft YaHei", "Georgia", serif;
+}
+
+QLabel#menuSubtitle {
+    color: #cc3333;
+    font-size: 12pt;
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+QFrame#menuDecoLine {
+    color: #2c2c2c;
+    background-color: #2c2c2c;
+    height: 1px;
+    max-height: 1px;
+    border: none;
+}
+
+QPushButton#menuBtn {
+    background-color: #1c1c1c;
+    border: 1px solid #3d3d3d;
+    border-radius: 0px;
+    color: #d8d8d8;
+    font-size: 11pt;
+    padding: 10px;
+}
+
+QPushButton#menuBtn:hover {
+    background-color: #242424;
+    border: 1px solid #aa3333;
+    color: #ffffff;
+}
+
+QPushButton#menuBtn:pressed {
+    background-color: #141414;
+    border: 1px solid #ff4444;
+}
+
+QLabel#menuFooter {
+    color: #666666;
+    font-size: 9pt;
+    font-style: italic;
+    margin-top: 30px;
+}
+
+/* ====================================================================
+   人物创建界面 (CharacterCreateWidget)
+   ==================================================================== */
+QWidget#CharacterCreateWidget {
+    background-color: #121212;
+}
+
+QLabel#createTitle {
+    color: #ffffff;
+    font-size: 20pt;
+    font-weight: bold;
+}
+
+QLabel#nameTipLabel {
+    color: #888888;
+    font-size: 11pt;
+}
+
+QLineEdit#nameEdit {
+    background-color: #1a1a1a;
+    border: 1px solid #383838;
+    border-radius: 0px;
+    color: #e0e0e0;
+    padding: 6px 12px;
+    font-size: 11pt;
+    min-width: 200px;
+}
+
+QLineEdit#nameEdit:focus {
+    border: 1px solid #aa3333;
+    background-color: #202020;
+}
+
+QLabel#sectionTitle {
+    color: #aa3333;
+    font-size: 11pt;
+    font-weight: bold;
+}
+
+/* 兵种卡片 */
+QWidget#classCard {
+    background-color: #181818;
+    border: 1px solid #303030;
+    border-radius: 0px;
+}
+
+QWidget#classCard:hover {
+    border: 1px solid #aa3333;
+    background-color: #1e1e1e;
+}
+
+QWidget#classCard[selected="true"] {
+    background-color: #241818;
+    border: 1px solid #ff3333;
+}
+
+QLabel#classCardText {
+    color: #cccccc;
+    font-size: 10pt;
+}
+
+QWidget#classCard[selected="true"] QLabel#classCardText {
+    color: #ff5555;
+    font-weight: bold;
+}
+
+/* 右侧预览区 */
+QWidget#previewCard {
+    background-color: #181818;
+    border: 1px solid #2e2e2e;
+}
+
+QLabel#previewTitle {
+    color: #ffffff;
+    font-size: 12pt;
+    font-weight: bold;
+}
+
+QLabel#statPreviewLabel {
+    color: #aaaaaa;
+    font-size: 10pt;
+}
+
+QLabel#previewScenarioLabel {
+    color: #ff9900;
+    font-size: 9pt;
+}
+
+QFrame#previewLine {
+    color: #2c2c2c;
+    background-color: #2c2c2c;
+    height: 1px;
+    border: none;
+}
+
+QLabel#previewDescLabel {
+    color: #bbbbbb;
+    font-size: 10pt;
+    line-height: 18px;
+}
+
+/* 底部按钮 */
+QPushButton#createBackBtn {
+    background-color: #181818;
+    border: 1px solid #3a3a3a;
+    padding: 8px 18px;
+    font-size: 10pt;
+}
+
+QPushButton#createBackBtn:hover {
+    border: 1px solid #888888;
+}
+
+QPushButton#createStartBtn {
+    background-color: #aa3333;
+    border: 1px solid #772222;
+    color: #ffffff;
+    padding: 8px 24px;
+    font-size: 10pt;
+    font-weight: bold;
+}
+
+QPushButton#createStartBtn:hover {
+    background-color: #cc4444;
+    border: 1px solid #993333;
+}
+
+/* ====================================================================
+   游戏主界面 (GameWidget)
+   ==================================================================== */
+QWidget#GameWidget {
+    background-color: #121212;
+}
+
+QWidget#gameHeader {
+    background-color: #181818;
+    border: 1px solid #282828;
+}
+
+QLabel#headerNameLabel {
+    color: #ffffff;
+    font-size: 11pt;
+    font-weight: bold;
+}
+
+QLabel#headerClassLabel {
+    color: #888888;
+    font-size: 9pt;
+}
+
+QLabel#headerStatLabel {
+    color: #aaaaaa;
+    font-size: 9pt;
+    min-width: 32px;
+}
+
+QLabel#headerScenarioLabel {
+    color: #ff9900;
+    font-size: 11pt;
+    font-weight: bold;
+}
+
+QLabel#headerLocationLabel {
+    color: #888888;
+    font-size: 9pt;
+}
+
+/* 进度条定制 */
+QProgressBar {
+    border: 1px solid #3c3c3c;
+    background-color: #121212;
+    text-align: center;
+    color: #ffffff;
+    font-size: 8pt;
+    font-weight: bold;
+    height: 14px;
+    border-radius: 0px;
+}
+
+QProgressBar#gameHpBar::chunk {
+    background-color: #992222;
+}
+
+QProgressBar#gameMoraleBar::chunk {
+    background-color: #226699;
+}
+
+/* 主文字显示区 */
+QTextBrowser#gameTextBrowser {
+    background-color: #0d0d0d;
+    border: 1px solid #222222;
+    color: #dcdcdc;
+    font-size: 11pt;
+    line-height: 24px;
+    padding: 20px;
+}
+
+/* 选项按钮 */
+QPushButton#choiceOptionBtn {
+    background-color: #181818;
+    border: 1px solid #333333;
+    color: #cccccc;
+    text-align: left;
+    padding-left: 20px;
+    font-size: 10.5pt;
+}
+
+QPushButton#choiceOptionBtn:hover {
+    background-color: #222222;
+    border: 1px solid #888888;
+    color: #ffffff;
+}
+
+QPushButton#choiceOptionBtn:pressed {
+    background-color: #141414;
+}
+
+/* 战斗型选项按钮 */
+QPushButton#combatOptionBtn {
+    background-color: #221818;
+    border: 1px solid #552222;
+    color: #ff9999;
+    text-align: left;
+    padding-left: 20px;
+    font-size: 10.5pt;
+    font-weight: bold;
+}
+
+QPushButton#combatOptionBtn:hover {
+    background-color: #331f1f;
+    border: 1px solid #993333;
+    color: #ffcccc;
+}
+
+QPushButton#combatOptionBtn:pressed {
+    background-color: #1a1010;
+}
+
+/* 控制按钮 */
+QPushButton#gameCtrlBtn {
+    background-color: #181818;
+    border: 1px solid #333333;
+    color: #aaaaaa;
+    padding: 8px;
+    font-size: 9.5pt;
+}
+
+QPushButton#gameCtrlBtn:hover {
+    background-color: #202020;
+    border: 1px solid #aa3333;
+    color: #ffffff;
+}
+
+/* ====================================================================
+   对话框 (SaveLoadDialog)
+   ==================================================================== */
+QDialog#SaveLoadDialog {
+    background-color: #121212;
+}
+
+QLabel#dialogTitle {
+    color: #ffffff;
+    font-size: 12pt;
+    font-weight: bold;
+}
+
+QWidget#slotCard {
+    background-color: #181818;
+    border: 1px solid #2c2c2c;
+}
+
+QWidget#slotCard:hover {
+    border: 1px solid #888888;
+}
+
+QWidget#slotCard[selected="true"] {
+    background-color: #202020;
+    border: 1px solid #aa3333;
+}
+
+QLabel#slotTitle {
+    color: #ffffff;
+    font-size: 10.5pt;
+    font-weight: bold;
+}
+
+QLabel#slotInfo {
+    color: #aaaaaa;
+    font-size: 9.5pt;
+}
+
+QLabel#slotTime {
+    color: #666666;
+    font-size: 8.5pt;
+}
+
+/* 底部按钮 */
+QPushButton#dialogActionBtn {
+    background-color: #aa3333;
+    border: 1px solid #882222;
+    color: #ffffff;
+    padding: 8px 18px;
+    font-weight: bold;
+}
+
+QPushButton#dialogActionBtn:hover {
+    background-color: #cc4444;
+}
+
+QPushButton#dialogActionBtn:disabled {
+    background-color: #2e2e2e;
+    border: 1px solid #3e3e3e;
+    color: #666666;
+}
+
+QPushButton#dialogDeleteBtn {
+    background-color: #1c1c1c;
+    border: 1px solid #aa3333;
+    color: #ff5555;
+    padding: 8px 18px;
+}
+
+QPushButton#dialogDeleteBtn:hover {
+    background-color: #2b1818;
+}
+
+QPushButton#dialogDeleteBtn:disabled {
+    border: 1px solid #3c3c3c;
+    color: #666666;
+    background-color: #1c1c1c;
+}
+
+QPushButton#dialogCancelBtn {
+    background-color: #1c1c1c;
+    border: 1px solid #3c3c3c;
+    color: #cccccc;
+    padding: 8px 18px;
+}
+
+QPushButton#dialogCancelBtn:hover {
+    border: 1px solid #888888;
+    color: #ffffff;
+}
+
+/* ====================================================================
+   自定义滚动条 (QScrollBar)
+   ==================================================================== */
+QScrollBar:vertical {
+    border: none;
+    background: #121212;
+    width: 8px;
+    margin: 0px;
+}
+
+QScrollBar::handle:vertical {
+    background: #2c2c2c;
+    min-height: 20px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background: #444444;
+}
+
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    border: none;
+    background: none;
+    height: 0px;
+}
+
+QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {
+    border: none;
+    background: none;
+    height: 0px;
+}
+
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+    background: none;
+}
