@@ -3,9 +3,11 @@
 #include "CharacterCreateWidget.h"
 #include "GameWidget.h"
 #include "SaveLoadDialog.h"
-#include "../core/GameEngine.h"
-#include "../core/SaveManager.h"
-#include "../core/MusicPlayer.h"
+#include "../engine/DlcManager.h"
+#include "../engine/NodeEngine.h"
+#include "../engine/DiceSystem.h"
+#include "../engine/SaveManager.h"
+#include "../engine/MusicPlayer.h"
 
 #include <QStackedWidget>
 #include <QVBoxLayout>
@@ -16,15 +18,21 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
-    m_engine      = new GameEngine(this);
+    m_dlcManager  = new DlcManager(this);
+    m_diceSystem  = new DiceSystem(this);
+    m_nodeEngine  = new NodeEngine(m_diceSystem, this);
     m_saveManager = new SaveManager(this);
     m_musicPlayer = new MusicPlayer(this);
 
     setupUi();
     connectSignals();
-    initializeMusicTracks();
 
-    // 启动播放主菜单背景音乐
+    // Scan DLC directory
+    QString dlcDir = QCoreApplication::applicationDirPath() + "/dlc";
+    if (!QDir(dlcDir).exists())
+        dlcDir = QDir::currentPath() + "/dlc";
+    m_dlcManager->scanDirectory(dlcDir);
+
     m_musicPlayer->play(QStringLiteral("main_theme"));
 }
 
@@ -40,64 +48,63 @@ void MainWindow::setupUi() {
     m_createWidget = new CharacterCreateWidget(this);
     m_gameWidget   = new GameWidget(this);
 
-    m_stackedWidget->addWidget(m_menuWidget);       // Index 0
-    m_stackedWidget->addWidget(m_createWidget);     // Index 1
-    m_stackedWidget->addWidget(m_gameWidget);       // Index 2
+    m_stackedWidget->addWidget(m_menuWidget);       // 0
+    m_stackedWidget->addWidget(m_createWidget);     // 1
+    m_stackedWidget->addWidget(m_gameWidget);       // 2
 
     showMainMenu();
 }
 
 void MainWindow::connectSignals() {
-    // 1. 主菜单信号
-    connect(m_menuWidget, &MenuWidget::newGameClicked, this, &MainWindow::showCharacterCreate);
+    // Menu
+    connect(m_menuWidget, &MenuWidget::newGameClicked, this, &MainWindow::showDlcSelect);
     connect(m_menuWidget, &MenuWidget::loadGameClicked, this, &MainWindow::openLoadDialog);
     connect(m_menuWidget, &MenuWidget::exitGameClicked, this, &MainWindow::close);
+    connect(m_menuWidget, &MenuWidget::dlcSelected, this, &MainWindow::onDlcSelected);
 
-    // 2. 角色创建信号
+    // Character create
     connect(m_createWidget, &CharacterCreateWidget::backToMenu, this, &MainWindow::showMainMenu);
     connect(m_createWidget, &CharacterCreateWidget::startGame, this, &MainWindow::onStartGame);
 
-    // 3. 游戏界面信号
+    // Game widget
     connect(m_gameWidget, &GameWidget::choiceMade, this, &MainWindow::onChoiceMade);
     connect(m_gameWidget, &GameWidget::saveClicked, this, &MainWindow::openSaveDialog);
     connect(m_gameWidget, &GameWidget::loadClicked, this, &MainWindow::openLoadDialog);
     connect(m_gameWidget, &GameWidget::exitClicked, this, &MainWindow::showMainMenu);
 
-    // 4. 引擎信号
-    connect(m_engine, &GameEngine::nodeChanged, this, &MainWindow::onNodeChanged);
-    connect(m_engine, &GameEngine::statsChanged, this, &MainWindow::onStatsChanged);
-    connect(m_engine, &GameEngine::combatResult, this, &MainWindow::onCombatResult);
-    connect(m_engine, &GameEngine::scenarioVictory, this, &MainWindow::onScenarioVictory);
-    connect(m_engine, &GameEngine::scenarioDefeat, this, &MainWindow::onScenarioDefeat);
+    // Node engine
+    connect(m_nodeEngine, &NodeEngine::nodeChanged, this, &MainWindow::onNodeChanged);
+    connect(m_nodeEngine, &NodeEngine::statsChanged, this, &MainWindow::onStatsChanged);
+    connect(m_nodeEngine, &NodeEngine::combatResult, this, &MainWindow::onCombatResult);
+    connect(m_nodeEngine, &NodeEngine::chapterVictory, this, &MainWindow::onChapterVictory);
+    connect(m_nodeEngine, &NodeEngine::chapterDefeat, this, &MainWindow::onChapterDefeat);
 }
 
-void MainWindow::initializeMusicTracks() {
-    // 根据运行路径寻找 music/ 目录，注册各关卡的背景乐
-    QString appDir = QCoreApplication::applicationDirPath();
-    
-    // 支持在开发工作区运行或者在编译构建目录下运行
-    QString musicDir = QDir(appDir).filePath(QStringLiteral("music"));
-    if (!QDir(musicDir).exists()) {
-        // 兼容 CMakeLists 拷贝之前的原始资源路径
-        musicDir = QDir(QDir::currentPath()).filePath(QStringLiteral("resources/music"));
+void MainWindow::registerMusicFromDlc() {
+    for (auto it = m_currentDlc.music.begin(); it != m_currentDlc.music.end(); ++it) {
+        QString fullPath = m_currentDlcBasePath + "/" + it.value();
+        m_musicPlayer->registerTrack(it.key(), fullPath);
     }
-
-    m_musicPlayer->registerTrack(QStringLiteral("main_theme"), QDir(musicDir).filePath(QStringLiteral("main_theme.mp3")));
-    m_musicPlayer->registerTrack(QStringLiteral("fallgelb"), QDir(musicDir).filePath(QStringLiteral("fallgelb.mp3")));
-    m_musicPlayer->registerTrack(QStringLiteral("britain"), QDir(musicDir).filePath(QStringLiteral("britain.mp3")));
-    m_musicPlayer->registerTrack(QStringLiteral("wolfpack"), QDir(musicDir).filePath(QStringLiteral("wolfpack.mp3")));
-    m_musicPlayer->registerTrack(QStringLiteral("stalingrad"), QDir(musicDir).filePath(QStringLiteral("stalingrad.mp3")));
-    m_musicPlayer->registerTrack(QStringLiteral("stalingrad_winter"), QDir(musicDir).filePath(QStringLiteral("stalingrad_winter.mp3")));
-    m_musicPlayer->registerTrack(QStringLiteral("stalingrad_end"), QDir(musicDir).filePath(QStringLiteral("stalingrad_end.mp3")));
-    m_musicPlayer->registerTrack(QStringLiteral("berlin"), QDir(musicDir).filePath(QStringLiteral("berlin.mp3")));
-    m_musicPlayer->registerTrack(QStringLiteral("berlin_elegy"), QDir(musicDir).filePath(QStringLiteral("berlin_elegy.mp3")));
-    m_musicPlayer->registerTrack(QStringLiteral("berlin_end"), QDir(musicDir).filePath(QStringLiteral("berlin_end.mp3")));
-    m_musicPlayer->registerTrack(QStringLiteral("defeat_theme"), QDir(musicDir).filePath(QStringLiteral("defeat_theme.mp3")));
 }
+
+void MainWindow::startChapterMusic() {
+    if (!m_currentDlc.music.isEmpty()) {
+        QString firstKey = m_currentDlc.music.firstKey();
+        m_musicPlayer->play(firstKey);
+    }
+}
+
+// --- Navigation ---
 
 void MainWindow::showMainMenu() {
     m_stackedWidget->setCurrentWidget(m_menuWidget);
     m_musicPlayer->play(QStringLiteral("main_theme"));
+}
+
+void MainWindow::showDlcSelect() {
+    QList<DlcManifest> manifests = m_dlcManager->manifests();
+    m_menuWidget->showDlcList(manifests);
+    // MenuWidget stays visible, just switches to its internal DLC list view
 }
 
 void MainWindow::showCharacterCreate() {
@@ -108,75 +115,140 @@ void MainWindow::showGameScreen() {
     m_stackedWidget->setCurrentWidget(m_gameWidget);
 }
 
-void MainWindow::onStartGame(const QString &name, PlayerClass cls) {
-    m_engine->newGame(name, cls);
+// --- DLC / Game Start ---
 
-    // 根据职业决定初始战役关卡
-    ScenarioId startScen = ScenarioId::FallGelb;
-    if (cls == PlayerClass::FighterPilot || cls == PlayerClass::BomberPilot) {
-        startScen = ScenarioId::Britain;
-    } else if (cls == PlayerClass::SubmarineCrew || cls == PlayerClass::BattleshipCrew) {
-        startScen = ScenarioId::WolfPack;
+void MainWindow::onDlcSelected(const QString &dlcId) {
+    const DlcManifest *m = m_dlcManager->getManifest(dlcId);
+    if (!m || !m->valid) return;
+
+    m_currentDlc = *m;
+    m_currentDlcBasePath = m_dlcManager->dlcBasePath(dlcId);
+    registerMusicFromDlc();
+
+    m_createWidget->setClasses(m_currentDlc.classes);
+    showCharacterCreate();
+}
+
+void MainWindow::onStartGame(const QString &name, const QString &classId) {
+    m_player = PlayerSystem(name, classId, m_currentDlc.dlcId);
+    m_player.currentChapter = m_currentDlc.startChapter;
+    m_player.unlockChapter(m_currentDlc.startChapter);
+
+    // Find class display name
+    m_currentClassName = classId;
+    for (const auto &c : m_currentDlc.classes) {
+        if (c.id == classId) {
+            m_currentClassName = c.name;
+            break;
+        }
     }
 
-    if (m_engine->startScenario(startScen)) {
+    if (m_nodeEngine->startDlc(m_currentDlc, m_currentDlcBasePath, m_player)) {
         showGameScreen();
-        playScenarioMusic(startScen);
+        startChapterMusic();
     }
 }
 
-void MainWindow::onLoadGame(const Player &loadedPlayer) {
-    m_engine->loadGame(loadedPlayer);
-    showGameScreen();
-    playScenarioMusic(m_engine->player().currentScenario);
+void MainWindow::onLoadGame(const PlayerSystem &loadedPlayer) {
+    m_player = loadedPlayer;
+
+    const DlcManifest *m = m_dlcManager->getManifest(m_player.dlcId);
+    if (!m) {
+        QMessageBox::warning(this, QStringLiteral("错误"),
+                             QStringLiteral("该存档所属的DLC未安装。"));
+        return;
+    }
+
+    m_currentDlc = *m;
+    m_currentDlcBasePath = m_dlcManager->dlcBasePath(m_player.dlcId);
+    registerMusicFromDlc();
+
+    m_currentClassName = m_player.classId;
+    for (const auto &c : m_currentDlc.classes) {
+        if (c.id == m_player.classId) {
+            m_currentClassName = c.name;
+            break;
+        }
+    }
+
+    if (m_nodeEngine->startDlc(m_currentDlc, m_currentDlcBasePath, m_player)) {
+        showGameScreen();
+        startChapterMusic();
+    }
 }
+
+// --- Choice ---
 
 void MainWindow::onChoiceMade(int index) {
     if (index == -2) {
-        // 胜利后跳转至下一战役
-        int nextId = static_cast<int>(m_engine->player().currentScenario) + 1;
-        if (nextId <= static_cast<int>(ScenarioId::Berlin)) {
-            ScenarioId nextScen = static_cast<ScenarioId>(nextId);
-            if (m_engine->startScenario(nextScen)) {
-                playScenarioMusic(nextScen);
+        // Victory: go to next chapter
+        const QList<DlcChapterMeta> &chapters = m_currentDlc.chapters;
+        QString currentCh = m_player.currentChapter;
+        for (int i = 0; i < chapters.size(); ++i) {
+            if (chapters[i].id == currentCh && i + 1 < chapters.size()) {
+                QString nextChId = chapters[i + 1].id;
+                if (m_nodeEngine->startChapter(nextChId)) {
+                    startChapterMusic();
+                }
+                break;
             }
         }
     } else {
-        // 普通剧情选择
-        m_engine->makeChoice(index);
+        m_nodeEngine->makeChoice(index);
     }
 }
 
+// --- Save/Load ---
+
 void MainWindow::openSaveDialog() {
-    Player mutablePlayer = m_engine->player();
+    QString chName;
+    for (const auto &ch : m_currentDlc.chapters) {
+        if (ch.id == m_player.currentChapter) {
+            chName = ch.name;
+            break;
+        }
+    }
+
+    PlayerSystem mutablePlayer = m_player;
     SaveLoadDialog dlg(true, m_saveManager, &mutablePlayer, this);
+    dlg.setDlcInfo(m_currentDlc.title, m_currentClassName, chName);
     dlg.exec();
 }
 
 void MainWindow::openLoadDialog() {
-    Player mutablePlayer = m_engine->player();
+    PlayerSystem mutablePlayer;
     SaveLoadDialog dlg(false, m_saveManager, &mutablePlayer, this);
-    
-    // 如果读取成功，触发载入
     connect(&dlg, &SaveLoadDialog::gameLoaded, this, &MainWindow::onLoadGame);
     dlg.exec();
 }
 
+// --- Engine Signal Handlers ---
+
 void MainWindow::onNodeChanged(const StoryNode *node) {
     if (!node) return;
 
-    // 更新界面节点信息
-    m_gameWidget->showStoryNode(node, m_engine->player().playerClass, m_engine->player().currentScenario);
-    m_gameWidget->updatePlayerStats(m_engine->player().hp, m_engine->player().morale);
-    m_gameWidget->updatePlayerInfo(m_engine->player().name, playerClassName(m_engine->player().playerClass));
-
-    // 根据节点的特定音乐键切换音轨
-    if (!node->musicKey.isEmpty()) {
-        m_musicPlayer->play(node->musicKey);
+    // Determine chapter name and whether it's the last chapter
+    QString chName;
+    bool isLastChapter = false;
+    for (const auto &ch : m_currentDlc.chapters) {
+        if (ch.id == m_player.currentChapter) {
+            chName = ch.name;
+            isLastChapter = (ch.id == m_currentDlc.chapters.last().id);
+            break;
+        }
     }
 
-    // 剧情变化时自动执行自动存档
-    m_saveManager->autoSave(m_engine->player());
+    m_currentChapterName = chName;
+
+    m_gameWidget->showStoryNode(node, m_player.classId, chName, isLastChapter);
+    m_gameWidget->updatePlayerStats(m_player.hp, m_player.morale);
+    m_gameWidget->updatePlayerInfo(m_player.name, m_currentClassName);
+
+    if (!node->musicKey.isEmpty())
+        m_musicPlayer->play(node->musicKey);
+
+    m_saveManager->autoSave(m_player, m_currentDlc.title,
+                            m_currentClassName, chName);
 }
 
 void MainWindow::onStatsChanged(int hp, int morale) {
@@ -185,34 +257,23 @@ void MainWindow::onStatsChanged(int hp, int morale) {
 
 void MainWindow::onCombatResult(bool success, int hpChange, int moraleChange) {
     QString title = success ? QStringLiteral("判定成功") : QStringLiteral("判定失败");
-    QString msg = success 
+    QString msg = success
         ? QStringLiteral("【判定结果：成功】\n您通过敏捷的动作或精湛的特技成功化险为夷！")
         : QStringLiteral("【判定结果：失败】\n局势恶化！您在交火或事故中遭受了重创。\n生命值损失：%1 | 士气值损失：%2")
           .arg(qAbs(hpChange)).arg(qAbs(moraleChange));
-
     QMessageBox::information(this, title, msg);
 }
 
-void MainWindow::onScenarioVictory(ScenarioId id) {
-    // 柏林结局有特定的完结文字，非柏林战役显示关卡胜利弹窗
-    if (id != ScenarioId::Berlin) {
+void MainWindow::onChapterVictory(const QString &chapterId) {
+    bool isLastChapter = (chapterId == m_currentDlc.chapters.last().id);
+    if (!isLastChapter) {
         QMessageBox::information(this, QStringLiteral("战役胜利"),
-                                 QStringLiteral("【当前战役已顺利通过】\n下一章战役已经解锁。点击选项以继续您的征程。"));
+                                 QStringLiteral("【当前战役已顺利通过】\n下一章战役已经解锁。"));
     }
-    m_saveManager->autoSave(m_engine->player());
+    m_saveManager->autoSave(m_player, m_currentDlc.title,
+                            m_currentClassName, m_currentChapterName);
 }
 
-void MainWindow::onScenarioDefeat(ScenarioId /*id*/) {
+void MainWindow::onChapterDefeat(const QString & /*chapterId*/) {
     m_musicPlayer->play(QStringLiteral("defeat_theme"));
-    // 失败信息将会在 Ending 节点中展示给玩家
-}
-
-void MainWindow::playScenarioMusic(ScenarioId id) {
-    switch (id) {
-        case ScenarioId::FallGelb:   m_musicPlayer->play(QStringLiteral("fallgelb")); break;
-        case ScenarioId::Britain:    m_musicPlayer->play(QStringLiteral("britain")); break;
-        case ScenarioId::WolfPack:   m_musicPlayer->play(QStringLiteral("wolfpack")); break;
-        case ScenarioId::Stalingrad: m_musicPlayer->play(QStringLiteral("stalingrad")); break;
-        case ScenarioId::Berlin:     m_musicPlayer->play(QStringLiteral("berlin")); break;
-    }
 }
