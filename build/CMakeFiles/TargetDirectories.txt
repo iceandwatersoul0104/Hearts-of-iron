@@ -1,3 +1,0 @@
-D:/Creater/Hearts of iron/build/CMakeFiles/HeartsOfIronGame.dir
-D:/Creater/Hearts of iron/build/CMakeFiles/ALL_BUILD.dir
-D:/Creater/Hearts of iron/build/CMakeFiles/ZERO_CHECK.dir

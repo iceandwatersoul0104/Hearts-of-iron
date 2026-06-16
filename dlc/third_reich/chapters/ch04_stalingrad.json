@@ -1,347 +1,421 @@
 {
   "chapterId": "stalingrad",
-  "startNodeId": "st_briefing_inf",
+  "startNodeId": "st_inf_briefing",
   "defeatNodeId": "st_defeat",
+  "classStartNodes": {
+    "infantry": "st_inf_briefing",
+    "tank_crew": "st_tank_briefing",
+    "fighter_pilot": "st_skip",
+    "bomber_pilot": "st_skip",
+    "submarine_crew": "st_skip",
+    "battleship_crew": "st_skip"
+  },
   "nodes": [
     {
-      "id": "st_briefing_inf",
-      "locationTitle": "1942年8月 · 伏尔加河西岸，集结地",
+      "id": "st_inf_briefing",
+      "locationTitle": "1942年8月 · 斯大林格勒郊外",
       "musicKey": "stalingrad",
       "type": "narrative",
-      "text": "斯大林格勒。\n\n这座城市以那个名字命名——这本身就让你感到某种奇异的沉重。\n\n你是第六集团军第71步兵师的一名士兵。从高地望去，城市的烟柱遮住了伏尔加河，断裂的工厂烟囱像折断的手指指向天空。\n\n「拿下这座城市，」上尉说，「就意味着切断苏联的南部防线。」\n\n他没有说这意味着什么代价。\n\n城市里的枪声已经响了一个星期。你需要冲进那片废墟。",
-      "nextNodeId": "st_approach"
+      "text": "汉斯·缪勒，你二十二岁了。你活过了法国，在东线熬过了1941年的冬天——那个冻死了更多人的冬天。\n\n现在你站在伏尔加河西岸的高地上。斯大林格勒——那座以那个人命名的城市——在前方燃烧。烟柱从十几处火场升起，工厂烟囱像折断的手指。\n\n旁边的格里戈尔才十九岁，萨克森来的新兵，递给你一根烟：「多久能拿下？」\n\n你没有回答。你知道答案。但在新兵面前——不忍心说。\n\n你的口袋里现在有三张不属于你的照片。法国妻子。法国女人。还有一个你在东线捡到的苏联老妇人和她的牛。你成了一张移动的相册——保存着那些你没能救下的人。",
+      "nextNodeId": "st_inf_approach"
     },
     {
-      "id": "st_briefing_tank",
-      "locationTitle": "1942年8月 · 斯大林格勒南翼，装甲集结",
-      "musicKey": "stalingrad",
-      "type": "narrative",
-      "text": "坦克不适合在城市里作战。\n\n你知道这一点，每个装甲兵都知道这一点，但命令就是命令。\n\n你的四号坦克停在斯大林格勒郊外的草原上，炮管指着那座燃烧的城市。\n战场上，德国突击炮的残骸和苏军T-34的残骸以奇异的方式纠缠在一起——\n好像钢铁也会以这种方式死去。\n\n「城市里的苏军，」无线电里的命令，「必须被消灭。进城。」\n\n你启动发动机，坦克轰鸣着向废墟驶去。",
-      "nextNodeId": "st_approach"
-    },
-    {
-      "id": "st_approach",
-      "locationTitle": "1942年8月23日 · 斯大林格勒郊外",
+      "id": "st_inf_approach",
+      "locationTitle": "1942年8月23日 · 郊外",
       "musicKey": "stalingrad",
       "type": "choice",
-      "text": "从集结地到城市边缘，只有三公里，但那三公里像三百公里一样长。\n\n苏军的炮火不间断地覆盖着推进路线，地面上是弹坑、碎石和倒在各处的尸体——\n分不清那些是德国人还是苏联人，甚至有平民的衣物。\n\n你需要突过这片死亡地带。",
+      "text": "从集结点到城市边缘——三公里。被炮火犁了无数遍的三公里。弹坑连着弹坑——有些弹坑里的水面上漂着油污和别的什么。\n\n格里戈尔蹲在你旁边，手在抖——就像两年前的弗里茨。",
       "choices": [
         {
-          "text": "【匍匐】利用弹坑为掩体，匍匐推进",
+          "text": "【匍匐】弹坑做掩体缓慢推进",
           "isCombat": true,
           "combatThreshold": 50,
-          "bonusClasses": ["infantry"],
-          "successNodeId": "st_city_edge",
-          "failureNodeId": "st_approach_fail",
+          "bonusClasses": [
+            "infantry"
+          ],
+          "successNodeId": "st_inf_edge",
+          "failureNodeId": "st_inf_fail",
           "failHpDelta": -25,
           "failMoraleDelta": -10
         },
         {
-          "text": "【装甲掩护】跟在坦克后面，利用装甲掩护冲刺",
+          "text": "【冲锋】全速冲过死亡地带",
           "isCombat": true,
           "combatThreshold": 45,
-          "bonusClasses": ["tank_crew"],
-          "successNodeId": "st_city_edge",
-          "failureNodeId": "st_approach_tank",
-          "failHpDelta": -30,
-          "failMoraleDelta": -10
-        }
-      ]
-    },
-    {
-      "id": "st_approach_fail",
-      "locationTitle": "1942年8月 · 斯大林格勒郊外",
-      "musicKey": "stalingrad",
-      "type": "narrative",
-      "text": "炮弹在你旁边的弹坑里炸开，气浪把你掀翻在地。\n\n你旁边的士兵——格哈德，从汉诺威来的，结婚才半年——肠子从腹部流出来，他叫着你的名字，叫着他妻子的名字。\n\n你没有停下来，你无法停下来。\n\n他的声音在你身后越来越弱，最后被炮声淹没。\n\n你不知道他后来有没有得到救治。\n你选择了不去知道。",
-      "nextNodeId": "st_city_edge"
-    },
-    {
-      "id": "st_approach_tank",
-      "locationTitle": "1942年8月 · 斯大林格勒郊外",
-      "musicKey": "stalingrad",
-      "type": "narrative",
-      "text": "反坦克炮的穿甲弹击中了你的履带。\n\n坦克猛地停下，驾驶员舱的门被气浪焊死了，你用力踢了三脚才踢开。\n\n你爬出来的时候，看见炮手海因茨趴在坦克外面，\n他的后背被弹片划开了一道口子，血流得很快。\n装填手已经没有了。\n\n你们三个幸存者徒步冲进了城市。",
-      "nextNodeId": "st_city_edge"
-    },
-    {
-      "id": "st_city_edge",
-      "locationTitle": "1942年9月 · 斯大林格勒城区边缘",
-      "musicKey": "stalingrad",
-      "type": "choice",
-      "text": "废墟。\n\n曾经是斯大林格勒繁华市区的地方，现在是一片碎石的海洋。\n楼房只剩下骨架，每一层楼都可能有枪口在等待，\n每一个窗洞都是一张嘴，不知道里面是生还是死。\n\n「每向前一米都要付出代价。」步兵战术手册上是这么说的。\n你来了斯大林格勒后，才明白这句话的重量。\n\n你的部队要拿下前方的街区，通往拖拉机厂的方向。",
-      "choices": [
-        {
-          "text": "【正面】逐楼逐室清扫，直接突进",
-          "isCombat": true,
-          "combatThreshold": 60,
-          "bonusClasses": ["infantry"],
-          "successNodeId": "st_factory_district",
-          "failureNodeId": "st_pinned",
+          "successNodeId": "st_inf_edge",
+          "failureNodeId": "st_inf_gerhard",
           "failHpDelta": -30,
           "failMoraleDelta": -15
-        },
-        {
-          "text": "【迂回】穿过下水道，从侧翼包抄苏军阵地",
-          "isCombat": true,
-          "combatThreshold": 45,
-          "bonusClasses": ["infantry"],
-          "successNodeId": "st_factory_district",
-          "failureNodeId": "st_ambush",
-          "failHpDelta": -20,
-          "failMoraleDelta": -10
         }
       ]
     },
     {
-      "id": "st_pinned",
-      "locationTitle": "1942年9月 · 斯大林格勒废墟",
+      "id": "st_inf_edge",
+      "locationTitle": "1942年9月 · 城区边缘",
       "musicKey": "stalingrad",
       "type": "narrative",
-      "text": "狙击手。\n\n你趴在一堵断墙后面，不敢动弹。子弹每隔几秒就打在墙头，\n把砖屑弹到你的脸上。\n\n你旁边的士兵微微抬起头，想看清楚狙击手的位置——\n然后他缓缓滑倒，靠在你的肩膀上。子弹从他的太阳穴穿进去。\n\n你抱着他等了两个小时，直到支援部队赶来，用炮弹炸掉了狙击手的位置。\n\n那个苏联狙击手可能也才十几岁，可能是个女孩。\n你无从知晓。",
-      "nextNodeId": "st_factory_district"
+      "text": "你冲到了城市边缘。\n\n曾经是街区入口——现在是碎砖、钢筋、烧焦的木头。空气里是炸药、腐肉、焦土和某种甜的恶心的气味。\n\n格里戈尔活着冲过来了。他蹲在你旁边大口喘气。\n\n「欢迎来到斯大林格勒。」\n\n他没有笑。",
+      "nextNodeId": "st_inf_factory"
     },
     {
-      "id": "st_ambush",
-      "locationTitle": "1942年9月 · 斯大林格勒地下",
+      "id": "st_inf_fail",
+      "locationTitle": "1942年8月 · 郊外",
       "musicKey": "stalingrad",
       "type": "narrative",
-      "text": "下水道里很暗，很臭，水深到膝盖。\n\n苏军在等着你们。手榴弹从暗处飞来，爆炸在密闭空间里撕裂性的响声让你短暂失聪。\n\n你失去了两名同伴。\n\n当你们最终爬出下水道，重新站在废墟之中，\n你发现你的手在颤抖，不是因为寒冷，而是因为某种你说不清楚的东西。",
-      "nextNodeId": "st_factory_district"
+      "text": "炮弹在旁边炸开——气浪把你掀翻。爬起来时旁边一个士兵腹部被弹片撕开。他叫着你的名字——叫着他妻子的名字。然后不叫了。\n\n你继续爬。甚至不能停下来确认他是否还有呼吸。",
+      "nextNodeId": "st_inf_edge"
     },
     {
-      "id": "st_factory_district",
-      "locationTitle": "1942年10月 · 斯大林格勒拖拉机厂",
+      "id": "st_inf_gerhard",
+      "locationTitle": "1942年8月 · 郊外",
+      "musicKey": "stalingrad",
+      "type": "narrative",
+      "text": "你冲进弹坑——回头看。格里戈尔倒在半路。一颗子弹正中喉咙。他跪在地上双手抓着脖子眼睛很大——然后倒下。\n\n他十九岁。在斯大林格勒的第三天。\n\n你把脸埋在泥土里。",
+      "nextNodeId": "st_inf_edge"
+    },
+    {
+      "id": "st_inf_factory",
+      "locationTitle": "1942年10月 · 拖拉机厂",
       "musicKey": "stalingrad",
       "type": "choice",
-      "text": "斯大林格勒拖拉机厂。这里生产坦克，现在也是这场战争里最残酷的角斗场。\n\n苏军已经控制了工厂的上半部分，你们控制着下半部分。\n双方之间的分界线有时只是一堵墙，一层楼。\n同一栋建筑里，楼上是苏联红军，楼下是德国国防军，\n他们在砖墙和楼板里互相厮杀。\n\n这不是战争——这是屠杀。",
+      "text": "拖拉机厂——曾生产T-34坦克。现在是世界上最残酷的角斗场。\n\n苏军在楼上，你们在楼下。分界线有时候只是一堵墙。同一个车间里——楼上是红军，楼下是国防军。他们在同一面墙的两侧互相射击。\n\n从二楼传来声音——俄语骂人，也有人在哭。",
       "choices": [
         {
-          "text": "【强攻】直接攻击苏军控制区，逐层清扫",
+          "text": "【进攻】逐层清扫用刺刀和手榴弹",
           "isCombat": true,
           "combatThreshold": 65,
-          "bonusClasses": ["infantry"],
-          "successNodeId": "st_factory_taken",
-          "failureNodeId": "st_fire_trap",
+          "bonusClasses": [
+            "infantry"
+          ],
+          "successNodeId": "st_inf_volga",
+          "failureNodeId": "st_inf_fire",
           "failHpDelta": -35,
           "failMoraleDelta": -20
         },
         {
-          "text": "【炮火】呼叫炮兵轰炸，用炮火替代步兵的血肉",
-          "nextNodeId": "st_artillery",
-          "moraleDelta": -15,
-          "grantedFlags": ["called_artillery"]
-        },
-        {
-          "text": "【迂回】绕过工厂，向伏尔加河方向继续推进",
-          "nextNodeId": "st_bypass",
-          "moraleDelta": -20
+          "text": "【绕过】不顾命令绕开工厂",
+          "nextNodeId": "st_inf_bypass",
+          "moraleDelta": -25
         }
       ]
     },
     {
-      "id": "st_artillery",
-      "locationTitle": "1942年10月 · 斯大林格勒拖拉机厂",
+      "id": "st_inf_fire",
+      "locationTitle": "1942年10月 · 拖拉机厂",
       "musicKey": "stalingrad",
       "type": "narrative",
-      "text": "炮弹将整个工厂建筑群炸成了废墟中的废墟。\n\n你站在远处，看着那些楼层一层一层地坍塌，感到某种奇异的虚空。\n\n废墟下面，你无法知道里面是否还有人——苏联士兵，也许，工厂的工人，也许，还没来得及撤离的平民，也许。\n\n你没有去查。\n\n「工厂区清除，继续推进。」",
-      "nextNodeId": "st_factory_taken"
+      "text": "苏军点燃储油罐。火焰顺着地沟蔓延——出口被封死。\n\n你撞开一扇锁死的铁门——四个人滚出火海。身后还有哭喊声。你们救不了他们。",
+      "nextNodeId": "st_inf_volga"
     },
     {
-      "id": "st_bypass",
-      "locationTitle": "1942年10月 · 斯大林格勒街道",
+      "id": "st_inf_bypass",
+      "locationTitle": "1942年10月 · 街巷",
       "musicKey": "stalingrad",
       "type": "narrative",
-      "text": "你绕开了工厂，向伏尔加河方向继续推进。\n\n身后，工厂方向的枪声又响了，更激烈了——你留在那里的战友们还在里面。\n\n你没有回头。你告诉自己，那是战术需要，不是遗弃。\n\n但那枪声在你脑子里留了很久。",
-      "nextNodeId": "st_factory_taken"
+      "text": "你绕开了工厂。身后传来沉闷的爆炸声——你的战友还在里面为每一堵墙拼命。\n\n你没有回头。你告诉自己这是战术需要。但那爆炸声在你脑子里响了很久。",
+      "nextNodeId": "st_inf_volga"
     },
     {
-      "id": "st_fire_trap",
-      "locationTitle": "1942年10月 · 拖拉机厂内部",
-      "musicKey": "stalingrad",
-      "type": "narrative",
-      "text": "苏军点燃了储油罐。\n\n火焰顺着工厂的地沟蔓延，出口被火封死。\n你和三名同伴被困在一个小隔间里，烟很快变得密不透风。\n\n「找出口！」你带着他们摸索，最终撞开了一扇锁死的铁门，\n滚出厂房外，落在废墟里，浑身都是烟灰。\n\n身后，还有人的哭喊声。你们救不了更多人了。",
-      "nextNodeId": "st_factory_taken"
-    },
-    {
-      "id": "st_factory_taken",
-      "locationTitle": "1942年11月 · 斯大林格勒，伏尔加河边",
+      "id": "st_inf_volga",
+      "locationTitle": "1942年11月 · 伏尔加河",
       "musicKey": "stalingrad",
       "type": "choice",
-      "text": "工厂区落入德军手中。伏尔加河就在前方，近得可以看到对岸。\n\n但苏联的增援源源不断地渡河而来。每击毙一个苏联士兵，\n就会有两个从伏尔加河对岸补充进来。\n\n你看着浩荡的伏尔加河，感到一种无边的疲惫。\n\n「继续强攻还是巩固阵地？」上级等待你的建议。",
+      "text": "你们打到了伏尔加河岸。河面很宽——至少一公里。对岸就是无穷无尽的苏联。增援源源不断渡河而来。每打死一个就补充两个。\n\n站在河边——你突然明白了：就算拿下斯大林格勒又怎样？这片土地大到可以把所有战争都吞没。",
       "choices": [
         {
-          "text": "【继续】强攻伏尔加河岸，彻底封锁苏军补给",
+          "text": "【强攻】继续进攻封锁渡口",
           "isCombat": true,
           "combatThreshold": 70,
-          "successNodeId": "st_volga_reach",
-          "failureNodeId": "st_heavy_loss",
+          "bonusClasses": [
+            "infantry"
+          ],
+          "successNodeId": "st_inf_encircle",
+          "failureNodeId": "st_inf_heavy",
           "failHpDelta": -40,
           "failMoraleDelta": -15
         },
         {
-          "text": "【巩固】原地防守，等待后方增援",
-          "nextNodeId": "st_winter_comes"
+          "text": "【固守】原地防守等增援",
+          "nextNodeId": "st_inf_winter"
         }
       ]
     },
     {
-      "id": "st_heavy_loss",
-      "locationTitle": "1942年11月 · 斯大林格勒废墟",
+      "id": "st_inf_heavy",
+      "locationTitle": "1942年11月 · 伏尔加河",
       "musicKey": "stalingrad",
       "type": "narrative",
-      "text": "连队伤亡已经超过七成。\n\n副排长的头颅被弹片削去了一半——你看见时，他还站在那里，\n然后才慢慢倒下，就像一棵被锯断的树。\n\n你在废墟里捡到了他的钢盔。钢盔里有一张被折叠过很多次的照片——\n一个女人抱着一个小女孩，背景是某个德国小城市的广场。\n\n你把照片装进口袋。你不知道为什么，但你把它装进去了。",
-      "nextNodeId": "st_winter_comes"
+      "text": "连队伤亡超过七成。排长死了——弹片削去半边头颅。他还站在那里然后才慢慢倒下——像一棵被锯断的树。\n\n你捡起他的钢盔。衬里有一张照片——女人抱着小女孩。\n\n你的第四张照片。",
+      "nextNodeId": "st_inf_winter"
     },
     {
-      "id": "st_volga_reach",
-      "locationTitle": "1942年11月 · 伏尔加河西岸",
-      "musicKey": "stalingrad",
-      "type": "narrative",
-      "text": "你冲到了伏尔加河岸。\n\n河面很宽，冰冷的河水在晨光下发着灰蓝色的光。\n对岸，是苏联，无穷尽的苏联。\n\n你感到一阵眩晕，不是因为受伤，而是因为突然明白了一件事：\n就算拿下斯大林格勒，拿下整个苏联又如何？\n这片土地太大了，大到可以把所有的战争都淹没。\n\n然后，1942年11月19日，天王星行动。",
-      "nextNodeId": "st_encirclement"
-    },
-    {
-      "id": "st_winter_comes",
-      "locationTitle": "1942年11月 · 斯大林格勒，冬日",
+      "id": "st_inf_winter",
+      "locationTitle": "1942年11月 · 寒冬",
       "musicKey": "stalingrad_winter",
       "type": "choice",
-      "text": "冬天来了。\n\n来自西伯利亚的寒流把斯大林格勒变成了冰的地狱。零下三十度，零下四十度。\n\n你们没有足够的冬装——后勤以为到冬天之前就能拿下城市，所以没有备足。\n\n士兵们用死去的战友的大衣，用苏联平民的破布，包裹自己。\n每天早晨都有人在战壕里冻死，不是被打死，是冻死。\n\n食物开始匮乏。",
+      "text": "冬天。零下三十度。没有足够的冬衣——后勤以为冬季之前能拿下城市。他们错了。\n\n士兵们用死去战友的大衣裹自己。每天清晨都有人在战壕里冻死。不是被打死——是冻死。食物减到每天半块面包。",
       "choices": [
         {
-          "text": "【搜寻】带人搜寻周围废墟里的食物",
+          "text": "【搜寻】带队废墟找食物",
           "isCombat": true,
           "combatThreshold": 40,
-          "bonusClasses": ["infantry"],
-          "successNodeId": "st_food_found",
-          "failureNodeId": "st_starving",
+          "bonusClasses": [
+            "infantry"
+          ],
+          "successNodeId": "st_inf_food",
+          "failureNodeId": "st_inf_starve",
           "failHpDelta": -20,
           "failMoraleDelta": -15
         },
         {
-          "text": "【分享】将最后的口粮平均分给所有人",
-          "nextNodeId": "st_share_ration",
-          "moraleDelta": 10,
+          "text": "【分享】把自己的口粮分给所有人",
+          "nextNodeId": "st_inf_share",
+          "moraleDelta": 15,
           "hpDelta": -10,
-          "grantedFlags": ["shared_ration"]
+          "grantedFlags": [
+            "shared"
+          ]
         }
       ]
     },
     {
-      "id": "st_food_found",
-      "locationTitle": "1942年12月 · 斯大林格勒废墟地窖",
+      "id": "st_inf_food",
+      "locationTitle": "1942年12月 · 地窖",
       "musicKey": "stalingrad_winter",
       "type": "narrative",
-      "text": "你们在一处废弃民居的地窖里找到了腌白菜和一袋黑麦粉。\n\n地窖的角落里，一个玩具熊靠在墙边，一个棉布做的小熊，某个苏联孩子留下来的。\n\n你的士兵们把腌菜分了，吃得很快，没有人说话。\n\n出来的时候，你把那个玩具熊放回了原位。\n你不知道为什么这个举动让你喉咙发紧。",
-      "nextNodeId": "st_encirclement"
+      "text": "腌白菜和一小袋黑麦粉。地窖角落里有个玩具熊——棉布做的，靠在墙边。某个苏联孩子留下的。\n\n你们把腌菜分了。出来时你把熊放回原位——像它在等主人。你知道那个孩子大概不会回来了。",
+      "nextNodeId": "st_inf_encircle"
     },
     {
-      "id": "st_starving",
-      "locationTitle": "1942年12月 · 斯大林格勒",
+      "id": "st_inf_starve",
+      "locationTitle": "1942年12月 · 废墟",
       "musicKey": "stalingrad_winter",
       "type": "narrative",
-      "text": "三天没有进食。\n\n你的双手开始颤抖，不是因为寒冷，而是因为饥饿。\n\n有人开始吃皮带。有人煮了鞋底。\n一匹死掉的马被发现，二十分钟内被分光，包括骨头。\n\n你在战壕里看着天空，感觉自己的思维变得很奇怪，\n开始想一些乱七八糟的事情——妈妈做的土豆汤，圣诞节的蜡烛，\n以及所有那些你以为理所当然的、普通的、温暖的东西。",
-      "nextNodeId": "st_encirclement"
+      "text": "三天没吃。手在发抖——不是因为冷。是饥饿。\n\n有人煮皮带。有人在吃雪。你想起母亲做的土豆汤。那些你以为理所当然的温暖的东西。",
+      "nextNodeId": "st_inf_encircle"
     },
     {
-      "id": "st_share_ration",
-      "locationTitle": "1942年12月 · 斯大林格勒战壕",
+      "id": "st_inf_share",
+      "locationTitle": "1942年12月 · 战壕",
       "musicKey": "stalingrad_winter",
       "type": "narrative",
-      "text": "你把最后的黑面包掰开，每个人分到大约一个手掌大小的一块。\n\n大家围坐在一起，没有人说话，只是吃。\n\n吃完之后，有人低声哼起了圣诞歌。\n那是《平安夜》，德语版的。\n\n在这个世界上最残酷的地方，这一刻如此不真实，\n又如此清晰。\n\n然后1942年11月19日，苏军的大炮开始轰鸣。",
-      "nextNodeId": "st_encirclement"
+      "text": "你把最后的面包掰开。每人手掌大的一块。\n\n吃完后有人哼起《平安夜》——德语版。在这个世界上最残酷的地方，这一刻如此不真实。\n\n然后苏军的大炮轰鸣。天王星行动开始了。",
+      "nextNodeId": "st_inf_encircle"
     },
     {
-      "id": "st_encirclement",
-      "locationTitle": "1942年11月19日 · 天王星行动",
+      "id": "st_inf_encircle",
+      "locationTitle": "1942年11月19日 · 包围圈",
       "musicKey": "stalingrad_winter",
       "type": "choice",
-      "text": "1942年11月19日，苏联发动天王星行动。\n\n消息在几个小时内传遍所有阵地：我们被包围了。\n\n两股苏联装甲力量在卡拉奇合围，包围圈里有三十万德军和轴心国军队。\n包围圈的直径一百公里，周长是一道铁一样的苏联防线。\n\n「最高统帅部命令坚守，解救行动正在准备。」无线电里的声音说。\n\n你看着你的士兵们，他们比你更清楚这意味着什么。",
+      "text": "消息在几小时内传遍：我们被包围了。三十万人困在一百公里的圈子里。\n\n「坚守。援军正在准备。」无线电里的声音。你不再相信无线电。\n\n圣诞夜——有人在唱《平安夜》。断断续续。然后停了。可能是冻住了——也可能是别的。",
       "choices": [
         {
-          "text": "【突围】立即尝试突破包围圈，向西撤退",
+          "text": "【突围】组织分队向西突破",
           "isCombat": true,
           "combatThreshold": 65,
-          "successNodeId": "st_breakout_success",
-          "failureNodeId": "st_breakout_fail",
+          "bonusClasses": [
+            "infantry"
+          ],
+          "successNodeId": "st_inf_breakout",
+          "failureNodeId": "st_inf_stay",
           "failHpDelta": -35,
           "failMoraleDelta": -25
         },
         {
-          "text": "【坚守】遵守命令，等待解救行动",
-          "nextNodeId": "st_wait_rescue"
+          "text": "【坚守】等待曼施坦因",
+          "nextNodeId": "st_inf_stay"
         }
       ]
     },
     {
-      "id": "st_wait_rescue",
-      "locationTitle": "1942年12月 · 斯大林格勒包围圈",
-      "musicKey": "stalingrad_winter",
-      "type": "narrative",
-      "text": "曼施坦因的解救行动开始了，然后停止了，然后失败了。\n\n包围圈越收越紧。空运的物资——每天几百吨，但需要几千吨——根本填不满三十万人的缺口。\n\n圣诞夜。某个战壕里有人在唱《平安夜》，断断续续的，\n然后被冻住了，或者停下来了，再也没有继续。\n\n1943年1月，元首的命令：不得投降，不得后撤，死而后已。\n\n你握紧步枪，感觉枪托上的木头已经被你摸出了油脂的光泽。",
-      "nextNodeId": "st_final_days"
-    },
-    {
-      "id": "st_breakout_success",
+      "id": "st_inf_breakout",
       "locationTitle": "1943年1月 · 包围圈外",
       "musicKey": "stalingrad_winter",
       "type": "narrative",
-      "text": "你们冲出去了。\n\n七个人，从三十人的小分队里剩下的七个人。\n\n你在雪地里奔跑，枪声从四面八方传来，\n但你们的脚步越来越远，越来越远，直到那座燃烧的城市的轮廓消失在夜色和雪雾中。\n\n当你回望斯大林格勒的方向，那里的天空是红色的。\n\n身后，三十万人仍然在那片红色的天空下。",
-      "nextNodeId": "st_final_days"
+      "text": "你们冲出来了。三十人的分队——剩七个。\n\n你回头——斯大林格勒方向的天空是红色的。三十万人还在那片红色天空下。\n\n你在雪地里继续向西走。每一步都离那座城市更远——但离记忆更近。",
+      "nextNodeId": "st_inf_final"
     },
     {
-      "id": "st_breakout_fail",
-      "locationTitle": "1943年1月 · 包围圈",
-      "musicKey": "stalingrad_winter",
-      "type": "narrative",
-      "text": "突围失败了。\n\n你们被打回来。雪地上倒满了人，分不清是冻死的还是中弹死的，\n因为冻死的人和中弹死的人看起来一样——都静止，都苍白，都被雪覆盖。\n\n你回到了原来的阵地，比出发时少了十三个人。\n\n「我们再试一次，」有人说。\n「不，」你说，「我们等。」\n「等什么？」\n\n你没有回答这个问题。",
-      "nextNodeId": "st_final_days"
-    },
-    {
-      "id": "st_final_days",
+      "id": "st_inf_stay",
       "locationTitle": "1943年2月2日 · 斯大林格勒",
       "musicKey": "stalingrad_winter",
+      "type": "narrative",
+      "text": "保卢斯投降了。九万一千人走进战俘营。\n\n你也在其中。你口袋里还有四张照片——四个家庭的碎片。\n\n苏联士兵走过来——比你矮半个头。他看了看你，把你步枪从雪地里拔出来。没有打你。",
+      "nextNodeId": "st_inf_final"
+    },
+    {
+      "id": "st_inf_final",
+      "locationTitle": "斯大林格勒 — 终章",
+      "musicKey": "stalingrad_end",
+      "type": "ending",
+      "isVictory": true,
+      "text": "【斯大林格勒 — 投降】\n\n你投降了。九万一千名德国战俘。只有六千人活着回到德国。\n\n汉斯·缪勒在战俘营的每个冬天都会想起斯大林格勒的雪。那些雪覆盖了尸体、废墟、他的二十二岁。\n\n他口袋里还有四张不认识的人的照片。战后——他把照片寄回了那些地址。有的退回来了——查无此人。\n\n有的没有。\n\n下一章即将开启。"
+    },
+    {
+      "id": "st_tank_briefing",
+      "locationTitle": "1942年8月 · 斯大林格勒南翼",
+      "musicKey": "stalingrad",
+      "type": "narrative",
+      "text": "埃里希·瓦格纳，二十四岁。你的坦克换到第五辆了——或者第六辆。你已经不去数了。\n\n汉内斯还在炮塔里——额头的伤疤长好了，但不再讲笑话。克劳斯还在装填，手不抖了——你觉得这比手抖更可怕。\n\n「城市里不适合坦克。」你知道。所有人知道。但那个人名字命名的城市——必须拿下。\n\n你踩下油门。坦克驶入废墟。",
+      "nextNodeId": "st_tank_city"
+    },
+    {
+      "id": "st_tank_city",
+      "locationTitle": "1942年9月 · 街道",
+      "musicKey": "stalingrad",
       "type": "choice",
-      "text": "1943年2月2日。\n\n保卢斯元帅投降了，带着他的参谋部走出地窖，向苏军投降。\n\n消息传遍了所有阵地。有人哭，有人怒骂，有人只是沉默地放下了枪。\n\n你的小分队还活着。枪声停了，但周围是无边无际的苏联士兵。\n\n这一刻，你终于可以做出属于自己的选择。",
+      "text": "狭窄街道——坦克笨拙转弯。每个窗口都可能藏反坦克炮。\n\n「右前方——反坦克炮！」汉内斯吼道。\n\n炮口闪光——躲在废墟后面。",
       "choices": [
         {
-          "text": "【放下武器】将步枪插在雪地里，走向苏军阵地",
-          "nextNodeId": "st_victory"
+          "text": "【炮击】估算位置开炮",
+          "isCombat": true,
+          "combatThreshold": 55,
+          "bonusClasses": [
+            "tank_crew"
+          ],
+          "successNodeId": "st_tank_advance",
+          "failureNodeId": "st_tank_hit",
+          "failHpDelta": -30,
+          "failMoraleDelta": -10
         },
         {
-          "text": "【继续战斗】为德意志战斗到最后一颗子弹",
-          "isCombat": true,
-          "combatThreshold": 90,
-          "successNodeId": "st_last_stand",
-          "failureNodeId": "st_defeat",
-          "failHpDelta": -50,
-          "failMoraleDelta": -30
+          "text": "【后退】撤回步兵掩护范围",
+          "nextNodeId": "st_tank_retreat",
+          "hpDelta": -5,
+          "moraleDelta": -15
         }
       ]
     },
     {
-      "id": "st_victory",
-      "locationTitle": "斯大林格勒战役 — 结束",
-      "musicKey": "stalingrad_end",
-      "type": "ending",
-      "isVictory": true,
-      "text": "【战役结束 — 存活】\n\n你把步枪插在雪地里，双手举起，向苏军阵地走去。\n\n对面走来的苏联士兵和你一样年轻，和你一样疲惫，和你一样瘦削，眼睛里是和你一样的某种虚空。\n\n没有人说话。战争，在这个小小的时刻，仿佛停止了。\n\n────────────────\n\n斯大林格勒战役是人类历史上最惨烈的城市战役。\n双方死亡、受伤或被俘人数：约一百九十五万至两百万人。\n\n第六集团军九十一名将领中有二十四名将领随保卢斯投降，\n普通士兵约九万一千人成为战俘——其中只有六千人活着回到了德国。\n\n这不是胜利，也不是失败。\n这是人类给自己开出的一张价目表，\n记录着一种文明能够对另一种文明，对自己，做到什么地步。\n\n下一章即将开启。"
+      "id": "st_tank_advance",
+      "locationTitle": "1942年9月 · 废墟",
+      "musicKey": "stalingrad",
+      "type": "narrative",
+      "text": "命中了。反坦克炮和炮手一起消失。\n\n从潜望镜——二楼窗后有个人影闪过。可能是狙击手也可能是平民。你没开炮。你不知道那是谁。在斯大林格勒——你不知道的太多。",
+      "nextNodeId": "st_tank_winter"
     },
     {
-      "id": "st_last_stand",
-      "locationTitle": "斯大林格勒战役 — 结束",
+      "id": "st_tank_hit",
+      "locationTitle": "1942年9月 · 街道",
+      "musicKey": "stalingrad",
+      "type": "narrative",
+      "text": "炮弹打中侧面——装甲弹开。但冲击力把克劳斯震飞——后背撞在弹药架上。离最近的炮弹只有几厘米。\n\n他爬起来。没死。但发动机在冒烟。",
+      "nextNodeId": "st_tank_winter"
+    },
+    {
+      "id": "st_tank_retreat",
+      "locationTitle": "1942年9月 · 街道",
+      "musicKey": "stalingrad",
+      "type": "narrative",
+      "text": "你倒了车。汉内斯什么也没说——但他看你的眼神变了。不是责怪——是某种更复杂的东西。\n\n在斯大林格勒——活着和正确往往不是同一件事。",
+      "nextNodeId": "st_tank_winter"
+    },
+    {
+      "id": "st_tank_winter",
+      "locationTitle": "1942年11月 · 寒冬",
+      "musicKey": "stalingrad_winter",
+      "type": "choice",
+      "text": "柴油冻住了。每早需要烤半小时发动机。机油像胶水。炮塔转动变慢——在战斗中，慢意味着死。\n\n克劳斯病了——斑疹伤寒。他在发烧说胡话。汉内斯用自己体温给他取暖。",
+      "choices": [
+        {
+          "text": "【修理】带人修冻坏的发动机",
+          "isCombat": true,
+          "combatThreshold": 40,
+          "bonusClasses": [
+            "tank_crew"
+          ],
+          "successNodeId": "st_tank_repaired",
+          "failureNodeId": "st_tank_broken",
+          "failHpDelta": -15,
+          "failMoraleDelta": -10
+        },
+        {
+          "text": "【坚守】围着坦克防守",
+          "nextNodeId": "st_tank_encircle",
+          "hpDelta": -10
+        }
+      ]
+    },
+    {
+      "id": "st_tank_repaired",
+      "locationTitle": "1942年11月 · 废墟",
+      "musicKey": "stalingrad_winter",
+      "type": "narrative",
+      "text": "修好了。克劳斯把手套脱下来递给你——他手更小，你戴着刚好。「你呢？」「有备用的。」他举起一双破布和报纸裹的手。\n\n你说不出谢谢。喉咙被堵住了。\n\n在这冰雪地狱里——有人在把最后的温暖分给你。",
+      "nextNodeId": "st_tank_encircle"
+    },
+    {
+      "id": "st_tank_broken",
+      "locationTitle": "1942年11月 · 废墟",
+      "musicKey": "stalingrad_winter",
+      "type": "narrative",
+      "text": "发动机彻底坏了。你们把炮弹拆下来分给步兵。坦克留在那里——冻结在斯大林格勒的街道上，像一座钢铁墓碑。\n\n汉内斯把炮塔编号撬下来放进口袋。「留个纪念。」",
+      "nextNodeId": "st_tank_encircle"
+    },
+    {
+      "id": "st_tank_encircle",
+      "locationTitle": "1942年11月19日 · 包围圈",
+      "musicKey": "stalingrad_winter",
+      "type": "choice",
+      "text": "包围。三十万人困在一百公里圈子里。\n\n克劳斯在发烧说胡话。汉内斯用体温给他取暖。你的坦克已经不能动了——你们现在是步兵。\n\n在斯大林格勒——每个人最终都会变成步兵。",
+      "choices": [
+        {
+          "text": "【突围】带两人向西突破",
+          "isCombat": true,
+          "combatThreshold": 65,
+          "bonusClasses": [
+            "tank_crew"
+          ],
+          "successNodeId": "st_tank_breakout",
+          "failureNodeId": "st_tank_stay",
+          "failHpDelta": -35,
+          "failMoraleDelta": -25
+        },
+        {
+          "text": "【留守】照顾克劳斯等援军",
+          "nextNodeId": "st_tank_stay"
+        }
+      ]
+    },
+    {
+      "id": "st_tank_breakout",
+      "locationTitle": "1943年1月 · 包围圈外",
+      "musicKey": "stalingrad_winter",
+      "type": "narrative",
+      "text": "你们三个人走出了包围圈。克劳斯是汉内斯背出来的——他在半路退了烧。也许是因为冷，也许是因为上帝。\n\n回头——斯大林格勒方向的天空是红色的。三十万人还在那片红色天空下。但你们三个不在里面。",
+      "nextNodeId": "st_tank_final"
+    },
+    {
+      "id": "st_tank_stay",
+      "locationTitle": "1943年2月2日 · 斯大林格勒",
+      "musicKey": "stalingrad_winter",
+      "type": "narrative",
+      "text": "保卢斯投降了。\n\n汉内斯问：「我们呢？」\n\n你看克劳斯——他更瘦了但还活着。\n\n「我们也投降。」\n\n汉内斯没有反对。他把炮塔编号牌交给了苏联士兵——一块铁片。上面是你们三个人的编号。",
+      "nextNodeId": "st_tank_final"
+    },
+    {
+      "id": "st_tank_final",
+      "locationTitle": "斯大林格勒 — 终章",
       "musicKey": "stalingrad_end",
       "type": "ending",
       "isVictory": true,
-      "text": "【战役结束 — 存活】\n\n你打完了最后一颗子弹，然后也没有更多的子弹了。\n\n苏联士兵走进来，看见你坐在那里，没有武器，只是靠着一堵断墙，已经精疲力竭到无法站起来。\n\n他们没有开枪。其中一个把一个半块的面包放到你面前。\n\n你吃了那块面包。\n\n后来你成了战俘。活了下来。\n\n斯大林格勒共有约两百万人在这场战役中死亡或失踪。\n你不是其中之一，但你不知道这是幸运还是不幸。\n\n下一章即将开启。"
+      "text": "【斯大林格勒 — 投降】\n\n你们投降了。埃里希、汉内斯、克劳斯。三个坦克手——穿过阿登、碾过巴黎、冻在斯大林格勒——活下来了。\n\n九万一千名战俘。六千人生还德国。你们三个都在那六千人里。不是因为强大——因为你们有彼此。\n\n汉内斯在战俘营里用那块编号牌换了一块面包。克劳斯后来把那本路上捡的俄文书翻译了出来——普希金的诗集。\n\n而你——埃里希——你活到了战后。你回到了萨克森。父亲的修理铺还在。\n\n下一章即将开启。"
     },
     {
       "id": "st_defeat",
-      "locationTitle": "斯大林格勒战役 — 失败",
+      "locationTitle": "斯大林格勒 — 阵亡",
       "musicKey": "defeat_theme",
       "type": "ending",
       "isDefeat": true,
-      "text": "【战役结束 — 阵亡】\n\n最后一颗子弹，不是打出去的，是打进来的。\n\n你倒在斯大林格勒的废墟里，雪很快覆盖了你。\n\n这座城市最终被双方合力摧毁，然后以同样的代价重建。\n\n你的名字，不会出现在任何地方。"
+      "text": "你倒在斯大林格勒的废墟里。雪很快覆盖了你。\n\n两百万人在这座城市里死亡或失踪。你是其中之一。"
+    },
+    {
+      "id": "st_skip",
+      "locationTitle": "1943年2月 · 东线",
+      "musicKey": "stalingrad_end",
+      "type": "narrative",
+      "text": "斯大林格勒战役结束。第六集团军三十万人——九万一千人被俘，仅六千人生还。两百万人在此死亡。\n\n你的战场不在这里——但你听说那些故事：零下四十度吃皮带的士兵、冻死在战壕里的人、在地下室互相猎杀的孩子。\n\n东线转折点已到。帝国命运正在逆转。",
+      "nextNodeId": "st_inf_final"
     }
   ]
 }

@@ -1,314 +1,441 @@
 {
   "chapterId": "britain",
-  "startNodeId": "br_briefing_fighter",
-  "defeatNodeId": "br_final_crash",
+  "startNodeId": "br_fpt_briefing",
+  "defeatNodeId": "br_defeat",
+  "classStartNodes": {
+    "fighter_pilot": "br_fpt_briefing",
+    "bomber_pilot": "br_bpt_briefing",
+    "infantry": "br_skip",
+    "tank_crew": "br_skip",
+    "submarine_crew": "br_skip",
+    "battleship_crew": "br_skip"
+  },
   "nodes": [
     {
-      "id": "br_briefing_fighter",
-      "locationTitle": "1940年7月10日 · 法国加莱机场",
+      "id": "br_fpt_briefing",
+      "locationTitle": "1940年7月10日 · 加莱机场",
       "musicKey": "britain",
       "type": "narrative",
-      "text": "加莱机场的简报室里，年轻的飞行员们挤在一起，听着作战简报。\n\n你驾驶Bf-109战斗机，隶属第三航空队。窗外，你的座机正停在跑道上，\n银灰色的机翼在七月的阳光下发着光。\n\n「我们的任务，」中队长说，「是消灭英国皇家空军，夺取英吉利海峡制空权。\n没有制空权，就没有海狮计划，就没有英国的投降。」\n\n任务听起来简单。但中队里所有人都知道，英国飞行员和我们一样出色，\n而他们是在本土上空作战——被击落的英国飞行员可以跳伞回到地面，\n而我们将坠入海峡。\n\n「起飞！」",
-      "nextNodeId": "br_first_scramble"
+      "text": "卡尔·施奈德，二十一岁，柏林洪堡大学物理系。\n\n战前你研究量子叠加态——一个粒子可以同时处于两种状态。现在你飞Bf-109战斗机——你也同时处于两种状态：活着，和即将死去。\n\n僚机迪特尔来自科隆，刚当父亲。他给你看过他儿子的照片——胖乎乎的，笑得像南瓜。他说打完仗要带儿子去海边。\n\n「起飞。」\n\n你跑向飞机。机翼在七月阳光下发光。它是一台漂亮的机器——在物理学家眼里，流体力学和空气动力学的杰作。但今天它要越过海峡去杀人。",
+      "nextNodeId": "br_fpt_scramble"
     },
     {
-      "id": "br_briefing_bomber",
-      "locationTitle": "1940年8月13日 · 法国机场",
-      "musicKey": "britain",
-      "type": "narrative",
-      "text": "你是He-111轰炸机的驾驶员，今天是「鹰日」——对英国的大规模轰炸行动正式开始。\n\n目标清单摆在你面前：英国皇家空军的雷达站、机场、指挥中心。\n这是合法的军事目标，情报官这么告诉你们。\n\n但你看着地图，看着那些密密麻麻的英国城市，心里有什么东西不安地动了一下。\n\n飞机跑道很长，你推大油门，庞大的机体缓缓加速，\n英吉利海峡就在前方，海峡对面，是英国。",
-      "nextNodeId": "br_channel_crossing"
-    },
-    {
-      "id": "br_first_scramble",
-      "locationTitle": "1940年7月12日 · 英吉利海峡上空",
+      "id": "br_fpt_scramble",
+      "locationTitle": "1940年7月12日 · 海峡上空",
       "musicKey": "britain_air",
       "type": "choice",
-      "text": "海峡上空的第一次相遇。\n\n雷达引导下，你的中队在五千米高空发现了护航英军船队的喷火式战斗机编队。\n\n阳光从背后照来，你眯起眼睛。对面有九架，你们有十二架。\n\n「红色一号，攻击！」无线电里传来命令。\n\n在你开始拉杆之前，你看见其中一架喷火式——飞行员的头盔，就在几百米外。\n那是一个和你一样的年轻人。",
+      "text": "五千米高空。前方——英军喷火式战斗机编队。对面的飞行员和你一样的年纪，坐在你只能在教科书上看到的椭圆形机翼后面。\n\n迪特尔在你左翼，向你点了点头。\n\n你的拇指放在机炮按钮上。一个物理学学生的手指——本该在实验室里调试示波器的手指——现在按在能在一秒内撕碎一架飞机的按钮上。",
       "choices": [
         {
-          "text": "【主动】立即俯冲攻击，抢占优势高度",
+          "text": "【攻击】俯冲抢占高度优势",
           "isCombat": true,
-          "combatThreshold": 50,
-          "bonusClasses": ["fighter_pilot"],
-          "successNodeId": "br_first_kill",
-          "failureNodeId": "br_first_hit",
+          "combatThreshold": 55,
+          "bonusClasses": [
+            "fighter_pilot"
+          ],
+          "successNodeId": "br_fpt_kill",
+          "failureNodeId": "br_fpt_hit",
           "failHpDelta": -25,
           "failMoraleDelta": -10
         },
         {
-          "text": "【谨慎】等待队形，以编队优势压制",
+          "text": "【等待】保持队形让编队优势压制",
           "isCombat": true,
           "combatThreshold": 40,
-          "bonusClasses": ["fighter_pilot"],
-          "successNodeId": "br_first_kill",
-          "failureNodeId": "br_wingman_down",
+          "bonusClasses": [
+            "fighter_pilot"
+          ],
+          "successNodeId": "br_fpt_kill",
+          "failureNodeId": "br_fpt_wingman",
           "failHpDelta": -10,
           "failMoraleDelta": -20
         }
       ]
     },
     {
-      "id": "br_channel_crossing",
-      "locationTitle": "1940年8月13日 · 英吉利海峡",
+      "id": "br_fpt_kill",
+      "locationTitle": "1940年7月12日 · 海峡上空",
       "musicKey": "britain_air",
       "type": "narrative",
-      "text": "海峡很美。从五千米高空俯瞰，那只是一条深蓝色的带子，阳光在上面波光粼粼。\n\n但你知道海面下是什么：冰冷的水、强劲的潮流。被击落在海峡上的飞行员，绝大多数都沉下去了，没有回来。\n\n「英国海岸线在前方三十公里，」领航员说，「注意防空炮火，注意战斗机。」\n\n你看见远处白色的悬崖——多佛尔白崖，像一堵墙。\n\n然后，高射炮的黑烟点在你的周围。",
-      "nextNodeId": "br_target_approach"
+      "text": "你击中了。那架喷火式拖着浓烟开始翻滚。你看到飞行员跳伞了——白色的伞花在海峡上空张开。\n\n他会降落在哪里？如果是海峡——水温十七度。人可以活多久？你在物理课上学过热传导公式。你现在不想用那个公式。\n\n「击落一架！」迪特尔在无线电里欢呼。\n\n你没有欢呼。你只是看着那朵白伞越来越小。那里面是一个人。",
+      "nextNodeId": "br_fpt_fuel"
     },
     {
-      "id": "br_first_kill",
-      "locationTitle": "1940年7月12日 · 英吉利海峡",
+      "id": "br_fpt_hit",
+      "locationTitle": "1940年7月12日 · 海峡",
       "musicKey": "britain_air",
       "type": "narrative",
-      "text": "机炮的短促点射，那架喷火式冒出一道浓烟，开始侧翻。\n\n你看见飞行员跳伞了。白色的伞花在海峡上方缓缓张开。\n那人会漂到哪里，是英国岸边还是海峡中央？你不知道。\n\n「击落一架！」你的无线电里传来中队的欢呼。\n\n你没有跟着欢呼。座舱里除了发动机的轰鸣，只有你自己的呼吸声。\n\n那是你第一次击落一架飞机。你没有感觉到你以为自己会感觉到的东西——\n不是骄傲，不是恐惧，只是一种奇异的空白。",
-      "nextNodeId": "br_fuel_crisis"
+      "text": "你没看见他从哪里冲出来的。机翼中弹——冷却液泄漏。温度计的指针在往上疯涨。\n\n你咬着牙把受伤的飞机开回加莱。着陆时轮胎爆了，飞机在跑道上打转。爬出座舱时腿软得像被抽掉了骨头。\n\n地勤拍你的肩：「还活着。」\n\n你坐在跑道边很久。物理课上说能量守恒——但你的恐惧没有消失。它转化成了别的东西。",
+      "nextNodeId": "br_fpt_fuel"
     },
     {
-      "id": "br_first_hit",
-      "locationTitle": "1940年7月12日 · 英吉利海峡",
+      "id": "br_fpt_wingman",
+      "locationTitle": "1940年7月12日 · 海峡",
       "musicKey": "britain_air",
       "type": "narrative",
-      "text": "你没看见那架喷火式从哪里冲出来。\n\n一连串击打声——机翼中弹，冷却液开始泄漏，仪表盘上的温度迅速攀升。\n\n「红色三号，你中弹了，立即返回！」无线电里队长的声音。\n\n你拉住操纵杆，座机开始颤抖。海峡在你下方。那片水很冷，你知道。\n\n你咬着牙，把受伤的飞机开回了加莱——但只差一点。\n落地时，轮胎爆裂，飞机在跑道上打转，最终停下。\n\n你从座舱里爬出来，双腿发软，在跑道上坐了很久，什么也没有想。",
-      "nextNodeId": "br_fuel_crisis"
+      "text": "你看见了。迪特尔的飞机中弹——发动机舱喷出火焰。他跳伞了。伞张开了。他在海峡中央缓缓下降。\n\n你的燃油不够做搜救。\n\n你带着编队飞回加莱。无线电里没有人说话。\n\n迪特尔——科隆，六个月大的儿子，想带儿子去海边。他降落在海上了。那水温——你已经算过了。",
+      "nextNodeId": "br_fpt_fuel"
     },
     {
-      "id": "br_wingman_down",
-      "locationTitle": "1940年7月12日 · 英吉利海峡",
-      "musicKey": "britain_air",
-      "type": "narrative",
-      "text": "你看见了。\n\n库尔特的飞机中弹，发动机舱喷出火焰。他的飞机开始翻滚，\n向着海面急速下坠。\n\n他跳伞了。伞张开了。他在海峡中央，缓缓下降。\n\n你的燃油不够做搜救了。没有任何人的燃油够。\n\n你带着编队返回基地。没有人在无线电里说话。\n\n库尔特来自科隆，家里有一个六个月大的儿子，他给我们看过照片。\n海峡的水温，七月份大约是十七度。在那种水里，人可以活多久？",
-      "nextNodeId": "br_fuel_crisis"
-    },
-    {
-      "id": "br_fuel_crisis",
-      "locationTitle": "1940年7月25日 · 加莱基地",
+      "id": "br_fpt_fuel",
+      "locationTitle": "1940年7月25日 · 加莱",
       "musicKey": "britain",
       "type": "choice",
-      "text": "Bf-109的续航是一个致命的问题。\n\n从加莱到伦敦再回来，飞机只能在目标区域上空停留十到二十分钟，\n然后燃油就会进入危险区间。\n\n今天的任务：护送轰炸机群深入英国内陆，攻击皇家空军机场。\n\n中队长说：「如果在英国上空燃油告急，你有两个选择——」\n他没有把话说完，因为大家都知道：\n返回，或者在英国领土上跳伞，成为俘虏。",
+      "text": "Bf-109最致命的不是敌人——是燃油表。从加莱到伦敦来回，你只能在目标上空待十五分钟。超过这个时间——海峡在等你。\n\n今天的任务：护航轰炸机深入英国内陆。\n\n中队长说：「燃油管理——你们自己把握。」他没有说后半句。",
       "choices": [
         {
-          "text": "【坚持】尽量延长在英国上空的作战时间",
+          "text": "【坚持】尽量延长护航时间",
           "isCombat": true,
           "combatThreshold": 55,
-          "bonusClasses": ["fighter_pilot"],
-          "successNodeId": "br_escort_success",
-          "failureNodeId": "br_fuel_emergency",
+          "bonusClasses": [
+            "fighter_pilot"
+          ],
+          "successNodeId": "br_fpt_escort_ok",
+          "failureNodeId": "br_fpt_fuel_out",
           "failHpDelta": -20,
           "failMoraleDelta": -15
         },
         {
-          "text": "【保守】严格控制燃油，提前折返",
-          "nextNodeId": "br_escort_partial",
+          "text": "【折返】严格控制燃油提前返回",
+          "nextNodeId": "br_fpt_early",
           "moraleDelta": -10
         }
       ]
     },
     {
-      "id": "br_target_approach",
-      "locationTitle": "1940年8月13日 · 英国上空",
-      "musicKey": "britain_air",
-      "type": "choice",
-      "text": "目标是多佛附近的雷达站。\n\n但在高射炮的烟雾中，领航员告诉你：「目标发现偏差，实际目标在那个村庄东侧三公里。」\n\n你向右下方看去——那是一个英国小镇，屋顶的颜色在阳光下橙红一片，\n像拼图一样美丽。\n\n「确认目标坐标？」你问。\n「确认，」他说，「雷达站就在那里。」\n\n但你的眼睛告诉你，那里的房子太密集了，雷达站和民居之间的距离……",
-      "choices": [
-        {
-          "text": "【执行】按坐标投弹，执行命令",
-          "nextNodeId": "br_bombs_dropped",
-          "moraleDelta": -25
-        },
-        {
-          "text": "【质疑】拒绝投弹，要求重新确认目标",
-          "nextNodeId": "br_target_questioned",
-          "grantedFlags": ["refused_bomb"]
-        }
-      ]
-    },
-    {
-      "id": "br_bombs_dropped",
-      "locationTitle": "1940年8月13日 · 英国多佛附近",
-      "musicKey": "britain_air",
-      "type": "narrative",
-      "text": "「投弹！」\n\n飞机因为突然减轻重量而轻微上跳。在你下方，几百公斤的炸弹正在向地面坠落。\n\n爆炸的火光从高空看起来很小，像一朵橙色的花，然后是烟柱。\n\n那橙色花开放的地方，有建筑物，有街道，有此前一秒钟还在走路的人。\n\n飞机掉头，向法国飞去。领航员说「目标摧毁」，声音很平静。\n\n你没有说任何话。你不知道可以说什么。\n\n后来的报告说，那是一个集市，不是雷达站。",
-      "nextNodeId": "br_london_order"
-    },
-    {
-      "id": "br_target_questioned",
-      "locationTitle": "1940年8月13日 · 英国上空",
-      "musicKey": "britain_air",
-      "type": "narrative",
-      "text": "「这里有平民聚居区！重新确认目标坐标！」\n\n无线电里沉默了几秒，然后是上级的怒吼：\n「按命令执行！」\n\n你在错误的坐标上空盘旋了两圈，没有投弹，然后带着炸弹飞回去了。\n\n着陆后，你被叫进了指挥官的办公室。那是一次很难听的谈话。\n\n但你睡得着觉。",
-      "nextNodeId": "br_london_order"
-    },
-    {
-      "id": "br_escort_success",
+      "id": "br_fpt_escort_ok",
       "locationTitle": "1940年8月 · 英国上空",
       "musicKey": "britain_air",
       "type": "narrative",
-      "text": "你成功护送轰炸机群完成了攻击，在燃油警报响起之前，一路驾机返回法国。\n\n但代价是沉重的：中队损失了两架飞机。卡尔和迪特尔在返回途中被喷火式截击，都没有时间跳伞。\n\n晚上，空出来的两张行军床就在营房角落里。\n没有人去碰那两张床上还在的私人物品。\n\n晚饭时，食堂里比平时安静很多。",
-      "nextNodeId": "br_london_order"
+      "text": "你成功护送了轰炸机群。燃油警报响起时刚好看到海峡。\n\n但代价：中队少了两架飞机。两个人没有时间跳伞。\n\n晚上在食堂，空了两张椅子。没有人去坐那两张椅子。你看着它们——你知道在物理学上，空椅子不是真的空。上面还坐着记忆。",
+      "nextNodeId": "br_fpt_london"
     },
     {
-      "id": "br_fuel_emergency",
+      "id": "br_fpt_fuel_out",
       "locationTitle": "1940年8月 · 英国上空",
       "musicKey": "britain_air",
       "type": "narrative",
-      "text": "燃油警报灯亮起，你距离法国还有三十公里。\n\n你拼命降低油门，保持最经济的飞行姿态。发动机的声音听起来很健康，\n但油表指针还在不断下滑。\n\n海峡出现在你下方。你以滑翔的姿势越过海面，\n发动机在距离海岸还有两公里时熄火。\n\n你以死飞姿态迫降在一片法国的农田里，翻了半个跟头，停在一条水沟边。\n\n你从倒扣的座舱里爬出来，在田野里躺了很久，看着天上的云。\n活着，真好。",
-      "nextNodeId": "br_london_order"
+      "text": "燃油警报在距离法国三十公里时响起。你拼命降低油门——发动机在滑翔姿态下安静得像一只鸟。\n\n海峡出现在下方——发动机在离岸两公里时熄火。你在法国的一片麦田里迫降，翻了半个跟头。\n\n从倒扣的座舱里爬出来。躺在草地上——天很蓝，云很白。你还活着。",
+      "nextNodeId": "br_fpt_london"
     },
     {
-      "id": "br_escort_partial",
-      "locationTitle": "1940年8月 · 英国上空",
-      "musicKey": "britain_air",
+      "id": "br_fpt_early",
+      "locationTitle": "1940年8月 · 加莱",
+      "musicKey": "britain",
       "type": "narrative",
-      "text": "你提前折返了，轰炸机群继续深入英国，没有护航。\n\n回到基地，你站在跑道上，听着远处高射炮的声音，等待。\n\n轰炸机群回来时少了三架。幸存的飞行员报告说：'喷火式在没有护航之后就扑上来了。'\n\n没有人直接责怪你。但你知道。",
-      "nextNodeId": "br_london_order"
+      "text": "你提前回来了。轰炸机群回来时少了三架。幸存者的眼神你很熟悉——那是被抛弃的眼神。\n\n你在飞行日志上写了「发动机异常」。发动机没有异常。\n\n那天晚上你睡不着。不是因为愧疚——是因为你终于明白了：在战争里，活着和正确是两回事。",
+      "nextNodeId": "br_fpt_london"
     },
     {
-      "id": "br_london_order",
-      "locationTitle": "1940年9月7日 · 基地简报室",
+      "id": "br_fpt_london",
+      "locationTitle": "1940年9月7日 · 基地",
       "musicKey": "britain",
       "type": "choice",
-      "text": "1940年9月7日，新命令下达——目标改变。\n\n不再是皇家空军的机场和雷达站，而是伦敦本身。\n\n中队长展开地图，手指点在伦敦的码头区：\n「集中轰炸伦敦，迫使英国人屈服或让皇家空军全力出来应战。」\n\n简报室里有人看了看地图上伦敦的大小——那是一个住着八百多万人的城市。\n\n「有问题吗？」中队长扫视众人。",
+      "text": "新命令。目标从皇家空军设施改为——伦敦市区。\n\n中队长说「码头区和工业区」。但他也说了「轰炸不是精确科学」。你从物理学的角度理解这句话——误差范围内会有平民死亡。\n\n你的父母在柏林。他们上周刚躲过一次空袭。",
       "choices": [
         {
-          "text": "【服从】没有问题，执行命令",
-          "nextNodeId": "br_london_blitz",
+          "text": "【执行】护航轰炸机去伦敦",
+          "nextNodeId": "br_fpt_blitz",
           "moraleDelta": -20
         },
         {
-          "text": "【私下质疑】私下向中队长表达对轰炸平民的顾虑",
-          "nextNodeId": "br_quiet_protest",
-          "grantedFlags": ["questioned_london"]
+          "text": "【质疑】私下找中队长表达顾虑",
+          "nextNodeId": "br_fpt_protest",
+          "grantedFlags": [
+            "questioned"
+          ]
         }
       ]
     },
     {
-      "id": "br_london_blitz",
-      "locationTitle": "1940年9月7日夜 · 伦敦上空",
+      "id": "br_fpt_blitz",
+      "locationTitle": "1940年9月7夜 · 伦敦",
       "musicKey": "britain_night",
       "type": "narrative",
-      "text": "夜间。伦敦在你下方燃烧。\n\n泰晤士河的水面反射着火光，码头区已经是一片火海。\n从五千米高空看下去，那像是某种壮观的景象，\n但你知道那火光里有什么。\n\n「投弹，」领航员的声音平静得像在背课文，「投弹完毕，返航。」\n\n飞机划过夜空，向法国飞去。\n\n第二天早上，报纸上说，昨晚有四百三十六名伦敦平民死亡，\n一千六百余人受伤，其中包括大量儿童。\n\n报纸没有说这些人的名字。",
-      "nextNodeId": "br_raf_counterattack"
+      "text": "伦敦在你下方燃烧。泰晤士河反射着火光。从五千米看下去——壮观。如果你不知道那火光里是什么。\n\n第二天报纸说：四百三十六名平民死亡。报纸没有印名字。\n\n你在飞行日志上写「任务完成」。那个「完成」花了你二十分钟。",
+      "nextNodeId": "br_fpt_raf"
     },
     {
-      "id": "br_quiet_protest",
+      "id": "br_fpt_protest",
       "locationTitle": "1940年9月6日 · 中队长办公室",
       "musicKey": "britain",
       "type": "narrative",
-      "text": "中队长听完你的话，沉默了一会儿。\n\n「你认为这场战争是在打仗，」他说，「你错了。这场战争是在逼英国人屈服。\n打烂他们的城市，打断他们的意志，这才是目的。」\n\n他顿了顿：「你也知道，他们也在轰炸我们的城市。汉堡，不莱梅，\n这是战争，不是比赛。」\n\n「但那些是平民。」你说。\n\n「我知道，」中队长说，眼神里有什么东西，你没能读懂。\n「我也知道。但你还是要飞。」\n\n你飞了。",
-      "nextNodeId": "br_london_blitz"
+      "text": "中队长听完。沉默。\n\n「我的妻子和女儿上周在汉堡死了——空袭。」他说。\n\n你愣住了。\n\n「所以我知道轰炸平民意味着什么。」他看着你。「但你还是要飞。」\n\n你飞了。但每次靠近伦敦——你的拇指会悬在护航确认按钮上，多停一秒。这一秒里你在想：那个死了妻子和女儿的人，为什么还在命令我去杀死别人的妻子和女儿？",
+      "nextNodeId": "br_fpt_raf"
     },
     {
-      "id": "br_raf_counterattack",
-      "locationTitle": "1940年9月15日 · 英吉利海峡上空",
+      "id": "br_fpt_raf",
+      "locationTitle": "1940年9月15日 · 海峡",
       "musicKey": "britain_air",
       "type": "choice",
-      "text": "1940年9月15日，后来被英国人称为「不列颠之战日」。\n\n皇家空军发动了他们最大规模的反击。你的中队刚过海峡，就遭遇了庞大的拦截编队——\n不是十架，不是二十架，是超过两百架的喷火式和飓风式。\n\n无线电里乱作一团。炸弹编队被截击，护航战斗机在混战中四散。\n\n你的座机被两架喷火式夹击，油门全开也无法摆脱。",
+      "text": "后来英国人叫它「不列颠之战日」。超过两百架喷火式从云层里冲出来。\n\n你的座机被两架锁定。油门全开——甩不掉。你甚至能看到对面飞行员的护目镜。\n\n他也在看你。",
       "choices": [
         {
-          "text": "【战斗】硬扛，用技术摆脱追击并还击",
+          "text": "【战斗】拉起机头正面迎击",
           "isCombat": true,
-          "combatThreshold": 65,
-          "bonusClasses": ["fighter_pilot"],
-          "successNodeId": "br_survived_day",
-          "failureNodeId": "br_shot_down",
-          "failHpDelta": -40,
-          "failMoraleDelta": -20
+          "combatThreshold": 70,
+          "bonusClasses": [
+            "fighter_pilot"
+          ],
+          "successNodeId": "br_fpt_survive",
+          "failureNodeId": "br_fpt_shot",
+          "failHpDelta": -45,
+          "failMoraleDelta": -25
         },
         {
-          "text": "【撤退】放弃编队，全速逃回法国",
-          "nextNodeId": "br_retreat",
-          "moraleDelta": -20,
-          "hpDelta": -15
+          "text": "【逃逸】全速俯冲利用云层逃脱",
+          "nextNodeId": "br_fpt_retreat",
+          "hpDelta": -15,
+          "moraleDelta": -10
         }
       ]
     },
     {
-      "id": "br_retreat",
-      "locationTitle": "1940年9月15日 · 海峡上空",
+      "id": "br_fpt_survive",
+      "locationTitle": "1940年9月15日 · 加莱",
+      "musicKey": "britain",
+      "type": "narrative",
+      "text": "你活着降落了。地勤数了数弹孔——七个。还好没打穿油箱。\n\n晚上点名：十二个人去了，八个回来。四个名字被念到——没有人应答。\n\n你看着那四张空床。你在物理学上学过：能量不会消失，只会转移。但人呢？人消失了，转移到哪里去了？",
+      "nextNodeId": "br_fpt_attrition"
+    },
+    {
+      "id": "br_fpt_shot",
+      "locationTitle": "1940年9月15日 · 英国麦田",
       "musicKey": "britain_air",
       "type": "narrative",
-      "text": "你丢下编队，向法国全速飞去。\n\n一架喷火式在后面追了十公里，然后放弃了——它也快到燃油极限了。\n\n你回到基地，汇报称发动机故障被迫返航。\n\n那一天，皇家空军击落了六十一架德国飞机，德国声称击落了一百八十架英国飞机——\n实际数字是二十六架。\n\n你知道这场制空权之争的天平正在倾斜，但你没有说出来。",
-      "nextNodeId": "br_attrition"
+      "text": "发动机中弹。你跳伞了。落在英国的麦田里——和巴伐利亚的一样金黄。\n\n一个英国农民端着猎枪走过来。他身后跟着两个孩子——一男一女。\n\n「放下武器。」他用英语说。\n\n你是战俘了。那个小女孩看着你的眼睛——很蓝，像天空。飞战斗机的天空。你再也飞不上去了。",
+      "nextNodeId": "br_bpt_pow"
     },
     {
-      "id": "br_survived_day",
-      "locationTitle": "1940年9月15日 · 加莱基地",
-      "musicKey": "britain",
-      "type": "narrative",
-      "text": "你摆脱了追击，击落了一架喷火式，\n然后在燃油告急时强行返回了基地。\n\n落地后，地勤人员清点机体弹孔：七个，还好没打穿油箱。\n\n那天，中队长点名：十二个人，回来了八个。\n四个名字被念到，没有人回应。\n\n中队长收起了那张名单。大家去食堂吃晚饭。\n有人喝酒，有人沉默，有人哼起歌来，马上被人制止了。",
-      "nextNodeId": "br_attrition"
-    },
-    {
-      "id": "br_shot_down",
-      "locationTitle": "1940年9月15日 · 坠落",
+      "id": "br_fpt_retreat",
+      "locationTitle": "1940年9月15日 · 海峡",
       "musicKey": "britain_air",
       "type": "narrative",
-      "text": "发动机中弹，舱内开始冒烟。\n\n你用尽力气推开座舱盖，跳了出去。寒风把你猛地一拉，\n降落伞张开，白色的伞顶在蓝天下飘荡。\n\n你在英国的土地上落下，膝盖摔破了，手在颤抖。\n\n一名英国农场主拿着猎枪向你走来，后面跟着他的两个孩子。\n「放下武器。」他用英语说。\n\n这是你第一次以战俘身份活着。",
-      "nextNodeId": "br_pow_return"
+      "text": "你逃回了法国。但你知道——今天皇家空军击落了六十一架德国飞机。德国宣称击落了一百八十架——实际是二十六架。\n\n战争不只是在战场上输掉的。也是在谎言里输掉的。",
+      "nextNodeId": "br_fpt_attrition"
     },
     {
-      "id": "br_pow_return",
-      "locationTitle": "1940年10月 · 英国战俘营",
+      "id": "br_fpt_attrition",
+      "locationTitle": "1940年10月 · 加莱",
       "musicKey": "britain",
       "type": "narrative",
-      "text": "战俘营的生活比你预想的好一些。英国人遵守日内瓦公约，这让你有点意外。\n\n营地里有来自各个中队的德国飞行员，一个来自汉堡的人认识你。\n你们谈起伦敦——他的轰炸机曾飞过伦敦，他告诉你他从那以后再没睡过一整晚觉。\n\n三个月后，通过换俘，你回到了法国。\n\n返回基地那天，没有人迎接，因为大家都忙着准备下一次出击。\n战争不等人。",
-      "nextNodeId": "br_attrition"
+      "text": "中队的飞行员换了三批。你活过了七月、八月、九月——因为什么？技术？运气？你不知道。\n\n你现在每次起飞前不再检查仪表。你只是坐在座舱里，看着跑道尽头——想迪特尔，想那四个昨晚被念到的名字。\n\n物理学说你每次起飞都有一定概率回不来。你没有算那个概率。",
+      "nextNodeId": "br_fpt_final"
     },
     {
-      "id": "br_attrition",
-      "locationTitle": "1940年10月 · 加莱基地",
-      "musicKey": "britain",
-      "type": "narrative",
-      "text": "十月了。法国的秋天来了，海峡上开始出现大雾。\n\n战况发生了变化。德国空军在这场消耗战中损失了一千八百多架飞机，\n训练有素的飞行员越来越难以补充。\n\n而皇家空军顽强地活着。他们的飞机比我们少，损失比我们少，\n因为他们每次都在本土上空作战。\n\n从你到这里以来，中队里的人换了三批——\n只有你，和中队长，以及地勤兵里的老克劳斯，还在。\n\n你已经不去记新人的名字了。",
-      "nextNodeId": "br_final_mission"
-    },
-    {
-      "id": "br_final_mission",
-      "locationTitle": "1940年10月31日 · 最后一次出击",
+      "id": "br_fpt_final",
+      "locationTitle": "1940年10月31日 · 最后一次",
       "musicKey": "britain_air",
       "type": "choice",
-      "text": "10月31日。海狮计划已经被无限期推迟——制空权未能夺取，登陆英国的设想只是一个设想。\n\n但今天还有任务：最后一次大规模护航轰炸。\n\n你坐在座舱里，看着地图上英国的轮廓。四个月来，\n你飞过这片海峡无数次，每次都看着战友一个个离开，\n却依然飞回来。\n\n也许这次也会回来。",
+      "text": "海狮计划被无限期推迟。制空权没有到手。但今天还有最后一次任务。\n\n跑道在前面。海峡在前面。迪特尔的照片在你的飞行夹克里——笑得像南瓜的婴儿现在应该会走路了。",
       "choices": [
         {
-          "text": "【出击】驾机升空，执行最后任务",
+          "text": "【起飞】最后一次升空",
           "isCombat": true,
           "combatThreshold": 50,
-          "bonusClasses": ["fighter_pilot", "bomber_pilot"],
-          "successNodeId": "br_victory_end",
-          "failureNodeId": "br_final_crash",
+          "bonusClasses": [
+            "fighter_pilot"
+          ],
+          "successNodeId": "br_fpt_victory",
+          "failureNodeId": "br_fpt_death",
           "failHpDelta": -50,
           "failMoraleDelta": -30
         },
         {
-          "text": "【反思】在地图前停留，思考这一切的意义",
-          "nextNodeId": "br_reflection_end"
+          "text": "【拒绝】坐在跑道上看着别人去",
+          "nextNodeId": "br_fpt_ground"
         }
       ]
     },
     {
-      "id": "br_victory_end",
+      "id": "br_fpt_victory",
       "locationTitle": "不列颠空战 — 完成",
       "musicKey": "britain_triumph",
       "type": "ending",
       "isVictory": true,
-      "text": "【战役结束 — 生存】\n\n你活过了不列颠空战。\n\n但夺取制空权的目标没有实现。皇家空军依然存在，英国依然存在。\n海狮计划，那个入侵英国本土的计划，被永久搁置了。\n\n这场空战中，德国损失飞行员约二千七百人，\n英国皇家空军损失约一千五百名飞行员。\n伦敦等城市的轰炸造成约四万三千名英国平民死亡。\n\n你们赢得了所有的空战，却输掉了整场战役。\n\n而那些被烧毁的伦敦街道，那些死去的英国平民，\n成为了英国人永不退缩的理由。\n\n战争制造了英雄，也制造了地狱。你见过的是哪一种？\n\n下一章即将开启。"
+      "text": "【不列颠空战 — 生存】\n\n你活下来了。卡尔·施奈德，物理学学生，二十一岁——活过了不列颠空战。\n\n但迪特尔留在了海峡里。那个想带儿子去海滩的父亲。那个笑得像南瓜的婴儿——永远不会知道父亲长什么样。\n\n德国空军损失两千七百名飞行员。皇家空军损失一千五百名。伦敦四万三千名平民死亡。\n\n战争制造英雄。也制造地狱。\n\n你见过哪一种？两者都是谎言。"
     },
     {
-      "id": "br_reflection_end",
+      "id": "br_fpt_ground",
       "locationTitle": "不列颠空战 — 完成",
       "musicKey": "britain",
       "type": "ending",
       "isVictory": true,
-      "text": "【战役结束 — 生存与反思】\n\n你没有再起飞。\n\n在简报室里，你盯着地图上英国的轮廓看了很久。\n从北到南，从东到西，那片土地上有多少人因为这场战争而死，\n又有多少人将在未来死去？\n\n也许战争真的无法被任何一张地图、任何一次胜利来合理化。\n\n战争不是棋局，死亡不是棋子。\n\n下一章即将开启。"
+      "text": "你没有起飞。你坐在跑道边的草地上。\n\n十二架飞机依次升空。有人回头看了你一眼——没人说什么。\n\n你从口袋里掏出迪特尔的照片。那个婴儿——现在应该一岁多了吧。也许战后你会去科隆找他。\n\n战争不是棋局。死亡不是棋子。\n\n下一章即将开启。"
     },
     {
-      "id": "br_final_crash",
-      "locationTitle": "不列颠空战 — 失败",
+      "id": "br_fpt_death",
+      "locationTitle": "不列颠空战 — 阵亡",
       "musicKey": "defeat_theme",
       "type": "ending",
       "isDefeat": true,
-      "text": "【战役结束 — 阵亡】\n\n你的飞机在英吉利海峡上空中弹，发动机熄火。\n\n你来不及跳伞。海峡的水是冷的，非常冷，\n像一道门，关上了。\n\n你的名字被写在那张越来越长的名单上，\n然后随着下一次点名，被缓缓念出，然后消散在海风中。"
+      "text": "你的飞机在海峡上空中弹。座舱盖卡住了。\n\n你来不及跳伞。海峡的水很冷——大约十四度。\n\n卡尔·施奈德，二十一岁，物理学学生。他的最后一个念头不是物理公式——是迪特尔儿子的脸。那个笑得像南瓜的婴儿。\n\n你的名字被写在阵亡名单上。被念到——然后消散在海风里。"
+    },
+    {
+      "id": "br_bpt_briefing",
+      "locationTitle": "1940年8月13日 · 法国机场",
+      "musicKey": "britain",
+      "type": "narrative",
+      "text": "威廉·霍夫曼，二十八岁，汉堡人。战前你是文理中学的历史老师。\n\n你教过三十年战争、拿破仑、凡尔赛条约。你告诉学生：战争的第一个受害者永远是真相。\n\n现在你坐在He-111轰炸机的驾驶舱里。两千公斤高爆炸弹在弹舱里。目标：英国的雷达站。\n\n合法的军事目标。情报官这么说。\n\n但你的投弹手海因里希戴着厚厚的眼镜——他本该是个钢琴家。你的领航员曾经是邮递员——他认识汉堡每一条街的名字。你们三个——老师、钢琴家、邮递员——现在要去杀人。",
+      "nextNodeId": "br_bpt_target"
+    },
+    {
+      "id": "br_bpt_target",
+      "locationTitle": "1940年8月13日 · 多佛上空",
+      "musicKey": "britain_air",
+      "type": "choice",
+      "text": "透过投弹瞄准镜——雷达站东侧不到一公里。\n\n小镇。橙红色屋顶。教堂尖顶。广场上停着一辆红色汽车。今天是星期几？如果是星期天——广场上可能有集市。\n\n「确认目标坐标？」\n\n「确认。雷达站就在下面。」\n\n但你的眼睛告诉你——那座小镇在准心里。偏差。几分钟的航程偏差。",
+      "choices": [
+        {
+          "text": "【执行】按坐标投弹",
+          "nextNodeId": "br_bpt_dropped",
+          "moraleDelta": -35
+        },
+        {
+          "text": "【拒绝】取消——绕回来重新确认",
+          "nextNodeId": "br_bpt_refused",
+          "grantedFlags": [
+            "refused"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "br_bpt_dropped",
+      "locationTitle": "1940年8月13日 · 多佛",
+      "musicKey": "britain_air",
+      "type": "narrative",
+      "text": "「投弹。」\n\n飞机因为减轻的重量而跳了一下。两千公斤的炸弹落向地面——\n\n爆炸的火光从五千米看——像一朵橙色的花。在那朵花开的地方——有教堂尖顶、有红色汽车、有此前一秒钟还在走路的人。\n\n领航员说：「目标摧毁。」声音像在背课文。\n\n后来的报告说——雷达站没被击中。偏了八百米。那是一个集市。\n\n你是历史老师。你现在是历史课上的反面教材。",
+      "nextNodeId": "br_bpt_london"
+    },
+    {
+      "id": "br_bpt_refused",
+      "locationTitle": "1940年8月13日 · 英国上空",
+      "musicKey": "britain_air",
+      "type": "narrative",
+      "text": "「取消投弹。」\n\n海因里希转过头——眼镜片后面的眼睛瞪大了。你关了无线电。\n\n你们绕着目标飞了两圈，带着炸弹飞回法国。\n\n指挥官要送你上军事法庭。「送吧，」你说。「我在法庭上可以给他们看瞄准镜的照片。」\n\n他没有送。但你被调到了夜间轰炸队。\n\n你睡得着。",
+      "nextNodeId": "br_bpt_london"
+    },
+    {
+      "id": "br_bpt_london",
+      "locationTitle": "1940年9月7日 · 基地",
+      "musicKey": "britain",
+      "type": "choice",
+      "text": "新命令。目标：伦敦。整个伦敦。\n\n中队长说：「瓦解英国人的意志。」\n\n你的妻子和女儿在汉堡——她们也在躲空袭。你教过的历史课说：无差别轰炸平民是一种战争罪。但那是未来的法庭才会说的话。现在——你没有法庭。\n\n海因里希在看你。他的手放在投弹按钮上——钢琴家的手指。",
+      "choices": [
+        {
+          "text": "【执行】飞往伦敦",
+          "nextNodeId": "br_bpt_blitz",
+          "moraleDelta": -25
+        },
+        {
+          "text": "【拒绝】走进指挥官办公室交还飞行章",
+          "nextNodeId": "br_bpt_refuse_order",
+          "moraleDelta": 10,
+          "grantedFlags": [
+            "refused_london"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "br_bpt_blitz",
+      "locationTitle": "1940年9月7夜 · 伦敦",
+      "musicKey": "britain_night",
+      "type": "narrative",
+      "text": "伦敦在燃烧。不是一栋楼——是整座城市。泰晤士河反射着火光像流淌的熔岩。\n\n「投弹完毕。」\n\n你调转机头。身后的伦敦还在烧。\n\n第二天——四百三十六人死亡，一千六百人受伤。\n\n你在飞行日志上写「任务完成」。那个「完成」像用刀刻在你的良心上。",
+      "nextNodeId": "br_bpt_raf"
+    },
+    {
+      "id": "br_bpt_refuse_order",
+      "locationTitle": "1940年9月7日 · 指挥官办公室",
+      "musicKey": "britain",
+      "type": "narrative",
+      "text": "你把飞行章放在指挥官的桌子上。\n\n「你疯了？」\n\n「我是历史老师。」你说，「我知道后世的教科书会怎么写今天的事。」\n\n指挥官看了你很久。然后他叫了宪兵。\n\n你被带到军事法庭。审判很快。罪名——不服从直接命令。判罚——死刑，缓期执行。实际上你被送去了东线的惩罚营。\n\n但你走出法庭时——你感到了一种奇异的轻松。你的良心还在。它还在跳。",
+      "nextNodeId": "br_bpt_punishment"
+    },
+    {
+      "id": "br_bpt_raf",
+      "locationTitle": "1940年9月15日 · 海峡",
+      "musicKey": "britain_air",
+      "type": "choice",
+      "text": "RAF的反击。喷火式从云层里冲出来。你的轰炸机被咬住了。\n\n海因里希在尖叫——不丢人。谁都会尖叫。\n\n机身在颤抖。左发动机在冒烟。",
+      "choices": [
+        {
+          "text": "【规避】全速下降利用云层",
+          "isCombat": true,
+          "combatThreshold": 60,
+          "bonusClasses": [
+            "bomber_pilot"
+          ],
+          "successNodeId": "br_bpt_survive",
+          "failureNodeId": "br_bpt_shotdown",
+          "failHpDelta": -40,
+          "failMoraleDelta": -20
+        },
+        {
+          "text": "【弃机】命令机组跳伞",
+          "nextNodeId": "br_bpt_pow",
+          "hpDelta": -20,
+          "moraleDelta": -10
+        }
+      ]
+    },
+    {
+      "id": "br_bpt_survive",
+      "locationTitle": "1940年9月15日 · 法国",
+      "musicKey": "britain",
+      "type": "narrative",
+      "text": "你们活着回来了。飞机上有二十七个弹孔。海因里希的眼镜碎了一块镜片——但他的人还在。\n\n你们互相看了一眼。笑了。不是开心——是劫后余生的释放。\n\n那天晚上你给妻子写信。写了很多——然后撕了。有些事你不能告诉她。不是因为保密条例——是因为你没法用人类的语言描述那些。",
+      "nextNodeId": "br_bpt_final"
+    },
+    {
+      "id": "br_bpt_shotdown",
+      "locationTitle": "1940年9月15日 · 英国",
+      "musicKey": "britain_air",
+      "type": "narrative",
+      "text": "你们跳伞了。落在英国的土豆田里。一个英国农妇用草叉指着你直到宪兵赶到。\n\n在战俘营里，一个英国飞行员递给你一支烟。「我前天在伦敦上空击落了一架He-111。那是你吗？」\n\n「也许。」\n\n你们没有再聊。\n\n你不知道那些炸弹有没有炸死他的家人。你不敢问。",
+      "nextNodeId": "br_bpt_pow"
+    },
+    {
+      "id": "br_bpt_pow",
+      "locationTitle": "1940年10月 · 英国战俘营",
+      "musicKey": "britain",
+      "type": "narrative",
+      "text": "你在战俘营里开始教德语。几个英国看守来旁听——不是为了监视。是真的想学。\n\n你教他们「Guten Morgen」。他们教你「Good morning」。\n\n有时候你忘了这是战争。但深夜醒来——你会想起那个小镇的橙色屋顶。",
+      "nextNodeId": "br_bpt_final"
+    },
+    {
+      "id": "br_bpt_punishment",
+      "locationTitle": "1940年10月 · 东线惩罚营",
+      "musicKey": "britain",
+      "type": "narrative",
+      "text": "惩罚营。最危险的任务——排雷、前线侦察、自杀式突击。\n\n但你没有死。不是因为幸运——是因为你做了选择。你选择不把炸弹丢在平民头上。那个选择让你来到了这里——但它也让你还能在夜里睡着。\n\n你的妻子收到了军事法庭的通知。她不知道你还能活多久。但你给她写了一封信：\n\n「亲爱的——我还活着。我做了正确的事。如果这封信是你收到的最后一封——你知道我是以什么身份死去的：一个老师。不是一个杀人犯。」",
+      "nextNodeId": "br_bpt_final"
+    },
+    {
+      "id": "br_bpt_final",
+      "locationTitle": "不列颠空战 — 完成",
+      "musicKey": "britain",
+      "type": "ending",
+      "isVictory": true,
+      "text": "【不列颠空战 — 结束】\n\n德国空军损失一千八百架飞机。两千七百名飞行员阵亡。不列颠之战以德国的战略失败告终。\n\n威廉·霍夫曼——历史老师、轰炸机飞行员、军事法庭判罚者。他不知道他还能活多久。\n\n但他知道一件事：那些橙色的屋顶、那个红色汽车、那个他没有投下的炸弹——这些是他从战争中抢救回来的人性。\n\n不多。但够了。"
+    },
+    {
+      "id": "br_defeat",
+      "locationTitle": "不列颠空战 — 阵亡",
+      "musicKey": "defeat_theme",
+      "type": "ending",
+      "isDefeat": true,
+      "text": "你的飞机在海峡上空中弹。\n\n海峡的水很冷。像一道门——关上了。\n\n你的名字会被写在阵亡名单上。然后被海风吹散。"
+    },
+    {
+      "id": "br_skip",
+      "locationTitle": "1940年10月 · 法国海岸",
+      "musicKey": "britain_triumph",
+      "type": "narrative",
+      "text": "不列颠空战以德国的失败告终。皇家空军守住了天空，海狮计划被永久搁置。\n\n你的战场不在空中——但头顶那些飞机的轰鸣每天都在提醒你：战争有很多层面。有的在天空，有的在陆地，有的在深海。\n\n帝国第一次停下了脚步。但战争远未结束。",
+      "nextNodeId": "br_fpt_victory"
     }
   ]
 }

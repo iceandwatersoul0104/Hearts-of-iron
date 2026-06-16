@@ -1,336 +1,114 @@
 {
   "chapterId": "fall_gelb",
-  "startNodeId": "fg_briefing_inf",
+  "startNodeId": "fg_inf_briefing",
   "defeatNodeId": "fg_defeat",
+  "classStartNodes": {
+    "infantry": "fg_inf_briefing",
+    "tank_crew": "fg_tank_briefing",
+    "fighter_pilot": "fg_skip",
+    "bomber_pilot": "fg_skip",
+    "submarine_crew": "fg_skip",
+    "battleship_crew": "fg_skip"
+  },
   "nodes": [
-    {
-      "id": "fg_briefing_inf",
-      "locationTitle": "1940年5月10日凌晨3时 · 德比边境集结地",
-      "musicKey": "fallgelb",
-      "type": "narrative",
-      "text": "黎明尚未到来，森林里充斥着发动机的低沉轰鸣与士兵们压低嗓音的交谈。\n\n你是第18步兵师的一名普通士兵，刚刚二十岁出头。两年前你还在巴伐利亚的农场帮父亲收割小麦。\n\n连长走到队伍前方，声音低沉：「今天，我们将翻越阿登山区，穿越比利时，直抵法国心脏。」\n\n他停顿了一下，目光扫过你们年轻的脸：「这将是历史性的一天。」\n\n没有人欢呼。黑暗中，每个人都沉默地检查着自己的步枪。\n\n命令下达：前进。",
-      "nextNodeId": "fg_ardennes_march"
-    },
-    {
-      "id": "fg_briefing_tank",
-      "locationTitle": "1940年5月10日凌晨3时 · 第19装甲军集结地",
-      "musicKey": "fallgelb",
-      "type": "narrative",
-      "text": "你是古德里安将军麾下第19装甲军的一名坦克驾驶员，爬进四号坦克狭窄的驾驶舱时，\n金属舱壁仍带着夜晚的寒凉。\n\n「我们的任务，」无线电里传来上级的声音，「是以最快速度穿越阿登山区，在法军还没反应过来之前，冲到马斯河。」\n\n阿登——那片法国人和英国人认为坦克无法通过的密林。他们错了。\n\n你踩下油门，钢铁巨兽缓缓驶入黑暗的森林。",
-      "nextNodeId": "fg_ardennes_march"
-    },
-    {
-      "id": "fg_ardennes_march",
-      "locationTitle": "1940年5月10日 · 阿登山区密林",
-      "musicKey": "fallgelb",
-      "type": "choice",
-      "text": "阿登的山路比想象中更难走。崎岖的林间小道坑洼不平，车辆排成数公里长龙，每隔几分钟就会因前方的拥堵停下来等待。\n\n天色开始放亮。比利时边境的方向传来隐约的炮声——那是德国空军在轰炸。\n\n突然，前方传来枪声。一支比利时边境巡逻队发现了你们的先头部队。",
-      "choices": [
-        {
-          "text": "【强攻】冲破巡逻队阻击，快速穿越",
-          "isCombat": true,
-          "combatThreshold": 50,
-          "bonusClasses": ["infantry"],
-          "successNodeId": "fg_village_enter",
-          "failureNodeId": "fg_ardennes_wounded",
-          "failHpDelta": -25,
-          "failMoraleDelta": -10
-        },
-        {
-          "text": "【迂回】绕开巡逻队，绕道穿越森林",
-          "isCombat": true,
-          "combatThreshold": 45,
-          "bonusClasses": ["tank_crew"],
-          "successNodeId": "fg_village_enter",
-          "failureNodeId": "fg_ardennes_delay",
-          "failHpDelta": -10,
-          "failMoraleDelta": -15
-        }
-      ]
-    },
-    {
-      "id": "fg_ardennes_wounded",
-      "locationTitle": "1940年5月10日 · 阿登山区",
-      "musicKey": "fallgelb",
-      "type": "narrative",
-      "text": "子弹像冰雹一样打在树干上。你向前冲刺，旁边的弗里茨突然倒下——\n他大腿中弹，鲜血迅速染红了他的裤腿。\n\n「继续！」班长大喊。\n\n你没有停下。弗里茨的呼救声在你身后渐渐被枪声淹没。\n\n后来你再也没有见到他。",
-      "nextNodeId": "fg_village_enter"
-    },
-    {
-      "id": "fg_ardennes_delay",
-      "locationTitle": "1940年5月10日 · 阿登山区",
-      "musicKey": "fallgelb",
-      "type": "narrative",
-      "text": "绕道让你们多花了三个小时。密林中，坦克履带一次次陷入泥泞，需要全员推动。\n\n当你们终于走出森林，天色已经大亮。前方的村庄飘起了炊烟——那里有人。\n\n普通的比利时村民，他们在自己家里，没想到战争会以这种方式来临。",
-      "nextNodeId": "fg_village_enter"
-    },
-    {
-      "id": "fg_village_enter",
-      "locationTitle": "1940年5月11日清晨 · 比利时小村",
-      "musicKey": "fallgelb_village",
-      "type": "choice",
-      "text": "村庄叫做布拉尔，一个普通的比利时农村。砖瓦房子、小教堂、一口水井。\n\n但现在，广场上站满了惶恐的村民——老人、妇女、孩子。他们看着你们的军装，沉默着，眼中是无法掩盖的恐惧。\n\n一个老妇人抱着一只猫，那只猫在她怀里瑟瑟发抖。\n\n你的上级在等待你的部队快速通过，后面还有数公里的战线在等待。",
-      "choices": [
-        {
-          "text": "【人道】让村民留在原地，下令禁止骚扰平民",
-          "nextNodeId": "fg_village_pass",
-          "moraleDelta": 5,
-          "grantedFlags": ["spared_village"]
-        },
-        {
-          "text": "【命令】驱赶村民离开，彻底搜查村庄",
-          "nextNodeId": "fg_village_clear",
-          "moraleDelta": -20
-        }
-      ]
-    },
-    {
-      "id": "fg_village_pass",
-      "locationTitle": "1940年5月11日 · 比利时小村",
-      "musicKey": "fallgelb_village",
-      "type": "narrative",
-      "text": "你让村民留在原地，严令部下不得骚扰。\n\n经过广场时，那个老妇人向你投来一瞥——那不是感激，而是某种说不清楚的东西，也许是麻木，也许是祈祷你们快点离开。\n\n教堂的大钟突然开始鸣响——不知道是谁敲的，钟声在空旷的乡野里回荡，像是哀歌，又像是警报。\n\n你们快步穿过村子，向马斯河方向推进。",
-      "nextNodeId": "fg_meuse_river"
-    },
-    {
-      "id": "fg_village_clear",
-      "locationTitle": "1940年5月11日 · 比利时小村",
-      "musicKey": "fallgelb_village",
-      "type": "narrative",
-      "text": "士兵们开始用枪托驱赶村民。那个老妇人跌倒在地，猫从她怀中逃走，消失在小巷里。\n\n一个男孩，大概八九岁，死死抓着家门不肯走，直到有人粗暴地拉开他的手指。\n他哭喊着什么，你听不懂比利时语，但你能听懂哭声。\n\n搜查什么也没发现。当然，这只是一个普通的村子。\n\n你们走的时候，有人顺手打破了村里唯一一口钟。\n那一声破碎声，你很多年后还能听见。",
-      "nextNodeId": "fg_meuse_river"
-    },
-    {
-      "id": "fg_meuse_river",
-      "locationTitle": "1940年5月13日 · 马斯河渡口",
-      "musicKey": "fallgelb_battle",
-      "type": "choice",
-      "text": "马斯河对岸，法军的机枪已经封锁了整个河面。\n\n河水是深绿色的，平静而美丽，与对岸的炮火形成荒诞的对比。\n\n工兵们抬着橡皮艇向河边冲去。前面几艘还没划到河中心，就已经被打成了筛子。\n士兵们的尸体顺流而下，染红了水面。\n\n你的连长转向你，眼神里有你从未在他脸上看到过的东西——也许是恐惧。\n「谁愿意第一批渡河？」",
-      "choices": [
-        {
-          "text": "【主动】自愿加入第一批渡河突击队",
-          "isCombat": true,
-          "combatThreshold": 55,
-          "bonusClasses": ["infantry"],
-          "successNodeId": "fg_meuse_crossed",
-          "failureNodeId": "fg_meuse_hit",
-          "failHpDelta": -30,
-          "failMoraleDelta": -15
-        },
-        {
-          "text": "【等待】等第一批渡过后，随第二批跟进",
-          "isCombat": true,
-          "combatThreshold": 40,
-          "successNodeId": "fg_meuse_crossed",
-          "failureNodeId": "fg_meuse_sink",
-          "failHpDelta": -20,
-          "failMoraleDelta": -20
-        }
-      ]
-    },
-    {
-      "id": "fg_meuse_crossed",
-      "locationTitle": "1940年5月13日 · 马斯河对岸",
-      "musicKey": "fallgelb_battle",
-      "type": "narrative",
-      "text": "橡皮艇触岸的瞬间，你几乎是跌滚上了岸。法军的枪声从你耳边掠过，\n你听见身后有人落水，再也没有上来。\n\n对岸的工事已经出现。斯图卡俯冲轰炸机从头顶呼啸而过，法军阵地腾起巨大的火球。\n\n你冲进一处弹坑，喘着气。弹坑里有一具法国士兵的遗体，他的手里还握着一张照片——一个女人和两个孩子的合影。\n\n你没有时间去想太多。继续前进。",
-      "nextNodeId": "fg_france_border"
-    },
-    {
-      "id": "fg_meuse_hit",
-      "locationTitle": "1940年5月13日 · 马斯河",
-      "musicKey": "fallgelb_battle",
-      "type": "narrative",
-      "text": "橡皮艇刚离岸，机枪的弹雨就打来了。你的腿被擦伤，鲜血浸透了裤腿。\n\n艇上的人大喊大叫，有人跳入河中，有人俯身划桨。\n你不知道自己是怎么活着到达对岸的。\n\n上岸后，你才感觉到腿上的疼痛。一块弹片穿透了你的小腿。\n\n「能走吗？」卫生员问你。\n「能。」你咬着牙说。",
-      "nextNodeId": "fg_france_border"
-    },
-    {
-      "id": "fg_meuse_sink",
-      "locationTitle": "1940年5月13日 · 马斯河",
-      "musicKey": "fallgelb_battle",
-      "type": "narrative",
-      "text": "橡皮艇在河中心被机枪打穿了。冰冷的河水灌进来，人们纷纷跳水。\n\n你会游泳。你努力向对岸游去，但盔甲和装备让你沉得厉害。\n子弹在水中划出白色的轨迹，像鱼，从你身边穿过。\n\n你不知道是用了多长时间，才爬上了对岸的泥土。\n你的旁边，三具同伴的尸体被水冲来。你认出了其中一个——他叫汉斯，来自慕尼黑，家里有四个弟弟妹妹。",
-      "nextNodeId": "fg_france_border"
-    },
-    {
-      "id": "fg_france_border",
-      "locationTitle": "1940年5月15日 · 法国色当附近",
-      "musicKey": "fallgelb_battle",
-      "type": "choice",
-      "text": "你们突破了马斯河防线。法国的土地在你脚下展开——绿色的农田，\n蜿蜒的公路，远处村庄的尖顶。\n\n但前方的公路上，一队法国士兵正在仓皇设置防线。\n他们看上去和你们一样年轻，一样惶恐。\n\n他们在匆忙布置路障，架设机枪。你们还有时间做出选择。",
-      "choices": [
-        {
-          "text": "【强攻】正面突击，打垮法军防线",
-          "isCombat": true,
-          "combatThreshold": 60,
-          "bonusClasses": ["tank_crew"],
-          "successNodeId": "fg_french_line_broken",
-          "failureNodeId": "fg_french_line_pinned",
-          "failHpDelta": -30,
-          "failMoraleDelta": -10
-        },
-        {
-          "text": "【喊话】用德语喊话劝降，给他们投降的机会",
-          "isCombat": true,
-          "combatThreshold": 40,
-          "successNodeId": "fg_french_surrender",
-          "failureNodeId": "fg_french_line_pinned",
-          "failHpDelta": -15,
-          "failMoraleDelta": -15
-        }
-      ]
-    },
-    {
-      "id": "fg_french_line_broken",
-      "locationTitle": "1940年5月15日 · 法国农村公路",
-      "musicKey": "fallgelb_battle",
-      "type": "narrative",
-      "text": "炮弹、手榴弹，然后是刺刀。\n\n战斗结束得很快。但「结束」这个词掩盖了太多东西。\n\n公路上躺着七八具法军士兵的遗体，他们的制服和你的一样是布料缝制的，一样会被子弹穿透，一样会流血。\n\n你走过一个倒下的法国少尉，他的眼睛还睁着，嘴角有血泡，\n口袋里的照片正在被风吹走——两张，三张……那是他的家人。\n\n没有人去捡那些照片。",
-      "nextNodeId": "fg_civilian_road"
-    },
-    {
-      "id": "fg_french_surrender",
-      "locationTitle": "1940年5月15日 · 法国农村",
-      "musicKey": "fallgelb_village",
-      "type": "narrative",
-      "text": "「不要开枪！」\n\n沉默，然后是缓缓举起的双手。十一个法国士兵走出来，\n他们的脸上写满了疲惫与如释重负。\n\n其中一个说了很长一段法语，你不懂，但翻译凑过来：\n「他说，他在前线已经三天没吃东西了。他问你们是不是会枪毙俘虏。」\n\n你让人给了他们一些面包。他在哭，他试图藏住，但没能成功。",
-      "nextNodeId": "fg_civilian_road"
-    },
-    {
-      "id": "fg_french_line_pinned",
-      "locationTitle": "1940年5月15日 · 法国农村公路",
-      "musicKey": "fallgelb_battle",
-      "type": "narrative",
-      "text": "法军的机枪把你们死死压在路边的沟里。\n\n你旁边的埃里希探头看了一眼，脑袋后仰，再也没有动。\n你伸手摸了摸他的脖子——没有脉搏。只有一个弹孔，整齐得像一个句号。\n\n火炮支援终于在两小时后到来，法军阵地变成了废墟。\n\n你爬出来，感觉自己的腿像灌了铅。那个弹孔的位置，你记了很多年。",
-      "nextNodeId": "fg_civilian_road"
-    },
-    {
-      "id": "fg_civilian_road",
-      "locationTitle": "1940年5月18日 · 法国公路",
-      "musicKey": "fallgelb_village",
-      "type": "choice",
-      "text": "公路完全被堵死了。\n\n不是军队——是平民。成千上万的平民正在逃亡：推着婴儿车的年轻母亲、\n骑着自行车的老人、赶着羊群的农民，他们的马车、手推车、汽车堆在一起，\n形成了一条望不到头的逃亡长龙。\n\n孩子们在哭。大人们沉默地走着，眼神空洞。\n\n你们的装甲部队需要这条公路快速推进。",
-      "choices": [
-        {
-          "text": "【等待】停下来等平民自行疏散",
-          "nextNodeId": "fg_wait_civilians",
-          "moraleDelta": 5,
-          "grantedFlags": ["waited_for_civilians"]
-        },
-        {
-          "text": "【强行】强行驱散平民，清出道路",
-          "nextNodeId": "fg_push_civilians",
-          "moraleDelta": -25
-        }
-      ]
-    },
-    {
-      "id": "fg_wait_civilians",
-      "locationTitle": "1940年5月18日 · 法国公路旁",
-      "musicKey": "fallgelb_village",
-      "type": "narrative",
-      "text": "你们在路边等了近一个小时。\n\n一个小女孩走到你面前，伸出手——她手里有半块饼干。她把它推向你，用法语说了什么。\n\n「她说，给你吃，因为你看上去很饿。」翻译说。\n\n你拒绝了。小女孩把饼干放回口袋，继续跟着大人走了。\n\n你看着她的背影，感觉喉咙里有什么东西堵住了。",
-      "nextNodeId": "fg_dunkirk_race"
-    },
-    {
-      "id": "fg_push_civilians",
-      "locationTitle": "1940年5月18日 · 法国公路",
-      "musicKey": "fallgelb_battle",
-      "type": "narrative",
-      "text": "装甲车推开了路边的马车——马受了惊，一辆马车翻倒，行李散落一地。\n\n人群陷入恐慌，相互踩踏。一个老人摔倒在路边，没有人停下来扶他。\n\n你们的车队轰隆隆地从旁边驶过，尘土扬起，遮住了那老人的身影。\n\n速度是有了，但代价是什么？\n你不愿意继续想这个问题。",
-      "nextNodeId": "fg_dunkirk_race"
-    },
-    {
-      "id": "fg_dunkirk_race",
-      "locationTitle": "1940年5月24日 · 法国北部",
-      "musicKey": "fallgelb_battle",
-      "type": "narrative",
-      "text": "英法联军被你们逼到了海边。敦刻尔克——最后的出口。\n\n你们的装甲部队已经距离敦刻尔克不到二十公里。\n消灭这三十多万军队，战争就结束了，上级是这么说的。\n\n但就在这时，命令从总部传来：\n\n「停止前进！」\n\n元首的命令。所有装甲部队停止推进，等待步兵跟上。\n\n没有人知道为什么。",
-      "nextNodeId": "fg_halt_order"
-    },
-    {
-      "id": "fg_halt_order",
-      "locationTitle": "1940年5月24日 · 敦刻尔克外围",
-      "musicKey": "fallgelb",
-      "type": "choice",
-      "text": "你的连长把命令摔在地图上。\"这是什么命令？！我们明明可以一举歼灭他们！\"\n\n从望远镜里，你可以看到海边的英国士兵正在涌上船只。成千上万人正在撤离，\n而你们只能站在这里看着。\n\n海峡里，各种各样的船只正在来回——游艇、拖网渔船、渡轮，\n所有能开动的英国船只都来了。\n\n三天后、五天后、八天后……三十三万人就这样从你眼皮底下逃走了。",
-      "choices": [
-        {
-          "text": "【服从】遵守命令，等待后续指示",
-          "nextNodeId": "fg_watching_evacuation"
-        },
-        {
-          "text": "【质疑】向上级质疑停止令的意义",
-          "nextNodeId": "fg_question_order",
-          "moraleDelta": 5
-        }
-      ]
-    },
-    {
-      "id": "fg_watching_evacuation",
-      "locationTitle": "1940年5月26日-6月4日 · 敦刻尔克海岸",
-      "musicKey": "fallgelb",
-      "type": "narrative",
-      "text": "九天。\n\n你们就这样看着。海滩上的英国士兵在漫长的队伍中等待，有人中弹死去，\n有人被淹死，但更多的人上了船，离开了。\n\n德国空军来轰炸，但英国皇家空军从天而降，空战在你头顶展开。\n\n你看见一架飞机被击中，旋转着坠入海中，分不清是英国人还是德国人。\n\n三十三万三千人，从你眼前消失在了海峡那头。\n那些人将会再次出现——只是不知道在哪里，在什么时候。",
-      "nextNodeId": "fg_france_falls"
-    },
-    {
-      "id": "fg_question_order",
-      "locationTitle": "1940年5月24日 · 前线司令部",
-      "musicKey": "fallgelb",
-      "type": "narrative",
-      "text": "你向连长提出了疑问。他沉默了很长时间。\n\n「有人说，」他低声说，「元首认为英国人会主动谈判。他不想把英国人逼上绝路。\n也有人说，这片地形不利于装甲部队作战。」\n\n他顿了顿：「还有人说……」他没有说完这句话。\n\n后来的历史证明，那三十三万人里有许多人会在诺曼底、在北非、在最终的柏林，与我们再次相遇。\n\n「管好你自己的事。」连长最后说。",
-      "nextNodeId": "fg_watching_evacuation"
-    },
-    {
-      "id": "fg_france_falls",
-      "locationTitle": "1940年6月22日 · 贡比涅森林",
-      "musicKey": "fallgelb_triumph",
-      "type": "choice",
-      "text": "法国投降了。\n\n就在第一次世界大战签署停战协定的同一节火车车厢里，法国签署了投降书。\n元首是特意安排的这一切，这个细节让所有德国士兵都感到了某种……满足？\n\n你站在巴黎的街头。埃菲尔铁塔就在你面前。国旗已经升上了铁塔。\n\n六周，你穿越了你父亲的父亲一代人用四年都未能穿越的防线。\n\n「这就是胜利。」身旁有人说。\n\n但你环顾四周——空洞的街道，紧闭的窗户，躲在窗帘后面的目光，\n还有脑海中，那一张又一张的面孔。",
-      "choices": [
-        {
-          "text": "【庆祝】参加胜利游行，这是应得的荣耀",
-          "nextNodeId": "fg_victory_parade"
-        },
-        {
-          "text": "【独处】离开人群，独自坐在废墟旁",
-          "nextNodeId": "fg_reflection",
-          "grantedFlags": ["reflected"]
-        }
-      ]
-    },
-    {
-      "id": "fg_victory_parade",
-      "locationTitle": "1940年6月22日 · 巴黎",
-      "musicKey": "fallgelb_triumph",
-      "type": "narrative",
-      "text": "鼓声，军乐，整齐的步伐。\n\n你走在凯旋门前，你的靴底踏在巴黎的石板路上。路旁的法国人站在那里——不是欢呼，只是沉默地看着。\n\n一个老人转过身去，背对着你们，直到你们走过。\n\n那天晚上，你独自一人坐在塞纳河边。河水倒映着夜色，远处的灯光把水面染成金色。\n\n你想给母亲写信，告诉她你还活着。\n但你不知道该从哪里开始写，也不知道该把什么告诉她，\n又该把什么永远埋在心里。",
-      "nextNodeId": "fg_victory_end"
-    },
-    {
-      "id": "fg_reflection",
-      "locationTitle": "1940年6月22日 · 巴黎郊外",
-      "musicKey": "fallgelb",
-      "type": "narrative",
-      "text": "你一个人走进了一条小巷。\n\n墙上有弹孔，地上还有上周战斗留下的玻璃碎片。\n一个法国小女孩从一扇破门里探出头来，看到你，立刻缩了回去，\n然后是一声闩门声。\n\n你坐在台阶上，把钢盔放在膝盖上。\n\n你数了数：从5月10日到今天，四十三天。\n四十三天里，你亲眼看到多少人死去，你已经记不清了。\n但那些面孔——弗里茨的腿、汉斯的尸体、法国少尉的眼睛、那个老妇人的猫——\n那些面孔，你有预感，会一直跟着你。\n\n这就是胜利。",
-      "nextNodeId": "fg_victory_end"
-    },
-    {
-      "id": "fg_victory_end",
-      "locationTitle": "黄色方案 — 完成",
-      "musicKey": "fallgelb_triumph",
-      "type": "ending",
-      "isVictory": true,
-      "text": "【战役结束 — 胜利】\n\n黄色方案以德国的决定性胜利告终。六周内，法国沦陷，英国远征军仓皇撤回本土。\n\n然而，敦刻尔克的三十三万人逃脱了。他们将会回来。\n\n更重要的是：这场战争远未结束。\n\n法国的战死者：约九万人。\n德国的战死者：约四万九千人。\n平民的死亡与流离：无法计数。\n\n「胜利」这个词的背后，是这片土地上每一滴流下的血，\n是每一个倒下的人曾经爱过的家、挂念的人、未竟的梦。\n\n下一章即将开启。"
-    },
-    {
-      "id": "fg_defeat",
-      "locationTitle": "黄色方案 — 失败",
-      "musicKey": "defeat_theme",
-      "type": "ending",
-      "isDefeat": true,
-      "text": "【战役结束 — 阵亡】\n\n你倒下了。\n\n不是在巴黎，不是在胜利游行的队伍里。\n是在一处不知名的法国农村，在战壕的泥土里，在某个无名的下午。\n\n你的名字会出现在某份伤亡报告上，然后消失在战争的滚滚洪流中。\n\n战争不会因为你的死而停止。"
-    }
+    {"id":"fg_inf_briefing","locationTitle":"1940年5月10日 · 德比边境","musicKey":"fallgelb","type":"narrative","text":"汉斯·缪勒，二十岁，巴伐利亚麦农的儿子。\n\n战前你最怕的是秋收时的暴雨——麦子倒了，父亲会沉默地抽一晚上烟。现在你最怕的是这黑暗的森林里突然响起的枪声。两年前你还在帮母亲揉面，妹妹蹲在门槛上数蚂蚁。然后征兵令来了。\n\n你旁边的弗里茨腿在抖。他来自慕尼黑，会弹钢琴，手指细长。他说等战争结束想开一家琴行。\n\n远处传来炮声。那是轰炸比利时的德国空军。你的战争要开始了——以别人的家园为起点。","nextNodeId":"fg_inf_ardennes"},
+
+    {"id":"fg_inf_ardennes","locationTitle":"1940年5月10日 · 阿登森林","musicKey":"fallgelb","type":"choice","text":"阿登的密林里，比利时巡逻队的枪声在树影间回荡。\n\n弗里茨趴在你旁边，脸白得像死人。他的手抖得琴键都按不住。班长在十米外被压制在倒木后面，他在打手势——需要有人绕到侧翼。\n\n你能闻到松脂和硝烟混在一起的气味。还有恐惧——恐惧有味道，像铁锈。","choices":[{"text":"【侧翼】主动请缨绕到巡逻队侧面","isCombat":true,"combatThreshold":50,"bonusClasses":["infantry"],"successNodeId":"fg_inf_flank_ok","failureNodeId":"fg_inf_flank_wounded","failHpDelta":-25,"failMoraleDelta":-10},{"text":"【掩护】留在原地压制火力掩护班长","isCombat":true,"combatThreshold":40,"successNodeId":"fg_inf_flank_ok","failureNodeId":"fg_inf_delay","failHpDelta":-10,"failMoraleDelta":-15}]},
+
+    {"id":"fg_inf_flank_ok","locationTitle":"1940年5月10日 · 阿登","musicKey":"fallgelb","type":"narrative","text":"你绕到了侧面。三个比利时士兵背对着你——其中一个年轻得像个孩子，最多十七岁。你端起枪，准星对准了他的后脑勺。\n\n手指在扳机上停了两秒。\n\n你开枪了。不是他——是旁边的树。那三个士兵吓得扔了枪举起了手。你没有杀人。这次。\n\n后来弗里茨问你为什么不开枪打人。你说你也不知道。但你知道——你想让那个十七岁的比利时男孩能回家。","nextNodeId":"fg_inf_village"},
+
+    {"id":"fg_inf_flank_wounded","locationTitle":"1940年5月10日 · 阿登","musicKey":"fallgelb","type":"narrative","text":"一颗子弹打穿了你的左臂袖子。灼热的疼痛像有人在用烙铁烫你的皮肤。你滚到一棵树后面，血顺着手指往下滴。\n\n你透过树丛看到那个开枪的比利时士兵——他比你大不了几岁，手也在抖。你们对视了一秒。然后各自缩回了掩体。\n\n你的第一个伤口。不是来自仇恨——来自两个同样害怕的年轻人在错误的地方相遇。","nextNodeId":"fg_inf_village"},
+
+    {"id":"fg_inf_delay","locationTitle":"1940年5月10日 · 阿登","musicKey":"fallgelb","type":"narrative","text":"你们等了两个小时。等来的是一副担架——班长中弹了。从他锁骨下面穿过去，一个整齐的洞。他被抬走时还对你挤了个笑容。那之后你再也没见过他。\n\n你后来成了这个班的临时班长。不是因为你能干——是因为剩下的人里你最老。二十岁，最老。","nextNodeId":"fg_inf_village"},
+
+    {"id":"fg_inf_village","locationTitle":"1940年5月11日 · 比利时布拉尔村","musicKey":"fallgelb_village","type":"choice","text":"村庄广场上站满了人。老妇人抱着猫，猫在发抖。一个男孩躲在母亲身后只露出半张脸。\n\n弗里茨小声说：「他们不是敌人。」\n\n军官在后面催你们快走。但那个老妇人的眼神让你想起你母亲——你母亲在你去征兵站那天也是这样看着你的。","choices":[{"text":"【静默】下令不许骚扰，安静通过","nextNodeId":"fg_inf_spared","moraleDelta":5,"grantedFlags":["spared_village"]},{"text":"【催促】大声驱赶村民让路","nextNodeId":"fg_inf_cleared","moraleDelta":-20}]},
+
+    {"id":"fg_inf_spared","locationTitle":"1940年5月11日 · 布拉尔","musicKey":"fallgelb_village","type":"narrative","text":"你们安静地穿过了村子。那个老妇人突然对你说了句什么——你不懂，但翻译说：「她说谢谢你没有砸东西。」\n\n你愣在原地。仅仅是没有作恶就值得感谢了？战争把人类的底线压得有多低？\n\n那个蓝眼睛男孩从母亲身后探出头看了你一眼。你加快脚步走了过去。身后教堂的钟还挂着——没有响。","nextNodeId":"fg_inf_meuse"},
+
+    {"id":"fg_inf_cleared","locationTitle":"1940年5月11日 · 布拉尔","musicKey":"fallgelb_village","type":"narrative","text":"士兵们开始吼叫，枪托砸门。老妇人被推倒，猫从她怀里窜出去。有人在哭。\n\n你看到一个士兵抢走了教堂里的铜烛台。不是什么值钱东西——他只是想抢点什么。你想阻止他，但你的声音被淹没在嘈杂里。\n\n你们走的时候，村子碎了一地。你回头看了一眼——那个蓝眼睛男孩站在废墟里看着你们。他再也忘不掉今天了。你也一样。","nextNodeId":"fg_inf_meuse"},
+
+    {"id":"fg_inf_meuse","locationTitle":"1940年5月13日 · 马斯河","musicKey":"fallgelb_battle","type":"choice","text":"河对面的法军机枪正把河面打成筛子。橡皮艇还没到河心就被打穿，士兵们的尸体顺流而下，河水变成了淡红色。\n\n工兵们还在往河里推新的橡皮艇——像往火坑里扔纸船。\n\n连长转向你们：「谁愿意第一批？」他的声音在颤抖——不是因为害怕，是因为他知道自己在说什么。","choices":[{"text":"【自愿】举手加入第一批渡河","isCombat":true,"combatThreshold":55,"bonusClasses":["infantry"],"successNodeId":"fg_inf_crossed","failureNodeId":"fg_inf_hit","failHpDelta":-30,"failMoraleDelta":-15},{"text":"【沉默】低头——等第二批","isCombat":true,"combatThreshold":40,"successNodeId":"fg_inf_crossed","failureNodeId":"fg_inf_sink","failHpDelta":-20,"failMoraleDelta":-20}]},
+
+    {"id":"fg_inf_crossed","locationTitle":"1940年5月13日 · 马斯河对岸","musicKey":"fallgelb_battle","type":"narrative","text":"你滚上了对岸。子弹在泥土里打出一排洞。\n\n弹坑里躺着一个法国士兵——已经死了。他手里握着一张照片。一个女人和两个孩子。照片被雨水浸得模糊了。\n\n你从他手里拿走了照片。不是偷——你告诉自己。是保存。你已经有第一张不属于你的照片了。","nextNodeId":"fg_inf_sedan"},
+
+    {"id":"fg_inf_hit","locationTitle":"1940年5月13日 · 马斯河","musicKey":"fallgelb_battle","type":"narrative","text":"橡皮艇刚划到河心，你的右腿像被烧红的铁棍砸了一下。低头——裤腿在往外渗血。弹片嵌在小腿里。\n\n卫生员给你包扎时你看着天——斯图卡俯冲轰炸机像鹰一样掠过。那些飞行员不用趟水。你不知道该羡慕还是鄙视他们。","nextNodeId":"fg_inf_sedan"},
+
+    {"id":"fg_inf_sink","locationTitle":"1940年5月13日 · 马斯河","musicKey":"fallgelb_battle","type":"narrative","text":"橡皮艇被打穿了。冰冷的河水灌进来。你在水里扑腾——军靴和装备像铅一样把你往下拽。你会游泳——在巴伐利亚的湖里学的。但不是穿着军靴。\n\n你爬上岸时吐了好几口河水。旁边躺着三具尸体——其中一个叫库尔特，昨晚还在讲他女儿学会走路的事。他的眼睛还睁着。","nextNodeId":"fg_inf_sedan"},
+
+    {"id":"fg_inf_sedan","locationTitle":"1940年5月15日 · 色当近郊","musicKey":"fallgelb_battle","type":"choice","text":"法军的防线像纸一样被撕开了。公路上有几个法国士兵在手忙脚乱地架路障——他们还没准备好。\n\n弗里茨在你旁边。他不再抖了——不是变勇敢了。是麻木了。","choices":[{"text":"【突袭】趁他们没准备好快速冲锋","isCombat":true,"combatThreshold":60,"bonusClasses":["infantry"],"successNodeId":"fg_inf_broken","failureNodeId":"fg_inf_pinned","failHpDelta":-25,"failMoraleDelta":-10},{"text":"【喊话】试着用法语劝降","isCombat":true,"combatThreshold":45,"successNodeId":"fg_inf_surrender","failureNodeId":"fg_inf_pinned","failHpDelta":-15,"failMoraleDelta":-10}]},
+
+    {"id":"fg_inf_broken","locationTitle":"1940年5月15日 · 色当","musicKey":"fallgelb_battle","type":"narrative","text":"冲锋。枪声。寂静。\n\n公路上躺着七个法军士兵。其中一个的上衣口袋里有封信——还没寄出去。信封上是个法国女人的名字，旁边歪歪扭扭地写着「我爱你」。\n\n你把信放回了他的口袋。然后捡起他掉在地上的照片——你的第二张。","nextNodeId":"fg_inf_refugees"},
+
+    {"id":"fg_inf_surrender","locationTitle":"1940年5月15日 · 色当","musicKey":"fallgelb_village","type":"narrative","text":"他们投降了。五个法国士兵放下枪走出来——饿坏了，比你们还瘦。其中一个掏出一张照片给你看——他的女儿。\n\n你给了他一根烟。他的手在抖。\n\n敌人——这个词突然变得很可笑。","nextNodeId":"fg_inf_refugees"},
+
+    {"id":"fg_inf_pinned","locationTitle":"1940年5月15日 · 色当","musicKey":"fallgelb_battle","type":"narrative","text":"法军的机枪响了。你们被压在沟里。埃里希探头看了一眼——然后他的身体猛然后仰。前额上一个整齐的弹孔。\n\n你摸了摸他的脖子。没有脉搏。\n\n埃里希，来自纽伦堡，会吹口琴。他再也吹不了了。","nextNodeId":"fg_inf_refugees"},
+
+    {"id":"fg_inf_refugees","locationTitle":"1940年5月18日 · 法国公路","musicKey":"fallgelb_village","type":"choice","text":"公路上全是平民。推婴儿车的母亲、骑自行车的老头、赶羊群的农民。成千上万的人在逃。\n\n一个小女孩站在路边哭——走丢了。她手里捏着半块饼干。\n\n装甲师在后面按喇叭。他们需要这条路。","choices":[{"text":"【等待】停下来让平民先过","nextNodeId":"fg_inf_wait","moraleDelta":5,"grantedFlags":["waited"]},{"text":"【清路】把人群推向路边","nextNodeId":"fg_inf_push","moraleDelta":-20}]},
+
+    {"id":"fg_inf_wait","locationTitle":"1940年5月18日 · 法国公路","musicKey":"fallgelb_village","type":"narrative","text":"你们等了一个小时。那个走丢的小女孩走到你面前，把半块饼干递给你。\n\n「Mange.」\n\n你摇头。她把饼干放回口袋跑了——跑了几步又回头看你一眼。\n\n那是你这辈子收到过的最贵重的礼物。你没有拿。","nextNodeId":"fg_inf_dunkirk"},
+
+    {"id":"fg_inf_push","locationTitle":"1940年5月18日 · 法国公路","musicKey":"fallgelb_battle","type":"narrative","text":"你们开始推人。一辆马车翻了，老妇人摔在路边。她的闹钟掉在地上还在滴答走。\n\n你想扶她——但她看你的眼神让你收回了手。那种眼神比子弹更锋利。\n\n车队开过去了。那个闹钟还在地上走。你很多年后还能听见那个滴答声。","nextNodeId":"fg_inf_dunkirk"},
+
+    {"id":"fg_inf_dunkirk","locationTitle":"1940年5月24日 · 敦刻尔克","musicKey":"fallgelb","type":"narrative","text":"你们把三十三万英法联军逼到了海滩上。你的部队距他们只有十五公里。\n\n然后命令来了。「停止前进。」元首的直接命令。\n\n从望远镜里，你看到海峡里涌来密密麻麻的船——游艇、渔船、渡轮。三十三万三千人从你眼皮底下逃走了。\n\n你会再次见到他们的。不是在法国。在别的地方。","nextNodeId":"fg_inf_paris"},
+
+    {"id":"fg_inf_paris","locationTitle":"1940年6月22日 · 巴黎","musicKey":"fallgelb_triumph","type":"choice","text":"法国投降了。你站在埃菲尔铁塔下面。巴黎人躲在窗帘后面看你们。\n\n旁边有人说：「这就是胜利。」\n\n你摸着口袋里的两张照片——法国士兵的妻子和孩子。这就是胜利。","choices":[{"text":"【庆祝】跟连队去凯旋门游行","nextNodeId":"fg_inf_parade"},{"text":"【独处】离开人群独自去塞纳河边","nextNodeId":"fg_inf_reflection","grantedFlags":["reflected"]}]},
+
+    {"id":"fg_inf_parade","locationTitle":"1940年6月22日 · 巴黎","musicKey":"fallgelb_triumph","type":"narrative","text":"你走在香榭丽舍大街上。法国人站在路边——没人看你们。他们看的是地面、天空、任何地方——就是不看你们。\n\n一个法国老人转过身去背对着队伍，直到你们全部走过去。\n\n那天晚上你铺开信纸。「亲爱的妈妈，」你写道。然后你停住了。你不知道该怎么告诉她——你看到了什么，你做了什么，你没做什么。你把信纸揉成一团。","nextNodeId":"fg_inf_victory"},
+
+    {"id":"fg_inf_reflection","locationTitle":"1940年6月22日 · 塞纳河畔","musicKey":"fallgelb","type":"narrative","text":"你一个人坐在塞纳河边。河水在傍晚的阳光下闪着金光——比马斯河平静得多。\n\n你数了数：从5月10日到今天，四十三天。弗里茨、埃里希、库尔特——你记得每一个名字。还有两个法国士兵口袋里的照片。\n\n你的父亲花了四年没打到的巴黎，你花了六周。\n\n但你坐在这里——并不感到骄傲。你只是想回家。","nextNodeId":"fg_inf_victory"},
+
+    {"id":"fg_inf_victory","locationTitle":"黄色方案 — 完成","musicKey":"fallgelb_triumph","type":"ending","isVictory":true,"text":"【黄色方案 — 生存】\n\n你活过了黄色方案。汉斯·缪勒，二十岁，巴伐利亚麦农的儿子——没有在阿登的树林里倒下，没有在马斯河的水里沉没。\n\n法国沦陷了。九万法国士兵、四万九千德国士兵在这场战役中丧生。平民的伤亡——没有人计算。\n\n但你口袋里有两张不属于你的照片。一个法国妻子和她的孩子。一个法国女人和歪歪扭扭的「我爱你」。\n\n这些照片会在你的口袋里待很久。比战争更久。"},
+
+    {"id":"fg_tank_briefing","locationTitle":"1940年5月10日 · 第19装甲军集结地","musicKey":"fallgelb","type":"narrative","text":"埃里希·瓦格纳，二十二岁，萨克森机械师的儿子。\n\n你从小在父亲的修理铺里长大——机油的味道比面包还熟悉。十六岁你修好了第一台柴油发动机。现在你坐在一台四号坦克的驾驶舱里，二十五吨的钢铁巨兽在你脚下低吼。\n\n你旁边的炮手叫汉内斯，柏林人，说话刻薄但靠得住。装填手克劳斯才十九岁，这是他第一次坐进坦克——他的手在发颤，但努力不让任何人看出来。\n\n「阿登——法国人说坦克过不去。他们错了。」无线电里古德里安的声音。\n\n你踩下油门。钢铁巨兽驶入黑暗的森林。从潜望镜里看出去，世界是绿色的——狭小的、被装甲框起来的绿色。\n\n你看不到人脸。这也是你能活下去的原因之一。","nextNodeId":"fg_tank_ardennes"},
+
+    {"id":"fg_tank_ardennes","locationTitle":"1940年5月10日 · 阿登","musicKey":"fallgelb","type":"choice","text":"森林小径窄得只能容下一条履带。坦克在泥里打滑，发动机嘶吼。舱内四十度——汗水和机油的味道混在一起。\n\n突然——前方亮起反坦克炮的闪光。比利时守军。\n\n「炮击！」汉内斯吼着。\n\n一枚炮弹擦着炮塔飞过去，在身后的树上炸开。克劳斯的脸在瞬间的闪光中白得像纸。","choices":[{"text":"【冲锋】全速冲过火力封锁","isCombat":true,"combatThreshold":50,"bonusClasses":["tank_crew"],"successNodeId":"fg_tank_break","failureNodeId":"fg_tank_stuck","failHpDelta":-20,"failMoraleDelta":-10},{"text":"【后退】撤回掩体等步兵清理反坦克炮","nextNodeId":"fg_tank_wait","hpDelta":-5,"moraleDelta":-15}]},
+
+    {"id":"fg_tank_break","locationTitle":"1940年5月10日 · 阿登","musicKey":"fallgelb","type":"narrative","text":"你踩着油门冲了过去。汉内斯找到反坦克炮——一炮。那门炮和它的炮手一起消失了。\n\n从潜望镜里你只看到一阵烟雾和碎片。没有人脸。没有血。只是一团灰黑色的云。\n\n坐在坦克里杀人——太容易了。容易到让你害怕。\n\n克劳斯在装填下一发炮弹。他的手不抖了。你觉得这比手抖更可怕。","nextNodeId":"fg_tank_village"},
+
+    {"id":"fg_tank_stuck","locationTitle":"1940年5月10日 · 阿登","musicKey":"fallgelb","type":"narrative","text":"炮弹击中了履带。坦克猛地一歪——发动机嘶吼但车体纹丝不动。\n\n「弃车！」你下令。三个人从舱口爬出来——你在最后。\n\n出了舱口你才感觉到风。在坦克里待久了，你忘了世界上有风。\n\n你的第一辆坦克瘫在燃烧的树林里，像一头死去的钢铁动物。它的引擎还是热的。你拍了拍它的装甲——像个送别老朋友的机械师。","nextNodeId":"fg_tank_village"},
+
+    {"id":"fg_tank_wait","locationTitle":"1940年5月10日 · 阿登","musicKey":"fallgelb","type":"narrative","text":"你退了回来。等待——坦克兵最怕的事。坐在铁盒子里听外面的枪声，不知道什么时候一发穿甲弹会穿透装甲把你变成一团火。\n\n克劳斯在角落里睡着了。你怎么能在这种时候睡着——你不知道。也许是他的身体在自救。\n\n汉内斯哼着歌。一首柏林流行曲。在铁棺材里哼流行曲。","nextNodeId":"fg_tank_village"},
+
+    {"id":"fg_tank_village","locationTitle":"1940年5月11日 · 比利时布拉尔","musicKey":"fallgelb_village","type":"choice","text":"从潜望镜里看——村庄的尖顶在晨光中闪闪发光。广场上挤满了村民。\n\n汉内斯在炮塔里看不见下面。「怎么了？」\n\n「有人。」你说。\n\n「敌人？」\n\n「平民。」\n\n无线电命令：「继续前进。」但如果你直直开过去，坦克会把路面压碎——可能还会压到人。","choices":[{"text":"【绕行】从村外的田地里绕过去","nextNodeId":"fg_tank_spared","moraleDelta":5},{"text":"【直行】听从命令不给步兵拖后腿","nextNodeId":"fg_tank_cleared","moraleDelta":-15}]},
+
+    {"id":"fg_tank_spared","locationTitle":"1940年5月11日 · 布拉尔","musicKey":"fallgelb_village","type":"narrative","text":"你打了方向盘，坦克笨拙地从村外的麦田里碾过去。麦子倒了一片。但教堂的钟还在。\n\n透过后视镜——一个老妇人站在村口看着你的坦克从她家田里开过去。她没有挥手，也没有哭。只是看着。\n\n汉内斯说：「你是个心软的。」\n\n「也许。」\n\n其实你不是心软——你只是从潜望镜里看到了她，而他没有。这就是装甲和步兵的区别：装甲让你看不见人脸，所以杀人更容易。但这次你选择了看。","nextNodeId":"fg_tank_meuse"},
+
+    {"id":"fg_tank_cleared","locationTitle":"1940年5月11日 · 布拉尔","musicKey":"fallgelb_village","type":"narrative","text":"坦克的轰鸣让广场上的人四散奔逃。一个老人摔倒了，被人群踩过。\n\n你从潜望镜里看到了。只是一帧画面——然后过了。坦克不会因为一个人摔倒而停下来。\n\n后来汉内斯在炮塔里问：「下面怎么了？」\n\n「没怎么。」你说。\n\n你说谎了。汉内斯知道你在说谎。但他没有追问。从那天起，你再也没跟他提过这件事。","nextNodeId":"fg_tank_meuse"},
+
+    {"id":"fg_tank_meuse","locationTitle":"1940年5月13日 · 马斯河","musicKey":"fallgelb_battle","type":"choice","text":"马斯河。河对岸的法军机枪在等你们。工兵在架浮桥——速度慢得让人发疯。\n\n无线电：「掩护工兵！压制对岸！」\n\n汉内斯转动炮塔。「左侧两个机枪巢。哪个先？」\n\n一枚迫击炮弹在坦克前方炸开，泥巴溅满了你的潜望镜。","choices":[{"text":"【炮击】优先打左侧机枪阵地","isCombat":true,"combatThreshold":55,"bonusClasses":["tank_crew"],"successNodeId":"fg_tank_crossed","failureNodeId":"fg_tank_hit","failHpDelta":-25,"failMoraleDelta":-10},{"text":"【冲桥】直接开上浮桥强行渡河","isCombat":true,"combatThreshold":65,"successNodeId":"fg_tank_crossed","failureNodeId":"fg_tank_sunk","failHpDelta":-35,"failMoraleDelta":-15}]},
+
+    {"id":"fg_tank_crossed","locationTitle":"1940年5月13日 · 马斯河对岸","musicKey":"fallgelb_battle","type":"narrative","text":"你开上了对岸。坦克碾过法军的沙袋阵地——几十个沙袋和两具尸体瞬间消失在履带下。\n\n你没看清他们的脸。不是没看见——是没看清。在潜望镜里，人只有几厘米高。\n\n克劳斯的声音在舱内回荡：「打中了。」\n\n「打中了什么？」\n\n「我不知道。反正打中了。」\n\n他不知道。你也不知道。在坦克里，你永远不知道。","nextNodeId":"fg_tank_sedan"},
+
+    {"id":"fg_tank_hit","locationTitle":"1940年5月13日 · 马斯河","musicKey":"fallgelb_battle","type":"narrative","text":"反坦克炮弹打在炮塔侧面——装甲弹开了。但冲击力把汉内斯从座位上震下来，额头上磕了一道口子。血顺着脸往下淌。\n\n「我没事！」他爬了起来，「继续！」\n\n但炮塔卡住了。你们现在只能直行。在战场上——只能直行的坦克就是一口移动的棺材。","nextNodeId":"fg_tank_sedan"},
+
+    {"id":"fg_tank_sunk","locationTitle":"1940年5月13日 · 马斯河","musicKey":"fallgelb_battle","type":"narrative","text":"你开上浮桥时一颗炮弹击中了桥体。桥面猛地倾斜——二十五吨的钢铁开始向水里滑。\n\n「弃车！」\n\n你们跳进河里。冰冷的河水灌进衣服。你回头看——你的坦克从浮桥上滑入水中，炮管最后指向天空，像一根墓碑。然后沉了。\n\n那是你失去的第二辆坦克。你开始觉得——坦克也许只是另一种棺材。","nextNodeId":"fg_tank_sedan"},
+
+    {"id":"fg_tank_sedan","locationTitle":"1940年5月15日 · 色当","musicKey":"fallgelb_battle","type":"choice","text":"色当。法军防线崩溃了。公路上一支法国车队正在溃退——卡车、马车、推着自行车的士兵。里面混着平民。\n\n汉内斯把手放在开火按钮上。「目标：前方车队。」\n\n「那里有平民。」你说。\n\n「无线电命令是消灭车队。」\n\n「我看得见。无线电看不见。」","choices":[{"text":"【放过】减速让车队跑远","nextNodeId":"fg_tank_sedan_pass","moraleDelta":5},{"text":"【示警】朝车队前方空地开炮逼停","isCombat":true,"combatThreshold":50,"bonusClasses":["tank_crew"],"successNodeId":"fg_tank_sedan_stop","failureNodeId":"fg_tank_ambushed","failHpDelta":-25,"failMoraleDelta":-10}]},
+
+    {"id":"fg_tank_sedan_pass","locationTitle":"1940年5月15日 · 色当","musicKey":"fallgelb_village","type":"narrative","text":"你松了油门。坦克慢下来。\n\n那支溃逃的车队越跑越远，消失在远方的烟尘里。也许有人会说你违抗命令——但你从潜望镜里看到车队里有个女人抱着孩子。\n\n汉内斯没有说话。克劳斯也没有。\n\n你继续踩下油门。坦克向前——向巴黎的方向。","nextNodeId":"fg_tank_refugees"},
+
+    {"id":"fg_tank_sedan_stop","locationTitle":"1940年5月15日 · 色当","musicKey":"fallgelb_battle","type":"narrative","text":"汉内斯朝车队前方打了一炮——故意偏了几十米。泥土飞溅。\n\n车队停了。法国士兵开始举着手走出来。其中有个护士——她举着手，但她的另一只手在护着伤员。\n\n汉内斯说：「红酒取消。」\n\n「红酒取消。」你说。","nextNodeId":"fg_tank_refugees"},
+
+    {"id":"fg_tank_ambushed","locationTitle":"1940年5月15日 · 色当","musicKey":"fallgelb_battle","type":"narrative","text":"藏在路边的反坦克炮开火了。炮弹打在侧面装甲上——弹开了，但仪表盘被震碎，碎片扎进你的大腿。血顺着腿往下流。\n\n坦克还能动。但你再也不能完全信任你的装甲了。\n\n克劳斯给你包扎时手在抖。不是因为害怕——是因为你的血沾到了他的手上。","nextNodeId":"fg_tank_refugees"},
+
+    {"id":"fg_tank_refugees","locationTitle":"1940年5月18日 · 法国公路","musicKey":"fallgelb_village","type":"choice","text":"公路上全是难民。你从没见过这么多人——像一整座城市从公路上流过去。\n\n汉内斯探出舱口看了一眼，缩回来时脸色变了：「老天。」\n\n装甲师的命令是保持速度。但你的坦克正对着一个推婴儿车的母亲。","choices":[{"text":"【停车】关引擎等待","nextNodeId":"fg_tank_wait_civ","moraleDelta":5,"grantedFlags":["waited"]},{"text":"【鸣笛】按喇叭缓慢前进驱散人群","nextNodeId":"fg_tank_push_civ","moraleDelta":-20}]},
+
+    {"id":"fg_tank_wait_civ","locationTitle":"1940年5月18日 · 法国公路","musicKey":"fallgelb_village","type":"narrative","text":"你关了引擎。坦克安静下来的那一刻，世界突然变得很静。你能听见风吹过麦田的声音。婴儿的哭声。钟声——远处某个教堂的钟在响。\n\n汉内斯打开一包烟。你们三个坐在钢铁巨兽里——抽烟。不说话。\n\n一小时后，人群稀疏了。你重新发动引擎。二十五吨的钢铁重新开始低吼。","nextNodeId":"fg_tank_dunkirk"},
+
+    {"id":"fg_tank_push_civ","locationTitle":"1940年5月18日 · 法国公路","musicKey":"fallgelb_battle","type":"narrative","text":"你按了喇叭。人群陷入恐慌。一辆马车被挤翻，老妇人摔在地上。\n\n你从潜望镜里看到了。只是一帧画面——然后过了。\n\n「继续前进。」你在无线电里说。\n\n但那个老妇人倒地的画面会卡在你的记忆里。不是一帧。是永远。","nextNodeId":"fg_tank_dunkirk"},
+
+    {"id":"fg_tank_dunkirk","locationTitle":"1940年5月24日 · 敦刻尔克","musicKey":"fallgelb","type":"narrative","text":"你们的装甲师距敦刻尔克只有十五公里。十五公里——油门踩到底只要半小时。\n\n然后命令来了。「停止前进。」元首的命令。\n\n汉内斯不敢相信：「什么？」\n\n你坐在驾驶舱里，发动机怠速运转，从潜望镜里看着英国人的小船在海峡里来来往往。三十三万人从你眼皮底下逃走了。\n\n汉内斯在炮塔里沉默了很久，然后低声说了一句：「我们会后悔的。」\n\n他说得对。","nextNodeId":"fg_tank_paris"},
+
+    {"id":"fg_tank_paris","locationTitle":"1940年6月22日 · 巴黎","musicKey":"fallgelb_triumph","type":"choice","text":"法国投降了。你把坦克停在埃菲尔铁塔下面。\n\n汉内斯从炮塔里探出身来：「我说过请你的红酒。」\n\n你从潜望镜里看出去——巴黎人在远处站着。没有人过来。也没有人挥手。","choices":[{"text":"【庆祝】跟连队走走看看巴黎","nextNodeId":"fg_tank_parade"},{"text":"【写信】坐在坦克旁边给父亲写信","nextNodeId":"fg_tank_letter","grantedFlags":["reflected"]}]},
+
+    {"id":"fg_tank_parade","locationTitle":"1940年6月22日 · 巴黎","musicKey":"fallgelb_triumph","type":"narrative","text":"你走过凯旋门。一个法国老人坐在咖啡馆外面——咖啡馆关了，但他还坐在那里，面前是一杯白水。他看着你走过去，没有表情。\n\n你突然很想问他——你父亲在一战打过仗吗？你在凡尔登待过吗？\n\n但没有问。你只是走了过去。","nextNodeId":"fg_tank_victory"},
+
+    {"id":"fg_tank_letter","locationTitle":"1940年6月22日 · 巴黎","musicKey":"fallgelb","type":"narrative","text":"你坐在坦克的阴影里铺开纸。\n\n「亲爱的父亲：我们还活着。到了巴黎。坦克换了两辆——第一辆坏在阿登，第二辆沉在马斯河。现在是第三辆。汉内斯额头缝了四针还在讲笑话。克劳斯手不抖了，但我不确定这是好事。\n\n巴黎很漂亮。但这里的人看我们的眼神——让我想起你说过的话。你说一战时你从战壕里爬出来，对面的法国兵也在抽烟。你们对视了一眼。谁也没开枪。\n\n我不知道为什么想起这个。\n\n你儿子，埃里希」\n\n你把信折好。放在胸前的口袋里。你会一直带着它——直到有一天，有人从你的口袋里找到它。","nextNodeId":"fg_tank_victory"},
+
+    {"id":"fg_tank_victory","locationTitle":"黄色方案 — 完成","musicKey":"fallgelb_triumph","type":"ending","isVictory":true,"text":"【黄色方案 — 完成】\n\n三名坦克手——埃里希、汉内斯、克劳斯——穿过了阿登和马斯河，碾过了法国平原，停在了埃菲尔铁塔下。\n\n你们失去两辆坦克。汉内斯头上多了一道疤。你的左腿在阴天还会疼。克劳斯的眼睛不再有十九岁男孩的光。\n\n但你们还活着。\n\n法国沦陷了。九万法国军人和四万九千德国军人死在这场战役里。\n\n你那封写给父亲的信还在胸前口袋里。希望你能亲手交给他。\n\n下一章即将开启。"},
+
+    {"id":"fg_skip","locationTitle":"1940年6月 · 法国贡比涅","musicKey":"fallgelb_triumph","type":"narrative","text":"黄色方案成功执行。装甲部队穿越阿登，六周内击溃法军。法国在贡比涅森林的同一节火车车厢里签署了投降书。\n\n你的战场不在这里——在天空、在深海、或者在别的什么地方。但你从战报中得知了这次胜利。\n\n然而你注意到那些数字：四万九千名德国士兵没能回来。他们留在阿登的树林里、马斯河的河底、法国无名的麦田里。\n\n这只是第一场战役。","nextNodeId":"fg_inf_victory"},
+
+    {"id":"fg_defeat","locationTitle":"黄色方案 — 阵亡","musicKey":"defeat_theme","type":"ending","isDefeat":true,"text":"你倒下了。不是在巴黎的凯旋门下——是在法国的某片麦田里，在一个无名的下午。\n\n你的名字会被写进伤亡报告。然后被战争吞没。"}
   ]
 }

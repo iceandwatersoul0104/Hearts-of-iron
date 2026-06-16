@@ -1,289 +1,60 @@
 {
   "chapterId": "berlin",
-  "startNodeId": "be_intro",
-  "defeatNodeId": "be_captured",
+  "startNodeId": "be_inf",
+  "defeatNodeId": "be_dead",
+  "classStartNodes": {
+    "infantry": "be_inf",
+    "tank_crew": "be_tank",
+    "fighter_pilot": "be_fpt",
+    "bomber_pilot": "be_bpt",
+    "submarine_crew": "be_sub",
+    "battleship_crew": "be_bat"
+  },
   "nodes": [
-    {
-      "id": "be_intro",
-      "locationTitle": "1945年4月16日 · 柏林，帝国的黄昏",
-      "musicKey": "berlin",
-      "type": "narrative",
-      "text": "1945年4月。柏林已是一片焦土。\n\n曾经自诩能统治千年的第三帝国，如今只剩下一片残破的骨架。\n盟军的大举轰炸已将整座城市夷为平地，而在东线，白俄罗斯第一方面军和乌克兰第一方面军的近两百万红军士兵、万余门火炮、数千辆坦克正在奥德河畔集结，准备发起对柏林的最后一击。\n\n防空洞里的市民面如死灰，废墟中的瓦砾在持续不断的远程炮击下微微颤抖。\n\n作为一名在经历了无数次战斗后侥幸存活的德军士兵，你站在摇摇欲坠的街角，看着满天的烟尘，知道最后的结局已经不可逆转。",
-      "nextNodeId": "be_assignment"
-    },
-    {
-      "id": "be_assignment",
-      "locationTitle": "1945年4月16日 · 柏林，命令分派",
-      "musicKey": "berlin",
-      "type": "choice",
-      "text": "最后的集结号吹响了。防区军官正在沙盘前分配任务。\n\n对于不同的兵种，最后的任务也各不相同。你必须服从最后的宿命，或者选择在这场疯狂中尽力保全自己。",
-      "choices": [
-        {
-          "text": "【东部防线】前往奥德河防线抵抗红军",
-          "classRestricted": true,
-          "allowedClasses": ["infantry", "tank_crew"],
-          "nextNodeId": "be_oder_front"
-        },
-        {
-          "text": "【防空塔】前往制空阵地防空塔驻防",
-          "classRestricted": true,
-          "allowedClasses": ["fighter_pilot", "bomber_pilot"],
-          "nextNodeId": "be_air_defense"
-        },
-        {
-          "text": "【施普雷河】封锁施普雷河防御阵线",
-          "classRestricted": true,
-          "allowedClasses": ["submarine_crew", "battleship_crew"],
-          "nextNodeId": "be_river_defense"
-        },
-        {
-          "text": "【服从分配】服从命令分配，驻守城区废墟",
-          "nextNodeId": "be_city_center"
-        }
-      ]
-    },
-    {
-      "id": "be_oder_front",
-      "locationTitle": "1945年4月18日 · 奥德河防线",
-      "musicKey": "berlin",
-      "type": "choice",
-      "text": "奥德河畔，苏联红军的喀秋莎火箭炮铺天盖地。\n阵地上的泥土被炸得翻了一遍又一遍，夹杂着焦黑的碎肉。\n\n你所在的防线正在崩溃，苏联坦克像钢铁巨兽般隆隆驶来，碾碎了一道又一道堑壕。\n你手里的武器只有一支Kar98k步枪，或者一具铁拳反坦克火箭筒。这是毫无胜算的防守。",
-      "choices": [
-        {
-          "text": "【伏击坦克】使用铁拳火箭筒近距离伏击苏军坦克",
-          "isCombat": true,
-          "combatThreshold": 55,
-          "bonusClasses": ["infantry", "tank_crew"],
-          "successNodeId": "be_tank_kill",
-          "failureNodeId": "be_wounded",
-          "failHpDelta": -35,
-          "failMoraleDelta": -15
-        },
-        {
-          "text": "【撤退】放弃阵地，跟随溃兵撤向市区",
-          "hpDelta": -10,
-          "moraleDelta": -15,
-          "nextNodeId": "be_oder_retreat"
-        }
-      ]
-    },
-    {
-      "id": "be_tank_kill",
-      "locationTitle": "1945年4月18日 · 奥德河防线",
-      "musicKey": "berlin",
-      "type": "narrative",
-      "text": "你深吸一口气，顶着漫天弹雨探出战壕。铁拳反坦克火箭筒在肩头喷射出尾焰，一枚高爆弹头狠狠砸在了苏军T-34坦克的侧甲上，坦克瞬间化为一团烈火。\n\n但还没等你们喘口气，更多的坦克轮廓从硝烟中显现出来。你身边的同伴被坦克车载机枪子弹拦腰扫断。\n\n击毁一辆坦克是毫无意义的——他们有成千上万辆，而你只有这一具铁拳。\n眼看防线彻底失守，你只能在战友的残骸中寻找掩护，撤向柏林市区。",
-      "nextNodeId": "be_city_center"
-    },
-    {
-      "id": "be_wounded",
-      "locationTitle": "1945年4月18日 · 奥德河防线",
-      "musicKey": "berlin",
-      "type": "narrative",
-      "text": "你刚想站起来，一颗重炮炮弹在不远处炸开。巨大的气浪和漫天的泥土瞬间将你掩埋。\n\n你只觉得左臂一凉，随后是钻心的剧痛。弹片割开了你的军装，鲜血汩汩流出。\n\n当你挣扎着从泥土里爬出来时，排长和机枪手都已没有了呼吸，空气里充满了焦糊的气味。\n你用绷带简单包扎了伤口，拖着伤痕累累的身体，在红军火力的追击下艰难撤向市区。",
-      "nextNodeId": "be_city_center"
-    },
-    {
-      "id": "be_oder_retreat",
-      "locationTitle": "1945年4月18日 · 奥德河防线外围",
-      "musicKey": "berlin",
-      "type": "narrative",
-      "text": "你选择了后退。军官的皮鞭和手枪已经无法阻挡士兵们的溃逃。\n\n在你们身后，红军的喀秋莎齐射将整片平原化为火海，成百上千来不及撤退的战友在火光中化为灰烬。\n\n你一路狂奔，甚至扔掉了水壶和防毒面具，直到在柏林郊区残存的街道里气喘吁吁地停下。\n看着一路上丢弃的装备和神色呆滞的溃兵，你感到了无言的绝望。这已经是最后的防线了。",
-      "nextNodeId": "be_city_center"
-    },
-    {
-      "id": "be_air_defense",
-      "locationTitle": "1945年4月20日 · 柏林防空塔",
-      "musicKey": "berlin",
-      "type": "choice",
-      "text": "柏林防空塔是城市里最坚固的混凝土堡垒，拥有双联装128毫米高射炮和厚达数米的墙体。\n对于飞行员来说，没有了飞机和油料，这里就是你们最后的阵地。\n\n天空已经被红军的雅克战机和苏美轰炸机完全主宰。高射炮的怒吼不过是垂死挣扎。\n红军步兵已经开始逼近防空塔，战局正在从防空转入残酷的地面堡垒守备。",
-      "choices": [
-        {
-          "text": "【高炮平射】将高射炮指向地面，压制苏军地面步兵",
-          "isCombat": true,
-          "combatThreshold": 50,
-          "bonusClasses": ["fighter_pilot", "bomber_pilot"],
-          "successNodeId": "be_flak_hold",
-          "failureNodeId": "be_flak_destroyed",
-          "failHpDelta": -30,
-          "failMoraleDelta": -20
-        },
-        {
-          "text": "【撤入通道】放弃重装备，撤入防空塔地底的避难坑道",
-          "nextNodeId": "be_city_center"
-        }
-      ]
-    },
-    {
-      "id": "be_flak_hold",
-      "locationTitle": "1945年4月20日 · 柏林防空塔顶",
-      "musicKey": "berlin",
-      "type": "narrative",
-      "text": "你们将重型高射炮的炮口降下，指向地面的街道。128毫米双联装高射炮弹呼啸着在街区废墟中炸开，将正在推进的红军士兵和装甲车撕成碎片。\n\n这威力极其恐怖，但你没有一丝快感。\n你看到那些在血雾中倒下的红军士兵，他们也是某些人的儿子、丈夫和父亲。他们历经千辛万苦打到这里，却在战争结束前夕死于水泥怪物的平射下。\n\n最终，苏军使用大口径重炮对防空塔实施了报复性轰击。防空塔被浓烟和烈火笼罩，你不得不撤入地下。",
-      "nextNodeId": "be_city_center"
-    },
-    {
-      "id": "be_flak_destroyed",
-      "locationTitle": "1945年4月20日 · 柏林防空塔顶",
-      "musicKey": "berlin",
-      "type": "narrative",
-      "text": "一颗苏联的203毫米重榴弹炮弹直接命中了高炮阵地。\n\n伴随着震耳欲聋的爆炸，重达数吨的高射炮管被生生折断，大块的水泥碎屑如冰雹般砸下，将几名炮手当场砸死在血泊中。\n你的头部撞在了钢铁栏杆上，鲜血模糊了眼睛，耳边是一片尖锐的鸣叫声。\n\n在防空塔被彻底孤立并沦为瓦砾堆之前，残存的士兵扶着你顺着阴暗的楼梯逃往地下掩体。",
-      "nextNodeId": "be_city_center"
-    },
-    {
-      "id": "be_river_defense",
-      "locationTitle": "1945年4月22日 · 施普雷河防御线",
-      "musicKey": "berlin",
-      "type": "choice",
-      "text": "施普雷河是柏林市中心前的最后一道屏障。\n对于海军人员来说，战列舰已经沉没，潜艇早已在海战中折戟，现在你们只能在河岸的断桥残壁旁扮演步兵的角色。\n\n河水早已被弹药和废弃物污染，散发着恶臭。\n苏军工兵正顶着弹雨在对岸架设浮桥，红军的突击艇正在强行渡河。防线危在旦夕。",
-      "choices": [
-        {
-          "text": "【射击渡船】用残存的机枪火力扫射渡河的苏军突击艇",
-          "isCombat": true,
-          "combatThreshold": 50,
-          "bonusClasses": ["submarine_crew", "battleship_crew"],
-          "successNodeId": "be_spree_repelled",
-          "failureNodeId": "be_spree_broken",
-          "failHpDelta": -25,
-          "failMoraleDelta": -15
-        },
-        {
-          "text": "【炸毁桥梁】提前炸毁施普雷河上的桥梁以阻滞苏军",
-          "nextNodeId": "be_spree_destroyed"
-        }
-      ]
-    },
-    {
-      "id": "be_spree_repelled",
-      "locationTitle": "1945年4月22日 · 施普雷河西岸",
-      "musicKey": "berlin",
-      "type": "narrative",
-      "text": "机枪的狂吼在河谷间回荡。你死死压着枪身，子弹扫过河面，打穿了皮划艇，将艇上的红军士兵成排扫落到冰冷的河水中。\n\n河面上升起了一团团血红色的水花。那些士兵在水中挣扎，沉没，最终被肮脏的河水卷走。\n\n你们勉强击退了这一波进攻，但弹药已经见底。\n苏军火炮随即开始了犁地般的轰击，河岸阵地在炮火中荡然无存。你只能撤入城区废墟。",
-      "nextNodeId": "be_city_center"
-    },
-    {
-      "id": "be_spree_broken",
-      "locationTitle": "1945年4月22日 · 施普雷河西岸",
-      "musicKey": "berlin",
-      "type": "narrative",
-      "text": "防线被彻底撕碎了。苏联红军的装甲车辆顶着火力冲上了西岸，冲锋枪子弹将你们的掩体打得千疮百孔。\n\n一名红军士兵端着波波沙冲锋枪跳进你的沙袋掩体，你被迫用工兵铲和他进行肉搏，在血水中拼命撕扯。\n\n虽然你侥幸逃脱，但腹部和腿部多处负伤。施普雷河防线宣告失守，你被溃败的人流裹挟着退向市中心。",
-      "nextNodeId": "be_city_center"
-    },
-    {
-      "id": "be_spree_destroyed",
-      "locationTitle": "1945年4月22日 · 施普雷河桥头",
-      "musicKey": "berlin",
-      "type": "narrative",
-      "text": "你按下了起爆器。伴随着剧烈的爆炸，残存的石桥在一片烟尘中坍塌进施普雷河，激起巨大的水流。\n\n然而，在河对岸，还有来不及撤回的数十名德军士兵和数百名柏林平民。\n他们惊恐地看着断桥，在他们身后，是红军的装甲洪流。哭喊声、求救声隔着河水传来，接着是密集的枪声。\n\n你不敢回头去看河对岸发生的惨剧。这毫无疑问是用战友和平民的生命在拖延死亡。你的士气降到了谷底。",
-      "nextNodeId": "be_city_center"
-    },
-    {
-      "id": "be_city_center",
-      "locationTitle": "1945年4月25日 · 柏林，市中心废墟",
-      "musicKey": "berlin",
-      "type": "choice",
-      "text": "柏林市区已经沦为绞肉机。无论你之前来自什么防区，现在都被混编在一起，进行残酷的街垒战。\n街道两侧挂满了被宪兵处决的「逃兵」的尸体，胸前写着「我是个懦夫」的牌子在风中摇晃。\n\n在一处断壁残垣后，你遇到了你的「新战友」——\n他穿着松垮的希特勒青年团制服，钢盔大得遮住了他的眼睛，身体在剧烈地颤抖。他手里抱着一具铁拳，指关节因为用力过度而发白。\n他看起来最多只有十三四岁，还是个孩子。\n\n「长官，」他的声音带着哭腔，「苏联坦克要过来了，我该怎么办？」",
-      "choices": [
-        {
-          "text": "【劝其回家】把铁拳拿过来，劝他脱掉制服回家，替他防守这里",
-          "moraleDelta": 15,
-          "hpDelta": -10,
-          "grantedFlags": ["saved_boy"],
-          "nextNodeId": "be_reichstag_saved"
-        },
-        {
-          "text": "【命令防守】严厉命令他坚守岗位，履行军人职责",
-          "moraleDelta": -25,
-          "nextNodeId": "be_reichstag_not_saved"
-        },
-        {
-          "text": "【视而不见】默默从他身边走过，不去管这个孩子的命运",
-          "moraleDelta": -10,
-          "nextNodeId": "be_reichstag_not_saved"
-        }
-      ]
-    },
-    {
-      "id": "be_reichstag_saved",
-      "locationTitle": "1945年4月28日 · 国会大厦周边",
-      "musicKey": "berlin",
-      "type": "narrative",
-      "text": "战事已经蔓延到了国会大厦外围的国王广场。\n苏军的重炮日夜不停地轰击着这片焦土，空气中充斥着炸药、腐肉和焦土的混合气味。你躲在一个弹坑里，看着残缺不全的勃兰登堡门。\n\n你看到废墟中没有那个男孩的身影，心中暗自祈祷他已经脱下制服，躲回了母亲的地下室里，能够在即将到来的停火中活下来。\n但在你周围，依然有成千上万像他一样的孩子，正被当作炮灰填进战争的最后一炉火中。\n\n你握紧步枪，明白这场毫无意义的战争正在吞噬民族最后的未来。",
-      "nextNodeId": "be_fuhrer_death"
-    },
-    {
-      "id": "be_reichstag_not_saved",
-      "locationTitle": "1945年4月28日 · 国会大厦周边",
-      "musicKey": "berlin",
-      "type": "narrative",
-      "text": "国王广场已是人间地狱，到处都是在炮击下飞舞的水泥碎屑和人体残骸。\n你在撤退到一个新的弹坑时，几乎被地上的障碍物绊倒。\n\n你低下头，看到了那具小小的尸体。\n正是那个小男孩。他大大的钢盔掉在一旁，金色的头发被血水粘在额头上。他的腹部被子弹撕开，手里依然死死抓着那具没有发射出去的铁拳，眼睛空洞地望着灰蒙蒙的天空。\n\n这具弱小的躯体，成为了这栋千疮百孔的帝国大厦前无数无名墓碑中的一个。\n你感到了深深的负罪感和荒谬。这绝不是什么荣耀，这是对生命的屠杀。",
-      "nextNodeId": "be_fuhrer_death"
-    },
-    {
-      "id": "be_fuhrer_death",
-      "locationTitle": "1945年4月30日 · 元首地堡外围",
-      "musicKey": "berlin_elegy",
-      "type": "narrative",
-      "text": "1945年4月30日下午。\n一个震惊的消息在守军废墟间以耳语的形式传播：元首在总理府地堡内自杀了。\n那个曾经用高亢演讲将整代德国人推向战场的人，那个声称要战至最后一人的人，用一颗子弹在地下深处结束了他自己的生命。\n\n废墟陷入了诡异的死寂，只有苏联大炮的轰鸣依然在有节奏地回响。\n周围的士兵有的跪在地上痛哭，有的愤怒地撕下领章，有的则像行尸走肉般盯着空洞的火光。\n\n一切都结束了。所有的口号、所有的宏图，最终只剩下了这片燃烧的废墟，和死无葬身之地的千百万亡魂。\n接下来，是你们自己做决定的时候了。",
-      "nextNodeId": "be_final_choice"
-    },
-    {
-      "id": "be_final_choice",
-      "locationTitle": "1945年5月1日 · 柏林，最后的抉择",
-      "musicKey": "berlin_elegy",
-      "type": "choice",
-      "text": "红军的红旗已经插上了国会大厦的穹顶。柏林防区司令魏德林正在准备投降命令。\n废墟的各个角落里，残存的德军士兵正在面临最后的命运。\n\n命令已经不复存在，誓言已化为泡影。在这个充斥着硝烟的清晨，你必须做出你人生中最后一个决定。",
-      "choices": [
-        {
-          "text": "【向东投降】走出废墟，向苏联红军举手投降",
-          "nextNodeId": "be_surrender_soviet"
-        },
-        {
-          "text": "【向西突围】尝试穿越市区的包围圈，向西逃亡以投降美英盟军",
-          "isCombat": true,
-          "combatThreshold": 50,
-          "successNodeId": "be_west_escape",
-          "failureNodeId": "be_captured",
-          "failHpDelta": -25,
-          "failMoraleDelta": -20
-        },
-        {
-          "text": "【隐蔽等待】扔掉武器，躲避在平民地窖或废墟地道里等待终战",
-          "nextNodeId": "be_wait_end"
-        }
-      ]
-    },
-    {
-      "id": "be_surrender_soviet",
-      "locationTitle": "柏林战役 — 结束（向东投降）",
-      "musicKey": "berlin_end",
-      "type": "ending",
-      "isVictory": true,
-      "text": "【战役结束 — 存活】\n\n你扔掉了武器，走出摇摇欲坠的地下室，将双手高高举起。\n烟雾中，几名端着波波沙冲锋枪的苏联红军士兵向你走来。他们粗暴地搜了你的身，拿走了你的手表和勋章，但没有开枪。\n\n你被编入一眼望不到头的战俘队伍，在废墟瓦砾间缓缓向前移动。路边，市民们正在抢夺死马的肉，柏林的街道上横七竖八地躺着年轻守备队员和苏联士兵的尸体。\n你活了下来，虽然你即将面对的是漫长而残酷的西伯利亚战俘营岁月——在那里，很多人将无法活过第一个冬天。但至少，你不需要再为那个疯狂的战争机器流血了。\n\n────────────────\n\n第二次世界大战欧洲战场以纳粹德国的无条件投降而告终。\n这场战争造成了人类历史上空前的浩劫，仅欧洲战场的死亡人数就高达四千万至五千万人，全球总伤亡人数估计达七千万至八千五百万人。\n战争并无真正的荣耀，唯有无尽的废墟，和生者漫长的救赎与反思。\n\n感谢通关本游戏。愿世界永无战争。"
-    },
-    {
-      "id": "be_west_escape",
-      "locationTitle": "柏林战役 — 结束（向西突围）",
-      "musicKey": "berlin_end",
-      "type": "ending",
-      "isVictory": true,
-      "text": "【战役结束 — 存活】\n\n你在黑夜的掩护下，穿过了燃烧的街道，越过施普雷河上的桥梁残骸，向西狂奔。\n子弹在你耳边嗖嗖作响，不断有同伴在身边惨叫着倒下，但你没有回头。\n\n经历了整整一天的逃亡和躲避，你终于跨过了易北河的缓冲带，看到了前方穿着土黄色军装的美军哨兵。\n你丢下刺刀和皮带，举起双手走向他们。一名年轻的美军士兵搜查了你，递给你一支香烟。你坐在吉普车旁，看着东方升起的朝阳，眼泪止不住地流下。\n你活下来了。战争结束了。你的家乡或许已经不复存在，但你还有机会去重新开始人生。\n\n────────────────\n\n第二次世界大战欧洲战场以纳粹德国的无条件投降而告终。\n这场战争造成了人类历史上空前的浩劫，仅欧洲战场的死亡人数就高达四千万至五千万人，全球总伤亡人数估计达七千万至八千五百万人。\n战争并无真正的荣耀，唯有无尽的废墟，和生者漫长的救赎与反思。\n\n感谢通关本游戏。愿世界永无战争。"
-    },
-    {
-      "id": "be_wait_end",
-      "locationTitle": "柏林战役 — 结束（隐蔽等待）",
-      "musicKey": "berlin_end",
-      "type": "ending",
-      "isVictory": true,
-      "text": "【战役结束 — 存活】\n\n你把军装脱掉，换上了从废墟里捡来的平民旧大衣，把枪支和弹药深埋在了瓦砾堆下。\n你躲在一处挤满了妇女、儿童和老人的公寓地窖里。地窖里阴暗潮湿，只有微弱的蜡烛光照亮人们恐惧的脸庞。\n\n1945年5月2日，防空防空掩体外传来了高音喇叭的声音：魏德林将军已下令柏林守军全部停火。\n1945年5月8日，德国宣布无条件投降。当你走出地窖，刺眼的阳光让你几乎无法睁开眼睛。\n街上已经没有了枪声，只有苏联红军的卡车轰鸣着驶过，以及在瓦砾中清理杂物的妇女们。你虽然活了下来，但往后余生，那些在战场上死去的面孔、那个拿铁拳的孩子、那场疯狂的梦魇，将永远伴随着你。\n\n────────────────\n\n第二次世界大战欧洲战场以纳粹德国的无条件投降而告终。\n这场战争造成了人类历史上空前的浩劫，仅欧洲战场的死亡人数就高达四千万至五千万人，全球总伤亡人数估计达七千万至八千五百万人。\n战争并无真正的荣耀，唯有无尽的废墟，和生者漫长的救赎与反思。\n\n感谢通关本游戏。愿世界永无战争。"
-    },
-    {
-      "id": "be_captured",
-      "locationTitle": "柏林战役 — 结束（突围失败）",
-      "musicKey": "defeat_theme",
-      "type": "ending",
-      "isDefeat": true,
-      "text": "【战役结束 — 阵亡】\n\n在向西突围的过程中，你们的小分队遭遇了红军装甲火力的正面拦截。\n苏军坦克的车载机枪在大街上扫射，子弹将周围的水泥柱打成碎末。你身边的同伴一个接一个地倒在血泊中。\n\n当你试图穿过十字路口时，一颗重机枪子弹击穿了你的胸膛。\n你无力地倒在冰冷的柏林街道上，枪声和呐喊声在你的耳边逐渐远去，视线渐渐模糊。\n\n在生命的最后一刻，你脑海里浮现的不是元首，也不是帝国，而是德意志故乡那一望无际的麦田，和母亲在夕阳下的微笑。\n这宏大的帝国废墟，最终成为了你毫无意义的坟墓。"
-    }
+    {"id":"be_inf","locationTitle":"1945年4月18日 · 奥德河","musicKey":"berlin","type":"choice","text":"汉斯·缪勒，二十四岁。你从苏联战俘营被释放——不是因为胜利，是因为德国快要完了，苏联人需要劳动力交换。\n\n奥德河畔——喀秋莎火箭炮铺天盖地。对岸两百万红军、一万门火炮。你手里只有一支步枪和一具铁拳。\n\n口袋里那四张照片还在。湿了又干，干了又湿。","choices":[{"text":"【伏击】用铁拳打苏军坦克","isCombat":true,"combatThreshold":55,"bonusClasses":["infantry","tank_crew"],"successNodeId":"be_shared_tank","failureNodeId":"be_shared_wounded","failHpDelta":-35,"failMoraleDelta":-15},{"text":"【撤退】撤向市区","nextNodeId":"be_shared_retreat","hpDelta":-10,"moraleDelta":-15}]},
+
+    {"id":"be_tank","locationTitle":"1945年4月20日 · 柏林街道","musicKey":"berlin","type":"choice","text":"埃里希·瓦格纳，二十七岁。你的最后一辆突击炮藏在窄巷的瓦砾堆里。没有炮塔——像一块装了炮管的铁板。\n\n汉内斯还在——又多了一道疤。克劳斯还在——他在战俘营学会了些俄语。\n\n「他们说今天要拿下国会大厦。」克劳斯翻译着苏军无线电。\n\n汉内斯看了你一眼。你想起了敦刻尔克那年他说的「我们会后悔的」。他仍然对。","choices":[{"text":"【阻击】用突击炮封锁路口","isCombat":true,"combatThreshold":55,"bonusClasses":["tank_crew","infantry"],"successNodeId":"be_shared_tank","failureNodeId":"be_shared_wounded","failHpDelta":-35,"failMoraleDelta":-15},{"text":"【弃车】不值得三个人陪葬","nextNodeId":"be_shared_retreat","hpDelta":-5,"moraleDelta":10}]},
+
+    {"id":"be_fpt","locationTitle":"1945年4月20日 · 柏林防空塔","musicKey":"berlin","type":"choice","text":"卡尔·施奈德，二十五岁。你在英国战俘营待了三年——1944年通过红十字会换俘回国。你不再飞了——没有飞机也没有燃油。你被编入防空塔守备队。\n\n你的Bf-109早已化成了铝片。现在你的武器是128毫米高炮——炮管指向地面。\n\n天空已经被苏联和美国飞机完全占领。这炮不是打飞机的——是打坦克的。","choices":[{"text":"【平射】高炮平射压制步兵","isCombat":true,"combatThreshold":50,"bonusClasses":["fighter_pilot","bomber_pilot"],"successNodeId":"be_shared_flak","failureNodeId":"be_shared_flak_destroyed","failHpDelta":-30,"failMoraleDelta":-20},{"text":"【撤入】进入地下","nextNodeId":"be_shared_center"}]},
+
+    {"id":"be_bpt","locationTitle":"1945年4月20日 · 柏林防空塔","musicKey":"berlin","type":"choice","text":"威廉·霍夫曼，三十三岁。从惩罚营到柏林——你活过了排雷、前线侦察、自杀式突击。不是因为运气——是因为你还有一封信要交给你的妻子。\n\n你被编入防空部队。上一次碰高炮还是1939年的训练营。\n\n你知道战争快结束了。你能感觉到它——像暴风雨前空气里的那种压迫感。","choices":[{"text":"【平射】高炮平射——最后一次战斗","isCombat":true,"combatThreshold":50,"bonusClasses":["fighter_pilot","bomber_pilot"],"successNodeId":"be_shared_flak","failureNodeId":"be_shared_flak_destroyed","failHpDelta":-30,"failMoraleDelta":-20},{"text":"【不打了】走进地下掩体——你打够了","nextNodeId":"be_shared_center"}]},
+
+    {"id":"be_sub","locationTitle":"1945年4月22日 · 施普雷河","musicKey":"berlin","type":"choice","text":"奥托·菲舍尔，二十三岁。U-96在1944年沉了——你是三十一个幸存者之一。阿尔伯特活了下来——他还在雕那条鱼。\n\n现在你在柏林守着一条臭水沟。施普雷河——不是大西洋。你的机枪还剩一箱子弹。\n\n苏军伞兵在对岸集结。","choices":[{"text":"【射击】用最后一箱弹链扫射","isCombat":true,"combatThreshold":50,"bonusClasses":["submarine_crew","battleship_crew"],"successNodeId":"be_shared_spree","failureNodeId":"be_shared_broken","failHpDelta":-25,"failMoraleDelta":-15},{"text":"【炸桥】引爆炸药摧毁桥梁","nextNodeId":"be_shared_destroyed"}]},
+
+    {"id":"be_bat","locationTitle":"1945年4月22日 · 施普雷河","musicKey":"berlin","type":"choice","text":"海因里希·克雷默，三十九岁。从英国战俘营被释放——不是交换，是战争打得连做交换的人都没了。科勒的莱卡底片被还了回来——那张俾斯麦号沉没的照片登在《生活》上。\n\n现在你站在施普雷河岸——不是舰桥，是碎石堆。不是十五英寸炮，是一支捡来的步枪。\n\n「他们来了。」","choices":[{"text":"【射击】扫射苏军突击艇","isCombat":true,"combatThreshold":50,"bonusClasses":["submarine_crew","battleship_crew"],"successNodeId":"be_shared_spree","failureNodeId":"be_shared_broken","failHpDelta":-25,"failMoraleDelta":-15},{"text":"【炸桥】摧毁大桥","nextNodeId":"be_shared_destroyed"}]},
+
+    {"id":"be_shared_tank","locationTitle":"1945年4月 · 柏林","musicKey":"berlin","type":"narrative","text":"击中了。T-34化成一团火球。但你看到那团火里有个人影——他尝试从舱口爬出来。没成功。\n\n没有喜悦。只有一种巨大的空洞——像战争把你挖空了。\n\n但更多的坦克从硝烟中出现。你不得不撤退。","nextNodeId":"be_shared_center"},
+
+    {"id":"be_shared_wounded","locationTitle":"1945年4月 · 柏林","musicKey":"berlin","type":"narrative","text":"炮弹在不远处炸开——气浪把你掀翻。左臂剧痛——弹片。\n\n你用还能动的右手撕下袖子压在伤口上。旁边有人——不是你认识的。他看着你张了张嘴——没有声音。然后不动了。\n\n你拖着血淋淋的身体向市中心挪去。","nextNodeId":"be_shared_center"},
+
+    {"id":"be_shared_retreat","locationTitle":"1945年4月 · 柏林","musicKey":"berlin","type":"narrative","text":"你跑了。扔掉水壶、防毒面具、半块面包。跑过燃烧的建筑和翻倒的电车。\n\n路灯柱上吊着被宪兵处决的「逃兵」——胸前的牌子上写着「懦夫」。\n\n在帝国的最后一刻——宪兵还在执行命令。你低下头继续跑。","nextNodeId":"be_shared_center"},
+
+    {"id":"be_shared_flak","locationTitle":"1945年4月20日 · 防空塔","musicKey":"berlin","type":"narrative","text":"炮弹在街区中炸开。一个苏联士兵在血雾中倒下——军装口袋里滑出一张照片。从瞄准镜里你都能看到那是一家人的合影。\n\n然后苏军重炮报复——水泥碎块像冰雹一样砸下。你逃向地下。","nextNodeId":"be_shared_center"},
+
+    {"id":"be_shared_flak_destroyed","locationTitle":"1945年4月20日 · 防空塔","musicKey":"berlin","type":"narrative","text":"重榴弹直接命中高炮阵地。炮管被拧成废铁。你的头撞在栏杆上——血模糊了眼睛。\n\n残存的人拉着你逃向地下。防空塔在身后燃烧——帝国最后的水泥怪兽终于沉默了。","nextNodeId":"be_shared_center"},
+
+    {"id":"be_shared_spree","locationTitle":"1945年4月22日 · 施普雷河","musicKey":"berlin","type":"narrative","text":"最后一箱弹链打光了。河面上飘着橡皮艇碎片和几具尸体。\n\n但更多苏军在下游找到了渡河点。你背起没有子弹的步枪向市中心走去。","nextNodeId":"be_shared_center"},
+
+    {"id":"be_shared_broken","locationTitle":"1945年4月22日 · 施普雷河","musicKey":"berlin","type":"narrative","text":"防线碎了。苏军冲上西岸。一名红军端着冲锋枪朝你扑来——你用工兵铲搏斗，然后跑。你赢了。但腹部在流血。\n\n施普雷河宣告失守。","nextNodeId":"be_shared_center"},
+
+    {"id":"be_shared_destroyed","locationTitle":"1945年4月22日 · 施普雷河","musicKey":"berlin","type":"narrative","text":"你按下起爆器。石桥在烟尘中坍塌进河里。\n\n河对岸——来不及撤回的几十名士兵和数百平民。枪声响了。\n\n你不敢回头看。","nextNodeId":"be_shared_center"},
+
+    {"id":"be_shared_center","locationTitle":"1945年4月25日 · 柏林市中心","musicKey":"berlin","type":"choice","text":"柏林的废墟里——所有防线都碎了。不管你从奥德河还是施普雷河退来——现在你都在这里了。\n\n街道两侧吊着被处决的「逃兵」。然后你看到了他——\n\n一个孩子。穿着松垮的希特勒青年团制服。钢盔大得遮住他半张脸。他手里抱着铁拳反坦克火箭筒——比他自己还重。他的身体在剧烈颤抖。\n\n最多十三四岁。\n\n「长官——苏联坦克要过来了。我该怎么办？」","choices":[{"text":"【救他】拿走铁拳，让他脱掉制服回家","nextNodeId":"be_boy_saved","moraleDelta":15,"hpDelta":-10,"grantedFlags":["saved_boy"]},{"text":"【命令】命令他坚守岗位","nextNodeId":"be_boy_dead","moraleDelta":-30},{"text":"【无视】从他身边走过","nextNodeId":"be_boy_dead","moraleDelta":-15}]},
+
+    {"id":"be_boy_saved","locationTitle":"1945年4月28日 · 国会大厦","musicKey":"berlin","type":"narrative","text":"「脱掉。跑。」\n\n男孩犹豫了一下——然后脱了制服。站在你面前——只是一个穿着脏内衣的瘦弱孩子。\n\n「朝那儿跑。找地窖——找妈妈。不要回来。」\n\n他跑了。跑了十几步回头看了一眼——消失在硝烟里。\n\n你希望他能活下来。但你知道——还有成千上万和他一样的孩子被填进这最后一炉火里。","nextNodeId":"be_hitler"},
+
+    {"id":"be_boy_dead","locationTitle":"1945年4月28日 · 国会大厦","musicKey":"berlin","type":"narrative","text":"两天后你被地上的障碍物绊倒。\n\n是那个男孩。钢盔掉了——金的头发被血粘在额头上。腹部被子弹撕开。手里还紧紧抓着那具没发射出去的铁拳。\n\n眼睛空洞地望着灰色的天空。\n\n你跪了下来。不是祈祷——是已经不知道怎么祈祷了。\n\n这绝不是什么荣耀。这是对一个民族未来的屠杀。","nextNodeId":"be_hitler"},
+
+    {"id":"be_hitler","locationTitle":"1945年4月30日 · 元首地堡","musicKey":"berlin_elegy","type":"narrative","text":"4月30日下午。消息像风一样穿过废墟：元首在地堡里自杀了。\n\n那个曾经用演讲把整代人推上战场的人——那个说战斗到最后一人的人——用一颗子弹在地下结束了自己。\n\n废墟陷入死寂。只有苏联大炮的轰鸣有节奏地回响。\n\n你周围的士兵——有的在哭，有的在撕领章，有的只是盯着火光。\n\n这一切——所有的口号、宏图、那些永远回不来的人——就为了这个结局？","nextNodeId":"be_final"},
+
+    {"id":"be_final","locationTitle":"1945年5月1日 · 柏林","musicKey":"berlin_elegy","type":"choice","text":"国会大厦的穹顶上升起了红旗。枪声渐渐稀疏。命令不存在了。誓言化为泡影。\n\n你必须做出最后一个决定。\n\n口袋里的照片还在。最后一颗子弹也在——如果你想用的话。","choices":[{"text":"【向东投降】走向苏联红军","nextNodeId":"be_end_soviet"},{"text":"【向西突围】穿包围圈投降美英","isCombat":true,"combatThreshold":50,"successNodeId":"be_end_west","failureNodeId":"be_dead","failHpDelta":-40,"failMoraleDelta":-25},{"text":"【隐蔽】脱军装躲进平民地窖","nextNodeId":"be_end_hide"}]},
+
+    {"id":"be_end_soviet","locationTitle":"柏林 — 向东投降","musicKey":"berlin_end","type":"ending","isVictory":true,"text":"【柏林 — 向东投降】\n\n你举起双手走出地下室。几名红军士兵搜走你的手表和勋章——没有开枪。\n\n你被编入一眼望不到头的战俘队伍。西伯利亚战俘营——很多人没能活过第一个冬天。\n\n但你活了下来。在遥远的东方度过了十年。十年后你回到德国——发现你的家乡还在。麦田也还在。\n\n欧洲战场死亡四千万至五千万人。全球超过七千万。\n\n战争没有荣耀。唯有无尽的废墟——和漫长的救赎。"},
+
+    {"id":"be_end_west","locationTitle":"柏林 — 向西突围","musicKey":"berlin_end","type":"ending","isVictory":true,"text":"【柏林 — 向西突围】\n\n你在黑夜中穿过燃烧的街道。跑了整整一夜。跨过易北河时天刚好亮。\n\n前方——穿着土黄色军装的美军士兵。你扔掉刺刀举起双手。\n\n一个年轻的美军递给你一支香烟。你坐在吉普车旁——看着东方升起的朝阳——眼泪止不住地流。\n\n你还活着。战争结束了。\n\n七千万人在这场战争中死去。你不是其中之一。\n\n愿你余生平安。愿世界永无战争。"},
+
+    {"id":"be_end_hide","locationTitle":"柏林 — 隐蔽等待","musicKey":"berlin_end","type":"ending","isVictory":true,"text":"【柏林 — 等来的和平】\n\n你把军装脱了——换上一件从废墟里捡来的平民旧大衣。\n\n躲进挤满妇孺老人的地窖。蜡烛微光。没有人问你是谁——末日面前所有人都只是人。\n\n5月2日——柏林停火。5月8日——德国投降。\n\n你走出地窖。阳光刺眼。街上已无枪声。只有红军卡车、清扫瓦砾的妇女、和一个牵着母亲的手走过废墟的孩子。\n\n你活下来了。但那些死去的面孔——那个拿铁拳的孩子、口袋里的照片、在深海和天空中消失的朋友——会在你余生中一直跟着你。\n\n愿世界永无战争。"},
+
+    {"id":"be_dead","locationTitle":"柏林 — 阵亡","musicKey":"defeat_theme","type":"ending","isDefeat":true,"text":"【柏林 — 阵亡】\n\n一颗子弹击穿了你的胸膛。你倒在柏林冰冷的街道上。\n\n你脑海里最后浮现的——不是元首，不是帝国，不是口号。\n\n是麦田。母亲的笑容。所有那些你保存在口袋里的照片。\n\n战争在几天后结束了。你没能看到。"}
   ]
 }

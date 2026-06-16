@@ -1,306 +1,350 @@
 {
   "chapterId": "wolf_pack",
-  "startNodeId": "wp_briefing_sub",
+  "startNodeId": "wp_sub_briefing",
   "defeatNodeId": "wp_defeat",
+  "classStartNodes": {
+    "submarine_crew": "wp_sub_briefing",
+    "battleship_crew": "wp_bat_briefing",
+    "infantry": "wp_skip",
+    "tank_crew": "wp_skip",
+    "fighter_pilot": "wp_skip",
+    "bomber_pilot": "wp_skip"
+  },
   "nodes": [
     {
-      "id": "wp_briefing_sub",
-      "locationTitle": "1941年 · 基尔港，德国海军基地",
+      "id": "wp_sub_briefing",
+      "locationTitle": "1941年 · 基尔港",
       "musicKey": "wolfpack",
       "type": "narrative",
-      "text": "U-96号潜艇静静地停在基尔港的深灰色海水里，舰体漆黑，修长，像一条沉睡的铁鱼。\n\n你是艇长，三十二岁，来自汉堡，父亲是一名渔夫。\n\n「大西洋的运输线，」邓尼茨将军的声音从简报室的广播里传来，「是英国的生命线。切断它，英国就会屈服。」\n\n任务：深入北大西洋，追踪并摧毁英美的商船护航队。\n\n你的艇员平均年龄二十一岁。他们都没有战死过——你希望他们不必学会。\n\n下潜命令下达。舱门关闭的声音像一声叹息。",
-      "nextNodeId": "wp_atlantic_transit"
+      "text": "奥托·菲舍尔，十九岁，汉堡渔民的儿子。你从小在渔船上长大。你父亲说过：「大海不恨你也不爱你。它只是不在乎。」\n\n现在你站在U-96号潜艇甲板上。这条钢铁鲨鱼修长漆黑——但舱内温度接近零度，空气里是机油和霉菌的混合味。你们叫它「U艇香水」。\n\n艇员平均年龄二十一岁。工程师阿尔伯特三十八岁——艇上最老的，参加过西班牙内战但从不提。声纳员耳朵最好，能分辨鲸鱼和驱逐舰螺旋桨的区别。\n\n邓尼茨将军的声音从广播里传来：「大西洋是英国的生命线。切断它。」\n\n任务：在北大西洋找到盟军护航队，击沉商船。\n\n舱门关闭。像一声叹息。",
+      "nextNodeId": "wp_sub_convoy"
     },
     {
-      "id": "wp_briefing_ship",
-      "locationTitle": "1941年5月 · 威廉港，俾斯麦号",
-      "musicKey": "wolfpack",
-      "type": "narrative",
-      "text": "你站在俾斯麦号的甲板上，这艘四万五千吨的战列舰是帝国最骄傲的武器。\n\n「莱茵演习行动，」舰长在晨会上宣布，「我们将突破英国的海上封锁，\n进入北大西洋，打击英国商船运输线。」\n\n俾斯麦号，全世界最强大的战列舰。艇员两千二百人，\n配备全世界最重的舰炮。\n\n你看着这艘巨舰，感到一种奇异的骄傲，也感到一种说不清的不安。\n\n「是否有问题？」\n「没有。」",
-      "nextNodeId": "wp_north_sea"
-    },
-    {
-      "id": "wp_atlantic_transit",
-      "locationTitle": "1941年 · 北大西洋，潜航中",
-      "musicKey": "wolfpack_deep",
-      "type": "narrative",
-      "text": "潜航第三天。\n\n铁制的舱壁不断发出细微的吱嘎声，那是海水压力的声音。\n你所在的深度，每增加十米，压力就增加一个大气压。\n当你们在水下两百米时，外面的海水想要把这个铁桶压扁。\n\n艇内温度接近零度，每个人都穿着潮湿的羊毛衣，\n空气里弥漫着机油、汗水、霉菌的混合气味，\n你们把这种气味叫做「U艇香水」。\n\n「艇长，声纳接触。」",
-      "nextNodeId": "wp_convoy_spotted"
-    },
-    {
-      "id": "wp_north_sea",
-      "locationTitle": "1941年5月 · 丹麦海峡",
-      "musicKey": "wolfpack",
-      "type": "narrative",
-      "text": "丹麦海峡，俾斯麦号和亲王欧根号编队前进。\n\n海面上漂浮着冰块，天空是铅灰色的。远处的冰山沉默地漂移。\n\n然后，雷达信号。英国皇家海军的胡德号战列巡洋舰和威尔士亲王号出现了。\n\n「右舷开炮！」\n\n第一轮齐射。海面上的冰块在炮声中震碎。\n\n然后，胡德号中弹，那艘巨舰——在几秒钟内——消失了。\n爆炸，分裂，沉没。一千四百一十五名英国水兵，只有三人生还。\n\n俾斯麦号的甲板上，沉默了很久。",
-      "nextNodeId": "wp_bismarck_hunted"
-    },
-    {
-      "id": "wp_convoy_spotted",
+      "id": "wp_sub_convoy",
       "locationTitle": "1941年 · 北大西洋",
       "musicKey": "wolfpack_deep",
       "type": "choice",
-      "text": "声纳员把耳机摘下来，脸色发白：「四十八个接触点，艇长。\n护航商船队——大型的，至少三十艘商船，八艘护卫舰。」\n\n你爬上潜望镜，在暗夜的海面上看见了船只的轮廓——一长串黑影，\n满载着食物、弹药、物资，正从美国驶向英国。\n\n「通知狼群，」你说，「我们已经找到猎物。」\n\n但猎物有血，有肉，有家人在等待。",
+      "text": "潜望镜里——三十艘商船排成纵队在黑暗中移动。周围八艘护卫舰，探照灯像刀一样切开海面。\n\n这些船装着食物和弹药从美国驶向英国。没有这些——英国早已饿死。\n\n阿尔伯特站在你旁边：「商船上的人不是军人。」\n\n你知道。水手、厨师——和你父亲一样的渔民和船员。\n\n但上面命令：击沉。",
       "choices": [
         {
-          "text": "【进攻】立即发起鱼雷攻击，击沉目标",
+          "text": "【攻击】发射鱼雷击沉领头的万吨轮",
           "isCombat": true,
           "combatThreshold": 50,
-          "bonusClasses": ["submarine_crew"],
-          "successNodeId": "wp_torpedo_hit",
-          "failureNodeId": "wp_torpedo_miss",
+          "bonusClasses": [
+            "submarine_crew"
+          ],
+          "successNodeId": "wp_sub_hit",
+          "failureNodeId": "wp_sub_miss",
           "failHpDelta": -15,
           "failMoraleDelta": -10
         },
         {
-          "text": "【等待】等夜间最暗处，以最佳角度攻击",
+          "text": "【等待】深度潜伏等夜最深时",
           "isCombat": true,
           "combatThreshold": 40,
-          "bonusClasses": ["submarine_crew"],
-          "successNodeId": "wp_torpedo_hit",
-          "failureNodeId": "wp_detected",
+          "bonusClasses": [
+            "submarine_crew"
+          ],
+          "successNodeId": "wp_sub_hit",
+          "failureNodeId": "wp_sub_detected",
           "failHpDelta": -25,
           "failMoraleDelta": -15
         }
       ]
     },
     {
-      "id": "wp_bismarck_hunted",
-      "locationTitle": "1941年5月24日-27日 · 北大西洋",
-      "musicKey": "wolfpack",
-      "type": "choice",
-      "text": "胡德号的爆炸惊动了整个英国皇家海军。\n\n从这一刻起，所有可以调动的英国军舰都在寻找俾斯麦号。\n八艘战列舰，二艘航母，数十艘巡洋舰和驱逐舰，\n在大西洋上形成了一张巨网。\n\n俾斯麦号中弹，燃油开始泄漏，一条黑色的尾迹在大西洋上画出了你们的位置。\n\n「我们无法到达法国，」舰长的声音很平静，「但我们会战斗。」",
-      "choices": [
-        {
-          "text": "【战斗到底】坚持战斗，死而后已",
-          "isCombat": true,
-          "combatThreshold": 60,
-          "bonusClasses": ["battleship_crew"],
-          "successNodeId": "wp_bismarck_last_stand",
-          "failureNodeId": "wp_bismarck_sinking",
-          "failHpDelta": -35,
-          "failMoraleDelta": -20
-        },
-        {
-          "text": "【突围】全速向法国方向突围",
-          "nextNodeId": "wp_bismarck_last_stand",
-          "hpDelta": -20
-        }
-      ]
-    },
-    {
-      "id": "wp_torpedo_hit",
-      "locationTitle": "1941年 · 北大西洋夜间",
-      "musicKey": "wolfpack_deep",
-      "type": "narrative",
-      "text": "「鱼雷一发射！鱼雷二发射！」\n\n你在黑暗中数秒。二十秒，三十秒，四十……\n\n爆炸的声音透过舱壁传来，低沉而巨大，像是大地在呻吟。\n\n「命中！」声纳员喊道。\n\n你把眼睛贴上潜望镜。一艘万吨货轮正在缓缓下沉，它的上层甲板已经燃起大火，橙黄色的火光把夜间的海面照得通亮。\n\n在潜望镜的视野里，你看见了船上的人——有人在往海里跳，有人站在甲板边抓着护栏，有人已经在水里挣扎。\n\n那是商船的水手，不是军人。",
-      "nextNodeId": "wp_survivors"
-    },
-    {
-      "id": "wp_torpedo_miss",
+      "id": "wp_sub_hit",
       "locationTitle": "1941年 · 北大西洋",
       "musicKey": "wolfpack_deep",
       "type": "narrative",
-      "text": "鱼雷偏离了目标，从商船船头几十米处穿过，什么也没有打到。\n\n「护卫舰发现我们了！深弹！」\n\n「全速下潜！」\n\n深水炸弹在舱外爆炸，整艘潜艇剧烈颤抖，舱壁上的铆钉噼啪作响，\n一名艇员被甩到舱壁上，嘴里流着血。\n\n「下潜到两百米，保持静默。」",
-      "nextNodeId": "wp_depth_charge"
+      "text": "鱼雷命中。低沉巨大的爆炸声透过舱壁传来——像海底在呻吟。\n\n潜望镜里——一艘万吨货轮正在燃烧下沉。橙黄色的火光照亮了暗夜。\n\n在火光里你看到了人。有人往海里跳，有人抓着栏杆，有人已经在水里。\n\n商船水手。不是军人。和你的父亲一样的普通人。\n\n「下潜。」你说。\n\n潜望镜沉入水中。那些人从你视野里消失了。但不是从你记忆里。",
+      "nextNodeId": "wp_sub_depth"
     },
     {
-      "id": "wp_detected",
+      "id": "wp_sub_miss",
       "locationTitle": "1941年 · 北大西洋",
       "musicKey": "wolfpack_deep",
       "type": "narrative",
-      "text": "护卫舰的声纳找到了你。\n\n「主动声纳接触！距离一千米，接近中！」\n\n全艇进入战备状态。艇员们彼此对视，没有人说话。\n每个人都知道，接下来几个小时会发生什么。",
-      "nextNodeId": "wp_depth_charge"
+      "text": "鱼雷偏了。护卫舰发现了你——深水炸弹。\n\n整艘潜艇像被巨人踢了一脚。灯泡爆裂，舱内只剩下红色应急灯。有人在角落里呕吐。\n\n「深潜到两百米。静默。」\n\n你关了引擎。黑暗中只能听见心跳。",
+      "nextNodeId": "wp_sub_depth"
     },
     {
-      "id": "wp_survivors",
-      "locationTitle": "1941年 · 北大西洋，击沉现场",
-      "musicKey": "wolfpack_deep",
-      "type": "choice",
-      "text": "海面上有人在呼救。\n\n你从潜望镜里看见，十几个身穿救生衣的人正在冰冷的大西洋中挣扎。\n水温大约是五到八摄氏度——在这种温度下，人最多能坚持三十分钟。\n\n「艇长，」大副站在你身后，「邓尼茨的命令是不救助商船幸存者。\n护卫舰可能随时赶来。」\n\n你把眼睛从潜望镜上移开，看着艇员们的脸。\n他们都在看着你。",
-      "choices": [
-        {
-          "text": "【人道】违反命令，浮出水面救助幸存者",
-          "nextNodeId": "wp_save_survivors",
-          "moraleDelta": 15,
-          "hpDelta": -15,
-          "grantedFlags": ["saved_survivors"]
-        },
-        {
-          "text": "【命令】遵守命令，立即下潜，继续任务",
-          "nextNodeId": "wp_leave_survivors",
-          "moraleDelta": -30
-        }
-      ]
-    },
-    {
-      "id": "wp_save_survivors",
-      "locationTitle": "1941年 · 北大西洋，海面",
-      "musicKey": "wolfpack",
-      "type": "narrative",
-      "text": "你下令浮出水面。舱门打开，海风和盐味扑面而来。\n\n你们从冰冷的海水里拉上来九个人，大多数都已经失去意识。\n其中一个用力抓住你的手，他的英语口音很重，他不停地说一句话，\n大副翻译道：「他在说谢谢你，谢谢你没有离开。」\n\n你们把他们留在一只橡皮艇里，给了他们食物和水，\n然后重新下潜。这违反了命令。\n\n你会受到军事处分，你知道。\n但那九个人还活着，你也知道。",
-      "nextNodeId": "wp_depth_charge"
-    },
-    {
-      "id": "wp_leave_survivors",
+      "id": "wp_sub_detected",
       "locationTitle": "1941年 · 北大西洋",
       "musicKey": "wolfpack_deep",
       "type": "narrative",
-      "text": "「下潜，保持静默。」\n\n随着潜望镜沉入水中，你最后看到的，是那些在水里挣扎的人影，\n越来越小，越来越远，然后消失在绿色的海水中。\n\n潜艇里没有人说话。\n\n深水炸弹在夜里爆炸的声音，和那些人的呼喊声一起，\n在你脑子里持续了很久。",
-      "nextNodeId": "wp_depth_charge"
+      "text": "声纳锁定了你。那声音——「乒——乒——」像一颗金属心脏在舱外跳动，越来越近。\n\n阿尔伯特放下了他削了三个月的木鱼。他的手在抖。\n\n「深弹投放！」\n\n爆炸。一次。两次。三次。",
+      "nextNodeId": "wp_sub_depth"
     },
     {
-      "id": "wp_bismarck_last_stand",
-      "locationTitle": "1941年5月27日 · 北大西洋",
-      "musicKey": "wolfpack",
-      "type": "narrative",
-      "text": "鱼雷炸断了俾斯麦号的舵机，庞大的战舰只能在大西洋上打转。\n\n英国的军舰从四面八方围拢来。炮弹不断落在甲板上，上层建筑已经全部被摧毁。\n大火在到处蔓延，死亡人数在攀升。\n\n「这艘船打不沉，」有人在说，「最强大的战列舰。」\n\n但人打得沉。甲板上已经铺满了死亡和呻吟。\n\n「准备弃船。」命令下达。",
-      "nextNodeId": "wp_bismarck_sinking"
-    },
-    {
-      "id": "wp_depth_charge",
-      "locationTitle": "1941年 · 北大西洋深处",
+      "id": "wp_sub_depth",
+      "locationTitle": "1941年 · 深海",
       "musicKey": "wolfpack_deep",
       "type": "choice",
-      "text": "深水炸弹。\n\n爆炸的冲击波透过舱壁，把整个潜艇当作鼓面拍打。\n灯泡在振动中碎裂，舱内只剩下红色的备用灯光。\n有人在角落里呕吐——那不是胆怯，是内耳在极度压力变化下的正常反应。\n\n「距离！」声纳员喘着气，「上面有两艘护卫舰！」\n\n爆炸越来越近。你需要做出决定。",
+      "text": "深水炸弹在舱外爆炸。每一次冲击波都把潜艇当鼓面拍打。\n\n「上面两艘驱逐舰——交叉投放！」\n\n四十八个人的命在你手里。阿尔伯特看着你——什么都没说。",
       "choices": [
         {
-          "text": "【极速下潜】继续下潜到三百米，超越设计极限",
+          "text": "【极限】下潜到三百米超越设计极限",
           "isCombat": true,
           "combatThreshold": 55,
-          "bonusClasses": ["submarine_crew"],
-          "successNodeId": "wp_escaped",
-          "failureNodeId": "wp_pressure_breach",
+          "bonusClasses": [
+            "submarine_crew"
+          ],
+          "successNodeId": "wp_sub_escaped",
+          "failureNodeId": "wp_sub_breach",
           "failHpDelta": -35,
           "failMoraleDelta": -20
         },
         {
-          "text": "【静默潜伏】保持二百米，关闭所有非必要设备，静待护卫舰离去",
+          "text": "【静默】保持两百米关掉一切",
           "isCombat": true,
           "combatThreshold": 45,
-          "bonusClasses": ["submarine_crew"],
-          "successNodeId": "wp_escaped",
-          "failureNodeId": "wp_direct_hit",
+          "bonusClasses": [
+            "submarine_crew"
+          ],
+          "successNodeId": "wp_sub_escaped",
+          "failureNodeId": "wp_sub_hit_deep",
           "failHpDelta": -45,
           "failMoraleDelta": -25
         }
       ]
     },
     {
-      "id": "wp_bismarck_sinking",
-      "locationTitle": "1941年5月27日早晨 · 北大西洋",
-      "musicKey": "wolfpack",
+      "id": "wp_sub_escaped",
+      "locationTitle": "1941年 · 深海",
+      "musicKey": "wolfpack_deep",
+      "type": "narrative",
+      "text": "螺旋桨声越来越远——消失了。\n\n艇内静得能听见心跳。有人在角落里哭——不是软弱。是巨大压力释放后的一种纯粹的感激。\n\n阿尔伯特放下木鱼长呼一口气。白雾。\n\n你还活着。四十八个人——还活着。至少今天。",
+      "nextNodeId": "wp_sub_survivors"
+    },
+    {
+      "id": "wp_sub_breach",
+      "locationTitle": "1941年 · 深海",
+      "musicKey": "wolfpack_deep",
+      "type": "narrative",
+      "text": "舱壁开始漏水。不是大漏——只是一条细线。但在三百米——每一滴水都代表足以压碎一艘潜艇的压力。\n\n「堵住它！」橡皮锤疯狂敲击。\n\n十分钟——漏水减缓。但没完全止住。你命令上浮。潜艇上升时舱壁发出一声声解脱的嘎吱声。",
+      "nextNodeId": "wp_sub_escaped"
+    },
+    {
+      "id": "wp_sub_hit_deep",
+      "locationTitle": "1941年 · 深海",
+      "musicKey": "wolfpack_deep",
+      "type": "narrative",
+      "text": "深弹正中。爆炸把你从座位上掀飞——头撞在仪表台上。\n\n恢复意识时——舱内进水。声纳员头在流血。阿尔伯特蹲在他旁边用手堵着伤口。\n\n「紧急上浮！」\n\n潜艇颤抖着上升——像一条受伤的鱼。",
+      "nextNodeId": "wp_sub_survivors"
+    },
+    {
+      "id": "wp_sub_survivors",
+      "locationTitle": "1941年 · 大西洋海面",
+      "musicKey": "wolfpack_deep",
       "type": "choice",
-      "text": "「弃船！所有人弃船！」\n\n你跳入大西洋。水是冰冷的，冷得像刀。\n\n俾斯麦号在爆炸和炮火中翻转，那巨大的舰体以惊人的速度沉入海中。\n你看着它消失，只剩下海面上漂浮的碎片、油污、和挣扎的人。\n\n英国军舰靠近了。他们放下救生艇。\n但当德国潜艇的警报出现时，英国人紧急撤离——\n留下了还在水里的你和数百名同伴。\n\n水温：十四度。你能在这里坚持多久？",
+      "text": "潜望镜里——十几个人在水里挣扎。那艘被你们击沉的货轮的幸存者。\n\n水温大约六度。他们还有大概十五分钟。\n\n大副：「邓尼茨的命令——不救助幸存者。护卫舰随时回来。」\n\n阿尔伯特看着你。",
       "choices": [
         {
-          "text": "【等待】继续等待英国救援船回来",
+          "text": "【救助】违命浮出水面救起他们",
+          "nextNodeId": "wp_sub_saved",
+          "moraleDelta": 15,
+          "hpDelta": -15,
+          "grantedFlags": [
+            "saved_survivors"
+          ]
+        },
+        {
+          "text": "【离开】遵守命令下潜",
+          "nextNodeId": "wp_sub_left",
+          "moraleDelta": -35
+        }
+      ]
+    },
+    {
+      "id": "wp_sub_saved",
+      "locationTitle": "1941年 · 大西洋",
+      "musicKey": "wolfpack",
+      "type": "narrative",
+      "text": "你浮出水面。从冰冷海水里拉上来九个人——三个已失去意识。\n\n一个年轻人抓住你的手不放。他的英语口音很重。大副翻译：「他在说谢谢你没有离开。」\n\n你们把他们放在橡皮艇里给了食物和水——然后下潜。\n\n回去后军事法庭在等你。但那九个人还活着。这比法庭判决更重——也更轻。",
+      "nextNodeId": "wp_sub_return"
+    },
+    {
+      "id": "wp_sub_left",
+      "locationTitle": "1941年 · 大西洋",
+      "musicKey": "wolfpack_deep",
+      "type": "narrative",
+      "text": "你下潜了。那些人的呼救声在脑子里响了很久。\n\n那天晚上你失眠了。往后的每个晚上你都会失眠。\n\n阿尔伯特在角落里削他的木鱼——他的手不再抖了。也许他也什么都没想。因为他不敢。",
+      "nextNodeId": "wp_sub_return"
+    },
+    {
+      "id": "wp_sub_return",
+      "locationTitle": "1943年 · 大西洋",
+      "musicKey": "wolfpack",
+      "type": "narrative",
+      "text": "两年。你在水下待了两年。德国U艇击沉两千六百艘盟军商船。数万名水手葬身海底。\n\n但盟军反潜越来越厉害。密码被破译、雷达更精准。到了1943年——每两艘出发的U艇只有一艘回来。\n\n你的U-96还在。但你已经失去了很多朋友。\n\n阿尔伯特的木鱼完成了——是条梭鱼。他说「给你的。」\n\n你问：「海里的鱼为什么自由？」\n\n「因为它们不把彼此关在铁盒子里。」",
+      "nextNodeId": "wp_sub_final"
+    },
+    {
+      "id": "wp_sub_final",
+      "locationTitle": "1944年 · 北大西洋",
+      "musicKey": "wolfpack_deep",
+      "type": "choice",
+      "text": "1944年。U-96的第八次巡逻。\n\n你们的运气终于用完了。三艘驱逐舰——声纳锁定。深弹从四面八方落下。舱壁在每一次爆炸中呻吟。进水——堵不住。\n\n阿尔伯特的木鱼浮在水面上。\n\n「下潜？」大副的声音在颤抖。\n\n「来不及了。」你说。「我们只能上去——然后面对。」",
+      "choices": [
+        {
+          "text": "【上浮】带着船员们浮出水面投降",
+          "isCombat": true,
+          "combatThreshold": 60,
+          "bonusClasses": [
+            "submarine_crew"
+          ],
+          "successNodeId": "wp_sub_surrender",
+          "failureNodeId": "wp_sub_sunk",
+          "failHpDelta": -60,
+          "failMoraleDelta": -40
+        },
+        {
+          "text": "【深潜】最后一搏——潜到极限深度",
+          "isCombat": true,
+          "combatThreshold": 80,
+          "successNodeId": "wp_sub_miracle",
+          "failureNodeId": "wp_sub_sunk",
+          "failHpDelta": -80,
+          "failMoraleDelta": -50
+        }
+      ]
+    },
+    {
+      "id": "wp_sub_surrender",
+      "locationTitle": "1944年 · 大西洋",
+      "musicKey": "wolfpack",
+      "type": "narrative",
+      "text": "你浮出了水面。\n\n英国驱逐舰的探照灯打在你们脸上。你举起手——四十八个人陆续从舱口爬出来。\n\n一个英国水手帮阿尔伯特爬上了甲板。他的木鱼——那条梭鱼——从口袋里滑出来漂浮在水面上。英国水手伸手捞了起来，还给了他。\n\n阿尔伯特接过鱼的时候哭了。不是因为害怕。是因为有人捞起了他削了三年的鱼。",
+      "nextNodeId": "wp_sub_end_pow"
+    },
+    {
+      "id": "wp_sub_miracle",
+      "locationTitle": "1944年 · 大西洋",
+      "musicKey": "wolfpack_deep",
+      "type": "narrative",
+      "text": "奇迹——潜艇扛住了。深度表的指针在红色区域疯狂跳动。但舱壁没有裂。\n\n深水炸弹停了。驱逐舰的螺旋桨声渐渐远去——他们以为你们已经死了。\n\n你关掉了所有设备。潜艇在黑暗中沉默地漂着。\n\n阿尔伯特在角落里笑了。他削了三年的梭鱼——还浮在舱内的水面上。",
+      "nextNodeId": "wp_sub_end_survive"
+    },
+    {
+      "id": "wp_sub_sunk",
+      "locationTitle": "1944年 · 大西洋海底",
+      "musicKey": "wolfpack_deep",
+      "type": "narrative",
+      "text": "舱壁撕裂。海水涌入。\n\n你最后看到的是阿尔伯特的木鱼——那条削了三年的梭鱼——在水中旋转。然后红色应急灯灭了。\n\n奥托·菲舍尔，十九岁，Hamburg渔民的儿子——留在了大西洋底。\n\n和他一起的——四十七个艇员。还有那条木鱼。",
+      "nextNodeId": "wp_defeat"
+    },
+    {
+      "id": "wp_sub_end_pow",
+      "locationTitle": "群狼海战 — 终",
+      "musicKey": "wolfpack_triumph",
+      "type": "ending",
+      "isVictory": true,
+      "text": "【群狼海战 — 被俘】\n\n你成了战俘。四十八个艇员——三十一人幸存。\n\n在战俘营里，阿尔伯特用一块新木头重新雕那条鱼。他说这次要雕得更好。\n\n大西洋战役中——三万二千名德国U艇艇员阵亡，占总兵力四分之三。约三万名盟军商船水手葬身海底。\n\n你的父亲在战后收到一封信：「你儿子还活着。他在英国。他很快就会回家。」\n\n大海不恨你也不爱你。它只是不在乎。"
+    },
+    {
+      "id": "wp_sub_end_survive",
+      "locationTitle": "群狼海战 — 终",
+      "musicKey": "wolfpack_triumph",
+      "type": "ending",
+      "isVictory": true,
+      "text": "【群狼海战 — 奇迹】\n\n你们活了下来。U-96带着满身伤痕回到了港口。\n\n战争结束后——阿尔伯特在汉堡的渔港开了一家小店。他卖自己雕的木鱼。\n\n三万二千名德国U艇艇员没有回来。每当你经过港口——你会看到海面上飘着四十八个人的影子。\n\n大海什么都不在乎。但你在乎。"
+    },
+    {
+      "id": "wp_bat_briefing",
+      "locationTitle": "1941年5月 · 威廉港",
+      "musicKey": "wolfpack",
+      "type": "narrative",
+      "text": "海因里希·克雷默，三十五岁，基尔人。职业海军军官——十八岁加入帝国海军时还是魏玛共和国。\n\n你见过德国海军从几条破船重建。你信仰巨舰大炮——那是海军军官的宗教。\n\n现在你站在俾斯麦号甲板上。四万五千吨、两千二百二十二人、全世界最重的舰炮。她是德国工业的巅峰——也是暴力美学的极致。\n\n信号官科勒挂着莱卡相机——他说要拍下俾斯麦最辉煌的时刻。\n\n「莱茵演习行动——突破封锁，进入大西洋。」\n\n俾斯麦号驶出港口。灰绿色的海水被舰首切开——像一把钝刀割开皮肤。",
+      "nextNodeId": "wp_bat_battle"
+    },
+    {
+      "id": "wp_bat_battle",
+      "locationTitle": "1941年5月24日 · 丹麦海峡",
+      "musicKey": "wolfpack",
+      "type": "choice",
+      "text": "胡德号——皇家海军的骄傲——在地平线上出现。\n\n「开炮！」十五英寸主炮齐射的轰鸣让你全身骨头在震动。\n\n第五轮齐射击中了胡德号。弹药库被引爆——那艘巨舰在三分钟内断裂、爆炸、沉没。1415名英国水兵——只有3人幸存。\n\n科勒放下了莱卡相机。他没按快门。\n\n甲板上沉默了。",
+      "choices": [
+        {
+          "text": "【沉默】继续战斗——这是你的职责",
           "isCombat": true,
           "combatThreshold": 50,
-          "bonusClasses": ["battleship_crew"],
-          "successNodeId": "wp_rescued",
-          "failureNodeId": "wp_drowning",
+          "bonusClasses": [
+            "battleship_crew"
+          ],
+          "successNodeId": "wp_bat_hunted",
+          "failureNodeId": "wp_bat_hunted",
+          "failHpDelta": -15,
+          "failMoraleDelta": -10
+        }
+      ]
+    },
+    {
+      "id": "wp_bat_hunted",
+      "locationTitle": "1941年5月24-27日 · 北大西洋",
+      "musicKey": "wolfpack",
+      "type": "narrative",
+      "text": "胡德号的沉没惊动了整个英国皇家海军。\n\n八艘战列舰、两艘航母、数十艘巡洋舰——在大西洋上织成一张网。\n\n一架剑鱼鱼雷机击中了舵机。船舵卡住了——俾斯麦号只能在那片冰冷的海面上打转。像一头受伤的巨鲸等着捕猎者。\n\n「我们无法到达法国。但我们不会投降。」舰长的声音始终平静。\n\n科勒脖子上挂着莱卡相机——手里拿的是灭火器。",
+      "nextNodeId": "wp_bat_end"
+    },
+    {
+      "id": "wp_bat_end",
+      "locationTitle": "1941年5月27日 · 北大西洋",
+      "musicKey": "wolfpack",
+      "type": "choice",
+      "text": "英国战舰从四面八方围拢。炮弹像雨。\n\n「弃船！」\n\n你跳入大西洋。水温十二度——可以活一两个小时。\n\n科勒在你旁边——莱卡相机举出水面像举着婴儿。「我拍了一张——沉没的时候。」\n\n英国军舰在救起幸存者——但潜艇警报响了。他们必须在两分钟内撤离。留下了还在水里的几百人。",
+      "choices": [
+        {
+          "text": "【求生】抓住浮木坚持",
+          "isCombat": true,
+          "combatThreshold": 50,
+          "bonusClasses": [
+            "battleship_crew"
+          ],
+          "successNodeId": "wp_bat_rescued",
+          "failureNodeId": "wp_defeat",
           "failHpDelta": -40,
           "failMoraleDelta": -20
         },
         {
-          "text": "【自救】抓住浮木，努力向最近的漂浮物游去",
-          "nextNodeId": "wp_rescued",
-          "hpDelta": -20,
-          "moraleDelta": -10
+          "text": "【助人】把浮木推给受伤的同伴",
+          "nextNodeId": "wp_bat_rescued",
+          "hpDelta": -25,
+          "moraleDelta": 10
         }
       ]
     },
     {
-      "id": "wp_escaped",
-      "locationTitle": "1941年 · 北大西洋，深处",
-      "musicKey": "wolfpack_deep",
-      "type": "narrative",
-      "text": "护卫舰的螺旋桨声越来越远，最后消失了。\n\n艇内静得可以听见彼此的心跳。\n\n「他们走了，」声纳员的声音在颤抖，「他们走了。」\n\n有人开始哭泣，不是软弱，是因为活着而感到一种巨大的、难以承受的感激。\n\n你把手放在舱壁上，感受着铁的冰凉，感受着艇体的颤动——\n你们还活着。",
-      "nextNodeId": "wp_return_base"
-    },
-    {
-      "id": "wp_pressure_breach",
-      "locationTitle": "1941年 · 北大西洋深处",
-      "musicKey": "wolfpack_deep",
-      "type": "narrative",
-      "text": "舱壁的某处开始漏水。\n\n不是大漏，只是一条细线，但在这个深度，每一滴海水都代表着巨大的压力。\n\n「锤住它！」工程兵用橡皮锤拼命击打泄漏点。\n\n十分钟后，漏水减缓了，但没有完全止住。\n\n你命令上浮。深水炸弹仍然在外面爆炸，但你们没有选择了。",
-      "nextNodeId": "wp_escaped"
-    },
-    {
-      "id": "wp_direct_hit",
-      "locationTitle": "1941年 · 北大西洋",
-      "musicKey": "wolfpack_deep",
-      "type": "narrative",
-      "text": "深水炸弹正中潜艇。\n\n爆炸的冲击力将你掀倒，头撞在仪表台上，眼前一片发黑。\n\n当你醒来时，舱内已经在进水。声纳员已经不动了，他的头部流着血。\n\n「紧急上浮！」你吼道。\n\n艇身开始颤抖上升，像一条受伤的鱼试图浮出水面。",
-      "nextNodeId": "wp_return_base"
-    },
-    {
-      "id": "wp_rescued",
+      "id": "wp_bat_rescued",
       "locationTitle": "1941年5月27日 · 北大西洋",
       "musicKey": "wolfpack",
       "type": "narrative",
-      "text": "一艘英国轻巡洋舰回来了，冒险靠近。\n\n英国水手从船舷上伸下绳梯，拉起一个又一个在水里的人。\n\n当你被拉上甲板时，一个英国水兵把毯子裹在你身上，\n他的眼神里没有仇恨，只有某种疲惫的同情。\n\n俾斯麦号的最后幸存者：两千二百二十二人中，只有一百一十五人获救。\n\n那一天死去的人，有一半是因为英国人被潜艇警报吓走，来不及救援。\n战争让每一个人都做出了他们本不愿做的事。",
-      "nextNodeId": "wp_return_base"
+      "text": "一个英国水手把你从水里拉上来。他把毯子裹在你身上——没有说话。\n\n科勒的莱卡被英国水手小心地放在甲板上——像对待一件文物。\n\n俾斯麦号幸存者：2222人，115人获救。\n\n你在战俘营遇到了一个胡德号幸存者——那三个中的一个。你们坐在一起看海，没有说话。\n\n两个水手——不同的军装。同一片海。",
+      "nextNodeId": "wp_bat_final"
     },
     {
-      "id": "wp_drowning",
-      "locationTitle": "1941年 · 北大西洋",
-      "musicKey": "wolfpack_deep",
-      "type": "narrative",
-      "text": "水温把你的力气一点一点抽走。\n\n你想起了汉堡的港口，父亲的渔船，以及回家时家里那盏灯的颜色。\n\n大西洋很大，很冷。\n「爸，」你的嘴里说出这个字，然后是海水的苦涩。",
-      "nextNodeId": "wp_defeat"
-    },
-    {
-      "id": "wp_return_base",
-      "locationTitle": "1941年-1943年 · 大西洋，岁月",
-      "musicKey": "wolfpack",
-      "type": "narrative",
-      "text": "回到基地的那天，基尔港的海风还是一样咸。\n\n你在大西洋上交战的这些年里，德国潜艇部队击沉了两千六百多艘盟军商船，\n数以万计的商船水手随之沉入海底。\n\n但盟军的反潜技术越来越成熟。密码被破译，雷达越来越精准。\n到了1943年，德国潜艇的损失率已经高到无法承受——\n每两艘出发的潜艇，只有一艘能够回来。\n\n你和你的艇员们——还活着。许多人没有。\n\n「艇长，」大副站在跳板上，「我们回家了。」",
-      "nextNodeId": "wp_final_reflection"
-    },
-    {
-      "id": "wp_final_reflection",
-      "locationTitle": "1943年 · 法国洛里昂海军基地",
-      "musicKey": "wolfpack",
-      "type": "choice",
-      "text": "基地的公告栏上贴着最新的损失名单。\n\n你扫视那些名字：海因茨·穆勒，弗里德里希·克劳斯，\n君特·布劳恩……都是你认识的人，或者认识认识他们的人。\n\nU艇部队从最初的灵感勃发，变成了一场骇人的消耗。\n在大西洋战役结束时，约三万两千名德国潜艇兵阵亡，\n占总兵力的四分之三。\n\n你写了一封给家里的信，停下来，不知道怎么写。",
-      "choices": [
-        {
-          "text": "【诚实】如实描述大海的黑暗，不包装成荣耀",
-          "nextNodeId": "wp_victory_honest",
-          "moraleDelta": 10,
-          "grantedFlags": ["wrote_truth"]
-        },
-        {
-          "text": "【沉默】把信纸折起来，什么也不写",
-          "nextNodeId": "wp_victory_silence"
-        }
-      ]
-    },
-    {
-      "id": "wp_victory_honest",
-      "locationTitle": "群狼海战 — 完成",
+      "id": "wp_bat_final",
+      "locationTitle": "群狼海战 — 终",
       "musicKey": "wolfpack_triumph",
       "type": "ending",
       "isVictory": true,
-      "text": "【战役结束 — 生存】\n\n你在信里写道：\n\n「这里很冷，很暗，很安静。我击沉了一些船，也失去了一些战友。\n我不知道那些商船水手是否有妻儿，我想他们有的。\n我希望有一天，我能忘记他们的声音。」\n\n大西洋战役中，德国潜艇部队共击沉约二千六百艘盟军船只，\n造成约三万名商船水手死亡。\n\n作为报复，或者说，为了终结这一切，\n约三万名德国U艇艇员长眠于大西洋的海底。\n\n谁赢了这场战役？大海是唯一的答案。\n\n下一章即将开启。"
-    },
-    {
-      "id": "wp_victory_silence",
-      "locationTitle": "群狼海战 — 完成",
-      "musicKey": "wolfpack",
-      "type": "ending",
-      "isVictory": true,
-      "text": "【战役结束 — 生存】\n\n你折好信纸，放回口袋。\n\n有些事，没有语言能够装下。\n\n大西洋战役，德德潜艇的「快乐时代」和最终的溃败。\n约三万名德国U艇艇员与约三万名盟军商船水手，\n用彼此的生命在大西洋底写下了同一个词：牺牲。\n\n区别只在于，有一方知道自己为何而死，另一方是——不确定的。\n\n下一章即将开启。"
+      "text": "【群狼海战 — 幸存】\n\n你在英国战俘营度过了战争。科勒的莱卡底片战后被归还——那张俾斯麦号沉没的照片后来登在《生活》杂志上。\n\n不是你想象中的辉煌——只是一艘倾斜的、燃烧的、正在死去的钢铁。\n\n你曾经信仰巨舰大炮。俾斯麦教会了你——没有什么巨舰是不沉的。没有什么大炮能保护所有人。\n\n战后你回到基尔。港口空了。但你还在。\n\n下一章即将开启。"
     },
     {
       "id": "wp_defeat",
-      "locationTitle": "群狼海战 — 失败",
+      "locationTitle": "群狼海战 — 阵亡",
       "musicKey": "defeat_theme",
       "type": "ending",
       "isDefeat": true,
-      "text": "【战役结束 — 阵亡】\n\n大西洋吞下了你，就像它吞下了数以万计的其他人一样。\n\n那片深海没有墓碑，没有名字，只有黑暗和寒冷。\n\n你的名字将出现在基地的公告栏上，\n在那里待三天，然后被另一张公告覆盖。\n\n战争继续。大海继续。"
+      "text": "大西洋吞下了你。\n\n没有墓碑。没有名字。只有黑暗和寒冷。\n\n你的名字在基地公告栏上待三天——然后被另一张公告盖住。\n\n战争继续。大海继续。"
+    },
+    {
+      "id": "wp_skip",
+      "locationTitle": "1943年 · 洛里昂基地",
+      "musicKey": "wolfpack_triumph",
+      "type": "narrative",
+      "text": "大西洋战役结束了。德国U艇损失率达四分之三——三万两千名艇员阵亡。\n\n你的战场不在海上——但你在基地里见过那些归航的潜艇兵。他们沉默、消瘦、眼神空洞。仿佛一部分灵魂留在了海底。\n\n帝国在海上也输了。",
+      "nextNodeId": "wp_sub_end_survive"
     }
   ]
 }
