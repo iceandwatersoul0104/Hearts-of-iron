@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cmake ..)",
+      "Bash(where qmake *)",
+      "Read(//c//**)",
+      "Bash(dir \"C:\\\\Qt\")",
+      "Bash(dir \"D:\\\\Qt\")",
+      "Bash(rm -rf \"D:/Creater/Hearts of iron/build/CMakeCache.txt\" \"D:/Creater/Hearts of iron/build/CMakeFiles\")",
+      "Bash(cmake .. -DCMAKE_PREFIX_PATH=\"E:/Qt/6.10.1/msvc2022_64\")",
+      "Bash(cmake --build . --config Release)",
+      "Bash(E:/Qt/6.10.1/msvc2022_64/bin/windeployqt.exe *)",
+      "Bash(grep -E \"\\\\.\\(dll|exe\\)$\")",
+      "Bash(./钢铁意志_第三帝国.exe)",
+      "Bash(cp -r 'D:/Creater/Hearts of iron/build/Release/*' 'D:/Creater/Hearts of iron/dist/钢铁意志_第三帝国/')",
+      "Bash(cp D:/vs_2022/VC/Redist/MSVC/14.44.35112/x64/Microsoft.VC143.CRT/*.dll 'D:/Creater/Hearts of iron/dist/钢铁意志_第三帝国/')",
+      "Bash(echo \"Done copying\")",
+      "Bash(zip -r \"../钢铁意志_第三帝国_分发版.zip\" \"钢铁意志_第三帝国\")"
+    ]
+  }
+}
