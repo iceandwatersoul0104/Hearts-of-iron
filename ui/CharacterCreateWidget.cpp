@@ -167,10 +167,12 @@ void CharacterCreateWidget::setupUi() {
 
     m_backBtn = new QPushButton(QStringLiteral("返回主菜单"), this);
     m_backBtn->setObjectName(QStringLiteral("createBackBtn"));
+    // 连接信号: 点击 → 切回主菜单面板
     connect(m_backBtn, &QPushButton::clicked, this, &CharacterCreateWidget::backToMenu);
 
     m_startBtn = new QPushButton(QStringLiteral("投身战场"), this);
     m_startBtn->setObjectName(QStringLiteral("createStartBtn"));  // QSS: 红色强调按钮
+    // 连接信号: 点击 → onStartClicked() 进行姓名验证并发射 startGame() 信号
     connect(m_startBtn, &QPushButton::clicked, this, &CharacterCreateWidget::onStartClicked);
 
     ctrlLayout->addWidget(m_backBtn);

@@ -69,6 +69,14 @@ MenuWidget::MenuWidget(QWidget *parent)
  *               ├── 动态卡片列表 (m_dlcListLayout)
  *               └── "返回主菜单" 按钮
  */
+/*QT图像化界面的使用
+1.QVBoxLayout：垂直布局管理器，用于将子控件垂直排列。
+2.QHBoxLayout：水平布局管理器，用于将子控件水平排列。
+3.QPushButton：按钮控件，用户可以点击触发事件。 
+4.QLabel：标签控件，用于显示文本或图像。
+5.QFrame：框架控件，可以用来创建装饰线或边框。
+6.QStackedWidget：堆叠式窗口控件，可以在多个子控件之间切换显示。
+*/
 void MenuWidget::setupUi() {
     setObjectName(QStringLiteral("MenuWidget"));
 
@@ -124,6 +132,7 @@ void MenuWidget::setupUi() {
     m_newGameBtn->setObjectName(QStringLiteral("menuBtn"));  // QSS: 红色边框按钮
     m_newGameBtn->setCursor(Qt::PointingHandCursor);         // 鼠标悬停变手型
     m_newGameBtn->setMinimumSize(260, 48);                   // 最小尺寸保证可点击
+    // 连接信号: 点击 → 发射 newGameClicked() 信号
     connect(m_newGameBtn, &QPushButton::clicked, this, &MenuWidget::newGameClicked);
 
     // 按钮 2: 继续旧的战役
@@ -131,6 +140,7 @@ void MenuWidget::setupUi() {
     m_loadGameBtn->setObjectName(QStringLiteral("menuBtn"));
     m_loadGameBtn->setCursor(Qt::PointingHandCursor);
     m_loadGameBtn->setMinimumSize(260, 48);
+    // 连接信号: 点击 → 发射 loadGameClicked() 信号
     connect(m_loadGameBtn, &QPushButton::clicked, this, &MenuWidget::loadGameClicked);
 
     // 按钮 3: 退出战役
@@ -138,6 +148,7 @@ void MenuWidget::setupUi() {
     m_exitGameBtn->setObjectName(QStringLiteral("menuBtn"));
     m_exitGameBtn->setCursor(Qt::PointingHandCursor);
     m_exitGameBtn->setMinimumSize(260, 48);
+    // 连接信号: 点击 → 发射 exitGameClicked() 信号
     connect(m_exitGameBtn, &QPushButton::clicked, this, &MenuWidget::exitGameClicked);
 
     // 按钮加入布局
@@ -195,6 +206,7 @@ void MenuWidget::setupUi() {
     m_dlcBackBtn->setObjectName(QStringLiteral("createBackBtn"));
     m_dlcBackBtn->setCursor(Qt::PointingHandCursor);
     m_dlcBackBtn->setMinimumSize(200, 40);
+    // 连接信号: 点击 → 切回主菜单面板
     connect(m_dlcBackBtn, &QPushButton::clicked, this, [this, stack]() {
         stack->setCurrentIndex(0);  // 切回主菜单面板
     });

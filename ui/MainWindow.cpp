@@ -95,11 +95,17 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
     // ── 第 1 步: 创建引擎实例 ──
-    // 所有引擎实例以 this 为父对象，Qt 自动管理生命周期。
+    // 所有引擎实例以 this 为父对象，Qt 自动管理生命周期
+    
+    //dlcManager 负责扫描和加载 DLC 数据
     m_dlcManager  = new DlcManager(this);
+    //diceSystem 负责战斗随机判定（注入到 NodeEngine）
     m_diceSystem  = new DiceSystem(this);
+    //nodeEngine 负责叙事流程控制（接收 DiceSystem 依赖）
     m_nodeEngine  = new NodeEngine(m_diceSystem, this);  // 依赖注入: DiceSystem → NodeEngine
+    //saveManager 负责存档读写（构造时自动创建存档目录）
     m_saveManager = new SaveManager(this);               // 构造时自动创建存档目录
+    //musicPlayer 负责背景音乐播放（构造时初始化 Qt6 多媒体组件）
     m_musicPlayer = new MusicPlayer(this);               // 构造时初始化 Qt6 多媒体
 
     // ── 第 2~3 步: 构建 UI 并连接信号 ──
@@ -167,11 +173,16 @@ void MainWindow::setupUi() {
  * 【信号连接总览】
  *
  *   MenuWidget ────────→ MainWindow ────────→ 引擎
+ *     创建新游戏 加载DLC
  *     newGameClicked  →  showDlcSelect
+ *     游戏加载
  *     loadGameClicked →  openLoadDialog
+ *     退出游戏
  *     exitGameClicked →  close
+ *     加载DLC
  *     dlcSelected     →  onDlcSelected
  *
+ *     1.返回主菜单-》切换页面+音乐 2.加载DLC-》注册音乐+设置职业列表
  *   CharacterCreateWidget → MainWindow
  *     backToMenu  →  showMainMenu
  *     startGame   →  onStartGame
@@ -270,6 +281,7 @@ void MainWindow::showMainMenu() {
     m_musicPlayer->play(QStringLiteral("main_theme"));  // 切回主菜单音乐
 }
 
+//加载DLC页面，显示DLC列表（由 MenuWidget 内部的 stacked widget 切换实现）
 void MainWindow::showDlcSelect() {
     QList<DlcManifest> manifests = m_dlcManager->manifests();
     m_menuWidget->showDlcList(manifests);
