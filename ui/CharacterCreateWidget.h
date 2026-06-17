@@ -15,7 +15,7 @@ public:
     ~CharacterCreateWidget() = default;
 
     // Set classes from DLC manifest (called before showing)
-    void setClasses(const QList<DlcClass> &classes);
+    void setClasses(const QList<DlcClass> &classes, const QString &category = QString());
 
 signals:
     void backToMenu();
@@ -37,9 +37,14 @@ private:
     QGridLayout *m_grid = nullptr;
     QList<QWidget*> m_classCards;
     QList<DlcClass> m_classes;
+    QString m_category;
 
+    QLabel *m_titleLabel = nullptr;
+    QLabel *m_nameTipLabel = nullptr;
+    QLabel *m_classTipLabel = nullptr;
+    QLabel *m_previewTitleLabel = nullptr;
     QLabel *m_hpLabel = nullptr;
-    QLabel *m_moraleLabel = nullptr;
+    QLabel *m_moraleLabel = nullptr;   // RPG模式下显示MP
     QLabel *m_descLabel = nullptr;
     QLabel *m_scenarioLabel = nullptr;
 

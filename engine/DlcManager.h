@@ -15,6 +15,16 @@ public:
     // 获取已扫描的 DLC
     const QList<DlcManifest> &manifests() const { return m_manifests; }
 
+    // 按类别过滤 DLC
+    QList<DlcManifest> manifestsByCategory(const QString &category) const {
+        QList<DlcManifest> result;
+        for (const auto &m : m_manifests) {
+            if (m.category == category)
+                result.append(m);
+        }
+        return result;
+    }
+
     // 根据 dlcId 获取清单
     const DlcManifest *getManifest(const QString &dlcId) const;
 

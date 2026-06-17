@@ -1,5 +1,6 @@
 #pragma once
 #include <QMainWindow>
+#include "RpgGameWidget.h"
 #include "../engine/DlcTypes.h"
 #include "../engine/PlayerSystem.h"
 
@@ -22,16 +23,19 @@ public:
     ~MainWindow() = default;
 
 private slots:
+    void showCategorySelect();
     void showMainMenu();
     void showDlcSelect();
     void showCharacterCreate();
     void showGameScreen();
 
+    void onCategorySelected(const QString &category);
     void onDlcSelected(const QString &dlcId);
     void onStartGame(const QString &name, const QString &classId);
     void onLoadGame(const PlayerSystem &loadedPlayer);
 
     void onChoiceMade(int index);
+    void onSkillActivated(int choiceIdx, int combatBonus);
 
     void openSaveDialog();
     void openLoadDialog();
@@ -52,7 +56,8 @@ private:
 
     MenuWidget *m_menuWidget = nullptr;
     CharacterCreateWidget *m_createWidget = nullptr;
-    GameWidget *m_gameWidget = nullptr;
+    GameWidget    *m_gameWidget = nullptr;       // 剧情模式
+    RpgGameWidget *m_rpgGameWidget = nullptr;    // 勇者模式
 
     DlcManager  *m_dlcManager  = nullptr;
     DiceSystem  *m_diceSystem  = nullptr;
@@ -65,4 +70,5 @@ private:
     QString      m_currentDlcBasePath;
     QString      m_currentClassName;
     QString      m_currentChapterName;
+    QString      m_currentCategory;
 };

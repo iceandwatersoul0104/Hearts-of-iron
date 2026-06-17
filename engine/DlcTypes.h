@@ -25,10 +25,30 @@ enum class GameScreen {
 
 // --- 运行时数据结构 ---
 
+// --- RPG 技能 ---
+struct Skill {
+    QString id;           // "power_strike"
+    QString name;         // "强力斩"
+    QString desc;         // 描述文本
+    int levelReq = 1;     // 所需等级
+    int mpCost   = 10;    // MP消耗
+    int combatBonus = 0;  // 战斗阈值降低量
+    int hpRestore  = 0;   // 恢复HP量
+    int mpRestore  = 0;   // 恢复MP量
+};
+
 struct DlcClass {
     QString id;       // 字符串ID，如 "infantry"
     QString name;     // 显示名称，如 "步兵"
     QString desc;     // 描述文本
+    // RPG 初始属性（剧情模式忽略）
+    int baseHp  = 100;
+    int baseMp  = 50;
+    int baseStr = 10;
+    int baseAgi = 10;
+    int baseInt = 10;
+    // RPG 职业技能
+    QList<Skill> skills;
 };
 
 struct DlcChapterMeta {
@@ -45,6 +65,7 @@ struct DlcManifest {
     QString subtitle;
     QString author;
     QString version;
+    QString category;  // "narrative" (剧情类) 或 "rpg" (RPG类)
     QList<DlcClass> classes;
     QList<DlcChapterMeta> chapters;
     QString startChapter;

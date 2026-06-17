@@ -23,6 +23,10 @@ public:
     // 玩家选择（choiceIndex: 选项数组索引，-1 = Narrative的继续按钮）
     bool makeChoice(int choiceIndex);
 
+    // RPG技能战斗修正（在用技能后调用makeChoice前设置）
+    void setCombatModifier(int bonus) { m_combatModifier = bonus; }
+    int  combatModifier() const { return m_combatModifier; }
+
     // 状态查询
     bool isGameOver() const;
     bool isVictory()  const;
@@ -47,4 +51,5 @@ private:
     PlayerSystem *m_player = nullptr;
     DlcChapter m_currentChapter;
     QMap<QString, DlcChapter> m_loadedChapters;
+    int m_combatModifier = 0;  // RPG技能战斗修正
 };

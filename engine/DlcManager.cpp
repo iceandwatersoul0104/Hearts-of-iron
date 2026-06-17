@@ -67,15 +67,35 @@ DlcManifest DlcManager::parseManifest(const QString &path) {
     m.subtitle    = root["subtitle"].toString();
     m.author      = root["author"].toString();
     m.version     = root["version"].toString();
+    m.category    = root["category"].toString();
     m.startChapter = root["startChapter"].toString();
 
     // Parse classes
     for (const auto &v : root["classes"].toArray()) {
         QJsonObject co = v.toObject();
         DlcClass dc;
-        dc.id   = co["id"].toString();
-        dc.name = co["name"].toString();
-        dc.desc = co["desc"].toString();
+        dc.id      = co["id"].toString();
+        dc.name    = co["name"].toString();
+        dc.desc    = co["desc"].toString();
+        dc.baseHp  = co["baseHp"].toInt(100);
+        dc.baseMp  = co["baseMp"].toInt(50);
+        dc.baseStr = co["baseStr"].toInt(10);
+        dc.baseAgi = co["baseAgi"].toInt(10);
+        dc.baseInt = co["baseInt"].toInt(10);
+        // Parse skills
+        for (const auto &sv : co["skills"].toArray()) {
+            QJsonObject so = sv.toObject();
+            Skill s;
+            s.id          = so["id"].toString();
+            s.name        = so["name"].toString();
+            s.desc        = so["desc"].toString();
+            s.levelReq    = so["levelReq"].toInt(1);
+            s.mpCost      = so["mpCost"].toInt(10);
+            s.combatBonus = so["combatBonus"].toInt(0);
+            s.hpRestore   = so["hpRestore"].toInt(0);
+            s.mpRestore   = so["mpRestore"].toInt(0);
+            dc.skills.append(s);
+        }
         m.classes.append(dc);
     }
 

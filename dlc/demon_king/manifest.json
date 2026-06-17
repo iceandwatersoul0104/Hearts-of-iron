@@ -1,0 +1,79 @@
+{
+  "dlcId": "demon_king",
+  "title": "勇者斗魔王",
+  "subtitle": "集结勇者小队，穿越黑暗大陆，讨伐魔王军",
+  "author": "Community",
+  "version": "1.0.0",
+  "category": "rpg",
+
+  "classes": [
+    {
+      "id": "hero", "name": "勇者", "desc": "被预言选中的少年，均衡的剑术与光之力，对魔王有额外的克制效果",
+      "baseHp": 120, "baseMp": 40, "baseStr": 14, "baseAgi": 10, "baseInt": 8,
+      "skills": [
+        { "id": "power_slash", "name": "强力斩", "levelReq": 1, "mpCost": 15, "combatBonus": 15, "desc": "消耗15MP，全力一击降低战斗难度15点" },
+        { "id": "heroic_strike", "name": "勇者一击", "levelReq": 5, "mpCost": 35, "combatBonus": 30, "desc": "消耗35MP，释放勇者之力重创敌人" },
+        { "id": "light_heal", "name": "光之愈", "levelReq": 3, "mpCost": 20, "hpRestore": 25, "desc": "消耗20MP，恢复25点生命" }
+      ]
+    },
+    {
+      "id": "warrior", "name": "战士", "desc": "身经百战的佣兵，拥有最强的物理攻防，在前线抵挡一切敌人",
+      "baseHp": 150, "baseMp": 20, "baseStr": 18, "baseAgi": 6, "baseInt": 4,
+      "skills": [
+        { "id": "berserk", "name": "狂暴", "levelReq": 1, "mpCost": 15, "combatBonus": 20, "hpRestore": -10, "desc": "消耗15MP，牺牲10点HP换取战斗难度降低20点" },
+        { "id": "war_cry", "name": "战吼", "levelReq": 5, "mpCost": 30, "combatBonus": 25, "desc": "消耗30MP，以震天战吼威吓敌人" },
+        { "id": "second_wind", "name": "再起", "levelReq": 3, "mpCost": 15, "hpRestore": 35, "desc": "消耗15MP，恢复35点生命" }
+      ]
+    },
+    {
+      "id": "archer", "name": "射手", "desc": "森林猎手的后裔，百步穿杨的箭术，擅长对付飞行与高速魔物",
+      "baseHp": 100, "baseMp": 30, "baseStr": 8, "baseAgi": 18, "baseInt": 6,
+      "skills": [
+        { "id": "double_shot", "name": "二连射", "levelReq": 1, "mpCost": 15, "combatBonus": 15, "desc": "消耗15MP，同时射出两支箭" },
+        { "id": "snipe", "name": "狙击", "levelReq": 5, "mpCost": 35, "combatBonus": 35, "desc": "消耗35MP，致命一箭直击要害" },
+        { "id": "evasion", "name": "闪避", "levelReq": 3, "mpCost": 18, "combatBonus": 10, "hpRestore": 15, "desc": "消耗18MP，闪避并恢复15点生命" }
+      ]
+    },
+    {
+      "id": "mage", "name": "法师", "desc": "魔法学院的精英，操控元素之力，范围杀伤与控场的大师",
+      "baseHp": 80, "baseMp": 100, "baseStr": 4, "baseAgi": 8, "baseInt": 18,
+      "skills": [
+        { "id": "fireball", "name": "火球术", "levelReq": 1, "mpCost": 20, "combatBonus": 20, "desc": "消耗20MP，释放灼热火球" },
+        { "id": "blizzard", "name": "暴风雪", "levelReq": 5, "mpCost": 45, "combatBonus": 40, "desc": "消耗45MP，召唤暴风雪冻结一切" },
+        { "id": "mana_shield", "name": "魔力盾", "levelReq": 3, "mpCost": 25, "hpRestore": 20, "combatBonus": 5, "desc": "消耗25MP，护盾吸收伤害并恢复20点生命" }
+      ]
+    },
+    {
+      "id": "priest", "name": "牧师", "desc": "圣堂的守护者，治愈与净化之力，对亡灵与恶魔有神圣加成",
+      "baseHp": 90, "baseMp": 80, "baseStr": 6, "baseAgi": 6, "baseInt": 14,
+      "skills": [
+        { "id": "smite", "name": "惩戒", "levelReq": 1, "mpCost": 18, "combatBonus": 15, "desc": "消耗18MP，以圣光惩戒邪恶" },
+        { "id": "holy_nova", "name": "圣光新星", "levelReq": 5, "mpCost": 40, "combatBonus": 30, "hpRestore": 15, "desc": "消耗40MP，圣光爆发，恢复15点生命" },
+        { "id": "greater_heal", "name": "大治愈术", "levelReq": 2, "mpCost": 30, "hpRestore": 40, "desc": "消耗30MP，恢复40点生命" }
+      ]
+    }
+  ],
+
+  "chapters": [
+    { "id": "village", "file": "chapters/ch01_village.json", "name": "启程之村",   "subtitle": "魔王军来袭 · 故乡的危机", "unlock": "start" },
+    { "id": "forest",  "file": "chapters/ch02_forest.json",  "name": "暗影森林",   "subtitle": "穿越迷雾 · 古代遗迹之秘", "unlock": "village" },
+    { "id": "castle",  "file": "chapters/ch03_castle.json",  "name": "魔王城",     "subtitle": "突入敌阵 · 四大天王",     "unlock": "forest" },
+    { "id": "throne",  "file": "chapters/ch04_throne.json",  "name": "王座之间",   "subtitle": "最终决战 · 勇者VS魔王",    "unlock": "castle" }
+  ],
+
+  "startChapter": "village",
+
+  "music": {
+    "main_theme":     "music/main_theme.mp3",
+    "village_peace":  "music/village_peace.mp3",
+    "village_battle": "music/village_battle.mp3",
+    "forest_mystic":  "music/forest_mystic.mp3",
+    "forest_battle":  "music/forest_battle.mp3",
+    "dungeon_dark":   "music/dungeon_dark.mp3",
+    "castle_theme":   "music/castle_theme.mp3",
+    "boss_theme":     "music/boss_theme.mp3",
+    "throne_theme":   "music/throne_theme.mp3",
+    "victory_theme":  "music/victory_theme.mp3",
+    "defeat_theme":   "music/defeat_theme.mp3"
+  }
+}

@@ -95,7 +95,11 @@ bool NodeEngine::makeChoice(int choiceIndex) {
         for (const QString &cls : choice.bonusClasses)
             bonusList.append(cls);
         int roll = m_dice->rollWithBonus(bonusList, m_player->classId);
-        bool success = DiceSystem::checkSuccess(roll, choice.combatThreshold);
+        // Apply RPG skill combat modifier (lowers threshold = easier to succeed)
+        int effectiveThreshold = choice.combatThreshold - m_combatModifier;
+        if (effectiveThreshold < 5) effectiveThreshold = 5;  // minimum 5% difficulty
+        m_combatModifier = 0;  // reset after use
+        bool success = DiceSystem::checkSuccess(roll, effectiveThreshold);
 
         if (success) {
             applyChoice(choice);

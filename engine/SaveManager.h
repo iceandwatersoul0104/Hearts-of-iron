@@ -2,6 +2,7 @@
 #include <QObject>
 #include <QString>
 #include <QList>
+#include <QDir>
 #include "PlayerSystem.h"
 
 struct SaveInfo {
@@ -24,6 +25,9 @@ public:
     static const int AUTO_SLOT    = 0;
     static const int MAX_MANUAL   = 3;
 
+    void setCategory(const QString &category) { m_category = category; QDir().mkpath(saveDir()); }
+    QString category() const { return m_category; }
+
     bool saveGame(int slot, const PlayerSystem &player,
                   const QString &dlcTitle = {},
                   const QString &className = {},
@@ -41,4 +45,5 @@ public:
 private:
     QString savePath(int slot) const;
     QString saveDir()          const;
+    QString m_category;
 };

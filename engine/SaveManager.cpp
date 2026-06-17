@@ -11,8 +11,9 @@ SaveManager::SaveManager(QObject *parent) : QObject(parent) {
 }
 
 QString SaveManager::saveDir() const {
+    QString sub = m_category.isEmpty() ? QStringLiteral("narrative") : m_category;
     return QStandardPaths::writableLocation(QStandardPaths::AppDataLocation)
-           + "/saves";
+           + "/saves/" + sub;
 }
 
 QString SaveManager::savePath(int slot) const {

@@ -1,0 +1,294 @@
+{
+  "chapterId": "throne",
+  "startNodeId": "ct_chapter_start",
+  "defeatNodeId": "ct_defeat",
+  "classStartNodes": {
+    "hero":    "ct_hero_resolve",
+    "warrior": "ct_warrior_resolve",
+    "archer":  "ct_archer_resolve",
+    "mage":    "ct_mage_resolve",
+    "priest":  "ct_priest_resolve"
+  },
+  "nodes": [
+    {
+      "id": "ct_chapter_start",
+      "locationTitle": "王座之间",
+      "musicKey": "throne_theme",
+      "type": "narrative",
+      "text": "门在你身后缓缓关闭。\n\n王座之间——比城堡任何地方都更广阔。穹顶高得几乎看不到顶，四壁是黑色的玄武岩，上面刻着被遗忘的历史——魔王与勇者的无尽轮回。\n\n中央——巨大的黑铁王座上坐着一个人影。\n\n「又一个勇者。」\n\n声音不是从耳朵进来的——是直接在脑海里响起的。低沉、平静、带着一丝疲倦。\n\n魔王站了起来。他比你想象中更……正常。不是丑陋的怪物，不是巨大的恶魔。他看上去像一个中年男子——除了他的眼睛，漆黑如深渊。",
+      "nextNodeId": "ct_exit"
+    },
+    {
+      "id": "ct_exit",
+      "locationTitle": "王座之间",
+      "musicKey": "throne_theme",
+      "type": "choice",
+      "text": "魔王看着你——不是愤怒，而是一种奇怪的审视。\n\n「你知道这是第几次了吗？每过几百年，就会有一个勇者穿过森林、攻破城堡、站在这扇门前。」\n\n「每一次，我都问勇者一个问题。你的答案——决定了接下来发生的事。」\n\n「告诉我——你为什么要杀我？」",
+      "choices": [
+        { "text": "【勇者之路】为了那些被你伤害的人", "nextNodeId": "ct_hero_resolve", "classRestricted": true, "allowedClasses": ["hero"], "grantedFlags": ["lvl_15", "hero_holy_blade", "armor_plate"] },
+        { "text": "【战士之路】为了证明我比你更强", "nextNodeId": "ct_warrior_resolve", "classRestricted": true, "allowedClasses": ["warrior"], "grantedFlags": ["lvl_15", "war_berserk_axe", "armor_plate"] },
+        { "text": "【射手之路】为了自由——没有人该活在魔王的阴影下", "nextNodeId": "ct_archer_resolve", "classRestricted": true, "allowedClasses": ["archer"], "grantedFlags": ["lvl_15", "arc_elf_bow", "armor_plate"] },
+        { "text": "【法师之路】为了真理——魔王的力量不该存在于这世界", "nextNodeId": "ct_mage_resolve", "classRestricted": true, "allowedClasses": ["mage"], "grantedFlags": ["lvl_15", "mag_elder_staff", "armor_plate"] },
+        { "text": "【牧师之路】为了救赎——救赎你，也救赎被你伤害的一切", "nextNodeId": "ct_priest_resolve", "classRestricted": true, "allowedClasses": ["priest"], "grantedFlags": ["lvl_15", "pri_holy_mace", "armor_plate"] }
+      ]
+    },
+
+    {
+      "id": "ct_hero_resolve",
+      "locationTitle": "王座之间",
+      "musicKey": "throne_theme",
+      "type": "narrative",
+      "text": "魔王看着你，眼神里有一瞬间的波动。\n\n「为了别人……是吗。」\n\n「我年轻的时候也是这么想的。一个为了保护村庄而拿起剑的少年。」他低头看着自己的手——那双曾经握过圣剑的手。\n\n「但你知道后来发生了什么吗？我救的那座村庄，因为害怕我的力量，把我赶走了。我保护的国家，因为忌惮我的名声，派刺客来暗杀我。」\n\n「我变成了魔王——不是因为我邪恶，而是因为这个世界只给英雄留了一条路：变成他们害怕的东西。」\n\n他抬起头——眼中的黑暗燃烧起来。\n\n「但你是不会懂的。你还年轻。你还相信。」\n\n他举起了手——黑暗开始在他掌中凝聚。\n\n「那就战斗吧。让我看看你的信念能走多远。」",
+      "nextNodeId": "ct_boss_phase1"
+    },
+    {
+      "id": "ct_warrior_resolve",
+      "locationTitle": "王座之间",
+      "musicKey": "throne_theme",
+      "type": "narrative",
+      "text": "「比我更强——」魔王重复着你的话，然后笑了起来。\n\n那笑声中不带嘲讽——带的是某种古老而疲倦的悲伤。\n\n「你说得对。力量——这是唯一真实的东西。正义、爱、希望——都只是无力者的借口。只有力量决定一切。」\n\n「我也曾经追求力量。但力量本身是个陷阱——你越强，就越孤独。因为你不再需要任何人。」\n\n他从王座旁提起一把黑剑——和你的圣剑形状一模一样。\n\n「让我看看你的力量。也许——你能避免重蹈我的覆辙。」",
+      "nextNodeId": "ct_boss_phase1"
+    },
+    {
+      "id": "ct_archer_resolve",
+      "locationTitle": "王座之间",
+      "musicKey": "throne_theme",
+      "type": "narrative",
+      "text": "「自由——」魔王闭上眼睛，仿佛在品味这个词。\n\n「你以为自由是摆脱了枷锁。但真正的枷锁——从来不在外面。你杀了我，然后呢？世界就会变好吗？人类还是会互相残杀——有没有魔王，都不会改变。」\n\n「我给你自由。」他睁开眼——黑暗如暴风般卷起。「死后——你就永远自由了。」",
+      "nextNodeId": "ct_boss_phase1"
+    },
+    {
+      "id": "ct_mage_resolve",
+      "locationTitle": "王座之间",
+      "musicKey": "throne_theme",
+      "type": "narrative",
+      "text": "「真理——」魔王眼中闪过一丝学术般的兴趣。\n\n「有趣。你是第一个以知识为目标的勇者。你知道——我也是个学者。我研究了几百年的黑暗魔法，才明白了一件事。」\n\n「力量本身没有善恶。黑暗魔力——和圣光——本质上是同一种东西的不同形态。就像火——可以用来温暖，也可以用来焚烧。」\n\n「但你不会想听的。你太年轻了——就像当年的我。」\n\n「那就战斗吧。知识只有在毁灭中才能得到验证。」",
+      "nextNodeId": "ct_boss_phase1"
+    },
+    {
+      "id": "ct_priest_resolve",
+      "locationTitle": "王座之间",
+      "musicKey": "throne_theme",
+      "type": "narrative",
+      "text": "魔王沉默了。\n\n「救赎——」他的声音头一次有些不稳。\n\n「你比之前所有勇者——都更残忍。」\n\n「你知道被救赎意味着什么吗？意味着承认自己需要被原谅。意味着面对每一个被你夺走的生命的眼神。我做不到——所以才成为了魔王。」\n\n他低下头——然后重新抬起时，眼中的疲惫变成了决断。\n\n「但我不能被你救赎。已经太晚了。」\n\n「抱歉——我只能用战斗来回答你。」",
+      "nextNodeId": "ct_boss_phase1"
+    },
+
+    {
+      "id": "ct_boss_phase1",
+      "locationTitle": "王座之间 · 第一形态",
+      "musicKey": "boss_theme",
+      "type": "choice",
+      "text": "魔王释放了第一层封印——他的身形膨胀，皮肤变成了暗灰色。\n\n「这就——开始了——勇者——」\n\n# 魔王 — Phase 1：黑暗领主形态 #",
+      "choices": [
+        {
+          "text": "【全力攻击】正面挑战魔王的第一形态",
+          "isCombat": true, "combatThreshold": 65,
+          "bonusClasses": ["hero", "warrior"],
+          "successNodeId": "ct_phase1_win", "failureNodeId": "ct_phase1_fail",
+          "failHpDelta": -35, "failMoraleDelta": -25
+        },
+        {
+          "text": "【圣光打击】[需圣剑/圣锤] 以圣光武器重创黑暗",
+          "requiredFlags": ["hero_holy_blade"],
+          "isCombat": true, "combatThreshold": 55,
+          "bonusClasses": ["hero"],
+          "successNodeId": "ct_phase1_win", "failureNodeId": "ct_phase1_fail",
+          "failHpDelta": -25, "failMoraleDelta": -20
+        },
+        {
+          "text": "【神圣制裁】[需圣锤] 圣光净化黑暗",
+          "requiredFlags": ["pri_holy_mace"],
+          "isCombat": true, "combatThreshold": 50,
+          "bonusClasses": ["priest"],
+          "successNodeId": "ct_phase1_win", "failureNodeId": "ct_phase1_fail",
+          "failHpDelta": -20, "failMoraleDelta": -15
+        }
+      ]
+    },
+    {
+      "id": "ct_phase1_win",
+      "locationTitle": "王座之间",
+      "musicKey": "throne_theme",
+      "type": "narrative",
+      "text": "魔王的第一形态崩溃了——灰暗的外壳碎裂，露出下面更黑暗、更混沌的核心。\n\n「不坏——」魔王的声音中带着一丝赞赏。「但你还没有看到我真正的力量——」\n\n他的身体扭曲——从人形变成了一团翻涌的虚空。无数双眼睛在黑暗中睁开。\n\n# 魔王 — Phase 2：虚空形态 #",
+      "nextNodeId": "ct_boss_phase2",
+      "grantedFlags": ["lvl_18"],
+      "hpDelta": 0, "moraleDelta": 15
+    },
+    {
+      "id": "ct_phase1_fail",
+      "locationTitle": "王座之间",
+      "musicKey": "boss_theme",
+      "type": "narrative",
+      "text": "魔王的力量远超想象——你被击退了。但你没有倒下。\n\n「继续——」你的声音比自己预想的更坚定。\n\n你重新握紧武器。这只是第一回合。",
+      "nextNodeId": "ct_boss_phase2",
+      "grantedFlags": ["lvl_18"],
+      "hpDelta": 0, "moraleDelta": 5
+    },
+
+    {
+      "id": "ct_boss_phase2",
+      "locationTitle": "王座之间 · 第二形态",
+      "musicKey": "boss_theme",
+      "type": "choice",
+      "text": "虚空形态的魔王从四面八方压迫着你——每一只眼睛都是一道暗影射线，每一团黑暗都是一张吞噬的嘴。空间在扭曲——你甚至分不清上下左右。\n\n「在——虚空——中——迷失——吧——」\n\n# 魔王 — Phase 2：虚空形态 #",
+      "choices": [
+        {
+          "text": "【意志坚定】以坚强的意志对抗虚空侵蚀",
+          "isCombat": true, "combatThreshold": 70,
+          "bonusClasses": ["hero", "warrior"],
+          "successNodeId": "ct_phase2_win", "failureNodeId": "ct_phase2_fail",
+          "failHpDelta": -40, "failMoraleDelta": -30
+        },
+        {
+          "text": "【元素爆发】[需长老杖] 以四元素之力稳定空间",
+          "requiredFlags": ["mag_elder_staff"],
+          "isCombat": true, "combatThreshold": 55,
+          "bonusClasses": ["mage"],
+          "successNodeId": "ct_phase2_win", "failureNodeId": "ct_phase2_fail",
+          "failHpDelta": -30, "failMoraleDelta": -20
+        },
+        {
+          "text": "【精准打击】[需精灵弓] 穿过虚空射中核心之眼",
+          "requiredFlags": ["arc_elf_bow"],
+          "isCombat": true, "combatThreshold": 55,
+          "bonusClasses": ["archer"],
+          "successNodeId": "ct_phase2_win", "failureNodeId": "ct_phase2_fail",
+          "failHpDelta": -30, "failMoraleDelta": -20
+        }
+      ]
+    },
+    {
+      "id": "ct_phase2_win",
+      "locationTitle": "王座之间",
+      "musicKey": "throne_theme",
+      "type": "narrative",
+      "text": "虚空碎裂——魔王重新凝聚成人形，但此刻他的身体在颤抖。\n\n「你——你竟然——」\n\n他的声音中头一次出现了惊恐。你伤到了他——真正地伤到了他的核心。\n\n「不——我不会——被凡人——」\n\n他爆发了——最后的力量，最后的封印。他的身体变成了一团燃烧的黑色火焰——这是他的终极形态。\n\n# 魔王 — Phase 3：终焉形态 #",
+      "nextNodeId": "ct_boss_phase3",
+      "grantedFlags": ["lvl_20"],
+      "hpDelta": 0, "moraleDelta": 15
+    },
+    {
+      "id": "ct_phase2_fail",
+      "locationTitle": "王座之间",
+      "musicKey": "boss_theme",
+      "type": "narrative",
+      "text": "虚空几乎吞噬了你——但你在最后一刻抓住了你的信念。你从黑暗中挣脱——衣服被撕裂，皮肤上布满伤口——但你还活着。\n\n魔王退了一步。他也没想到你能挣脱出来。",
+      "nextNodeId": "ct_boss_phase3",
+      "grantedFlags": ["lvl_20"],
+      "hpDelta": 0, "moraleDelta": 0
+    },
+
+    {
+      "id": "ct_boss_phase3",
+      "locationTitle": "王座之间 · 最终形态",
+      "musicKey": "throne_theme",
+      "type": "choice",
+      "text": "「这就是——终结——」\n\n魔王的声音从四面八方涌来。他的终极形态——燃烧的黑暗之火——充斥着整个王座之间。穹顶在高温下扭曲，地面的玄武岩开始熔化。\n\n这是最后一击。不是你死——就是他。\n\n你举起武器。所有旅程——所有战斗——所有选择——都通向这一刻。\n\n# 魔王 — Phase 3：终焉形态 #",
+      "classText": {
+        "hero": "你的圣剑从未如此明亮——它在你手中燃烧着纯粹的金色火焰。你想起启程村的石碑，想起父亲的眼神，想起每一个你承诺保护的人。",
+        "warrior": "你握紧战斧。每一次战斗——每一次胜利——每一次失败——都让你的斧刃更锋利。这不是魔王的终结——这是你的巅峰。",
+        "archer": "你搭上最后一支箭。风速——零。距离——完美。你的心跳慢下来——进入猎手的状态。整个世界只剩下你和猎物。",
+        "mage": "体内每一丝魔力都被你调动起来——火、冰、风、雷——四元素在你周围旋转。学院的训练，路上的磨砺，所有法力储备——一次性释放。",
+        "priest": "你跪下——不是为了投降，而是为了祈祷。圣光从天穹洒下，穿过魔王的黑暗屏障——照在你的身上。圣光从未如此明亮。"
+      },
+      "choices": [
+        {
+          "text": "【终极一击】[需等级20+T3武器] 释放你的全部潜能——终结一切",
+          "requiredFlags": ["lvl_20"],
+          "isCombat": true, "combatThreshold": 55,
+          "bonusClasses": ["hero", "warrior", "archer", "mage", "priest"],
+          "successNodeId": "ct_final_victory",
+          "failureNodeId": "ct_final_defeat",
+          "failHpDelta": -50, "failMoraleDelta": -40
+        },
+        {
+          "text": "【拼死一搏】已经没有退路了——赌上一切的最后冲锋",
+          "isCombat": true, "combatThreshold": 80,
+          "bonusClasses": ["hero", "warrior"],
+          "successNodeId": "ct_final_victory",
+          "failureNodeId": "ct_final_defeat",
+          "failHpDelta": -60, "failMoraleDelta": -50
+        }
+      ]
+    },
+    {
+      "id": "ct_final_victory",
+      "locationTitle": "王座之间",
+      "musicKey": "victory_theme",
+      "type": "choice",
+      "text": "击中了——\n\n黑暗的火焰在中击点向内坍缩——然后爆开。魔王发出一声震天的咆哮——然后一切都静了下来。\n\n魔王——变回了人形。他跪在地上，身上的黑暗魔力正在消散。他抬头看着你——眼中不再是黑暗，而是一个疲惫的老人。\n\n「谢谢你——」他说。\n\n「我终于——可以休息了——」\n\n你站在他面前，武器在手。他无力反抗。\n\n最后一击——由你决定。",
+      "choices": [
+        {
+          "text": "【饶恕】放下武器——他不值得被杀",
+          "nextNodeId": "ct_ending_spare",
+          "grantedFlags": ["mercy_path"],
+          "moraleDelta": 20
+        },
+        {
+          "text": "【制裁】完成你的使命——魔王必须死",
+          "nextNodeId": "ct_ending_destroy",
+          "grantedFlags": ["wrath_path"],
+          "moraleDelta": 10
+        },
+        {
+          "text": "【牺牲】[需圣光系职业] 用你的生命力封印黑暗——同归于尽",
+          "classRestricted": true, "allowedClasses": ["hero", "priest"],
+          "nextNodeId": "ct_ending_sacrifice",
+          "grantedFlags": ["wisdom_path"],
+          "moraleDelta": 20
+        }
+      ]
+    },
+    {
+      "id": "ct_final_defeat",
+      "locationTitle": "王座之间",
+      "musicKey": "defeat_theme",
+      "type": "narrative",
+      "text": "魔王的最后一击贯穿了你的防御。你被击飞，撞在墙上，滑落在地。\n\n但你没有完全倒下。你挣扎着爬起来——用武器的柄撑着地面。\n\n「还——没有——结束——」\n\n魔王的脚步在你面前停下。他低头看着你——然后……他放下了手。\n\n「够了。」他说。\n\n他的声音不再是魔王的咆哮——而是人。\n\n「你比之前任何勇者都走得更远。我累了——太累了。」\n\n黑暗在他身上消散。\n\n「杀我吧。或者不杀——随便你。」",
+      "nextNodeId": "ct_final_victory",
+      "hpDelta": 0, "moraleDelta": 0
+    },
+
+    {
+      "id": "ct_ending_spare",
+      "locationTitle": "王座之间 · 结局：宽恕",
+      "musicKey": "victory_theme",
+      "type": "narrative",
+      "text": "你放下了武器。\n\n魔王——不，这个人——看着你，眼泪从他已经不再黑暗的眼中流下。\n\n「几百年了——没有人——选择放下。」\n\n他低下头。黑暗彻底散去了——留下的只是一个苍老的、被自己的罪孽压垮的人。\n\n「我会用残余的力量——驱散魔王军的黑暗。剩下的人生——用来赎罪。」\n\n你转身离开。阳光从穹顶的裂缝中洒下——几百年来的第一次。\n\n你不是杀魔王的勇者。你是打破轮回的人。\n\n这个循环——几百年一次的勇者与魔王的轮回——在你手中终结了。不是因为力量——而是因为你选择了宽恕。\n\n# 结局：宽恕之光 #\n# 魔王被感化，黑暗时代终结，新的希望之光重新照耀大地 #",
+      "isVictory": true,
+      "hpDelta": 0,
+      "moraleDelta": 30
+    },
+    {
+      "id": "ct_ending_destroy",
+      "locationTitle": "王座之间 · 结局：制裁",
+      "musicKey": "victory_theme",
+      "type": "narrative",
+      "text": "你的武器落下。\n\n魔王倒下了——这一次，是真正的死亡。黑暗魔力从他体内迸发——然后消散在空气中。\n\n王座之间恢复了寂静。你站在他的尸体前——喘着气，浑身是伤。\n\n你完成了使命。魔王——死了。\n\n你走出城堡。黑暗的天穹开始裂开——阳光穿过乌云。魔王军正在溃散——它们的力量来源消失了。\n\n世界得救了。\n\n但你看着自己的手——那只沾满了黑色血液的手。你杀了一个人——一个曾经和你一样、为了保护别人而拿起武器的人。\n\n你赢了。但真的赢了吗？\n\n# 结局：正义执行 #\n# 魔王被消灭，世界得救。但勇者心中留下了一个永远没有答案的问题 #",
+      "isVictory": true,
+      "hpDelta": 0,
+      "moraleDelta": 10
+    },
+    {
+      "id": "ct_ending_sacrifice",
+      "locationTitle": "王座之间 · 结局：牺牲",
+      "musicKey": "victory_theme",
+      "type": "narrative",
+      "text": "你把圣光之力全部释放——不是用来毁灭，而是用来净化。\n\n圣光吞没了魔王——也吞没了你。你用自己的灵魂作为容器，把魔王身上的黑暗之力封印在自己的体内——然后和它一起消散。\n\n「这样——就可以——了——」\n\n魔王最后的眼神是震惊——然后是感激。他张了张嘴——没有声音，但你知道他说了什么。\n\n「谢谢。」\n\n你的身体化为光点——和黑暗一起消散在空中。\n\n世界被拯救了。不是因为你杀了魔王——而是因为你用自己的牺牲，打破了几百年来的勇者与魔王的轮回。再也没有魔王了。也再没有勇者了。\n\n王座之间空了。\n\n但阳光——真正地照进来了。\n\n# 结局：圣者的牺牲 #\n# 以自身的消亡终结了永恒的轮回。世界将永远铭记——那个没有留下名字的英雄 #",
+      "isVictory": true,
+      "hpDelta": 0,
+      "moraleDelta": 30
+    },
+
+    {
+      "id": "ct_defeat",
+      "locationTitle": "王座之间",
+      "musicKey": "defeat_theme",
+      "type": "narrative",
+      "text": "你倒在了王座之间。\n\n魔王站在你面前——黑暗在他掌中凝聚成最后一击。\n\n但他的眼中闪过一丝犹豫。\n\n「可惜——」他说。「你比之前任何人都更接近——」\n\n黑暗落下。\n\n你的旅程结束了。世界将继续在黑暗中等待——等待下一个被选中的人，等待下一个轮回。\n\n但也许——你留下的意志——会点燃另一个人心中的光。",
+      "isDefeat": true
+    }
+  ]
+}

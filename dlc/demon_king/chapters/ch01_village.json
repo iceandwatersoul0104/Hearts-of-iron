@@ -1,0 +1,580 @@
+{
+  "chapterId": "village",
+  "startNodeId": "cv_shared_intro",
+  "defeatNodeId": "cv_defeat",
+  "classStartNodes": {
+    "hero":    "cv_hero_start",
+    "warrior": "cv_warrior_start",
+    "archer":  "cv_archer_start",
+    "mage":    "cv_mage_start",
+    "priest":  "cv_priest_start"
+  },
+  "nodes": [
+    {
+      "id": "cv_shared_intro",
+      "locationTitle": "启程之村",
+      "musicKey": "village_peace",
+      "type": "narrative",
+      "text": "魔王军——\n\n这个名字曾经只存在于老人们讲述的传说中。数百年前，勇者与魔王的那场大战，早已变成了哄孩子睡觉的睡前故事。\n\n没有人真正相信魔王会回来。\n\n直到上个月——北境的天空变成了血红色。魔物从森林深处涌出，村庄一个接一个地沦陷。王都派出的骑士团……没有一个回来。\n\n而你，就是在这个时代，站在启程之村——一切开始的地方。",
+      "nextNodeId": "cv_exit",
+      "classText": {
+        "hero": "你叫艾伦，启程村的铁匠之子。今早，村口的石碑发光了——那把被预言选中的勇者之剑，正在等待它的主人。\n\n你的故事，从这里开始。",
+        "warrior": "你叫格鲁，一名流浪的北方佣兵。你见过太多战争，以为魔王只是政客编造的借口——直到你在荒野中亲手砍倒了一只真正的魔物。\n\n你循着踪迹来到了这个村庄。",
+        "archer": "你叫莉雅，森林猎手部族的后裔。你的族人在一个月前消失了——只留下一地魔物的脚印。\n\n追踪这些脚印，你来到了启程之村。",
+        "mage": "你叫伊格尼斯，王都魔法学院的精英学徒。学院的侦测水晶在三天前炸裂了——巨大的魔力波动来自东方。\n\n院长看着你说：「去吧。找到源头。」",
+        "priest": "你叫塞拉，圣堂的守护牧师。你梦见了黑暗——无边无际的黑暗笼罩着大地，以及黑暗中唯一的光。\n\n圣堂的长老说那是神谕。你的使命，从启程之村开始。"
+      }
+    },
+    {
+      "id": "cv_exit",
+      "locationTitle": "启程之村",
+      "musicKey": "village_peace",
+      "type": "choice",
+      "text": "你站在村口。石碑在前方沉默地立着。村民们投来各色的目光——期待、怀疑、害怕。\n\n你该如何开始？",
+      "choices": [
+        {
+          "text": "【前进】走向石碑——那里有属于你的命运",
+          "nextNodeId": "cv_hero_start",
+          "classRestricted": true,
+          "allowedClasses": ["hero"],
+          "grantedFlags": ["lvl_2"]
+        },
+        {
+          "text": "【调查】检查村口的魔物踪迹",
+          "nextNodeId": "cv_warrior_start",
+          "classRestricted": true,
+          "allowedClasses": ["warrior"],
+          "grantedFlags": ["lvl_2"]
+        },
+        {
+          "text": "【追踪】循着魔物留下的痕迹深入",
+          "nextNodeId": "cv_archer_start",
+          "classRestricted": true,
+          "allowedClasses": ["archer"],
+          "grantedFlags": ["lvl_2"]
+        },
+        {
+          "text": "【感知】感受周围的魔力流动",
+          "nextNodeId": "cv_mage_start",
+          "classRestricted": true,
+          "allowedClasses": ["mage"],
+          "grantedFlags": ["lvl_2"]
+        },
+        {
+          "text": "【祈祷】向圣光寻求指引",
+          "nextNodeId": "cv_priest_start",
+          "classRestricted": true,
+          "allowedClasses": ["priest"],
+          "grantedFlags": ["lvl_2"]
+        }
+      ]
+    },
+
+    {
+      "id": "cv_hero_start",
+      "locationTitle": "启程之村 · 石碑之前",
+      "musicKey": "village_peace",
+      "type": "narrative",
+      "text": "你站在石碑前。那把剑——锈迹斑斑，却发着淡金色的光，像心跳一样一明一暗。\n\n村长站在你身后，声音发颤：「传说中，能拔出此剑之人，便是拯救世界的勇者……但我们一直以为只是故事。」\n\n村民们聚在远处窃窃私语。你父母站在人群最前面——母亲握紧了围裙，父亲沉默地看着你。\n\n你伸出手——",
+      "nextNodeId": "cv_hero_sword"
+    },
+    {
+      "id": "cv_hero_sword",
+      "locationTitle": "启程之村 · 石碑之前",
+      "musicKey": "village_peace",
+      "type": "choice",
+      "text": "你的手悬在剑柄上方。剑身上的光芒更加明亮了——它在回应你。\n\n深吸一口气——",
+      "choices": [
+        {
+          "text": "【拔出】握住剑柄，用力拔出",
+          "isCombat": true,
+          "combatThreshold": 40,
+          "bonusClasses": ["hero"],
+          "successNodeId": "cv_hero_drawn",
+          "failureNodeId": "cv_hero_struggle",
+          "failHpDelta": -5,
+          "failMoraleDelta": -10
+        }
+      ]
+    },
+    {
+      "id": "cv_hero_drawn",
+      "locationTitle": "启程之村 · 石碑之前",
+      "musicKey": "village_peace",
+      "type": "narrative",
+      "text": "剑刃从石碑中滑出——比想象中轻。锈迹在你握住剑柄的瞬间剥落，露出下面流转着淡金色光芒的剑身。\n\n铁剑——不是什么传说中的圣剑。但它在你手中微微发热，像活的一样。\n\n村民们爆发出惊呼。村长跪了下来——你赶紧把他扶起。\n\n你把剑挂在腰间。从现在开始，你的人生不一样了。",
+      "nextNodeId": "cv_hero_first_quest"
+    },
+    {
+      "id": "cv_hero_struggle",
+      "locationTitle": "启程之村 · 石碑之前",
+      "musicKey": "village_peace",
+      "type": "narrative",
+      "text": "剑纹丝不动。你的手臂酸了，信心动摇了一瞬。\n\n但你没有放弃——深呼吸，调整姿势，再次用力——\n\n这一次，剑刃缓缓滑出，带着低沉的嗡鸣。虽然没有传说中那么轻松，但剑确实选择了你。",
+      "nextNodeId": "cv_hero_first_quest",
+      "hpDelta": -5,
+      "moraleDelta": -5
+    },
+    {
+      "id": "cv_hero_first_quest",
+      "locationTitle": "启程之村 · 铁匠铺",
+      "musicKey": "village_peace",
+      "type": "choice",
+      "text": "村长告诉你，村外的矿洞里出现了几只魔化的蝙蝠，已经伤了一个矿工。\n\n「这是你作为勇者的第一场战斗——小心。」你父亲递给你一块磨刀石。",
+      "choices": [
+        {
+          "text": "【讨伐】前往矿洞消灭魔化蝙蝠",
+          "isCombat": true,
+          "combatThreshold": 45,
+          "bonusClasses": ["hero", "warrior"],
+          "successNodeId": "cv_hero_quest_done",
+          "failureNodeId": "cv_hero_quest_hurt",
+          "failHpDelta": -15,
+          "failMoraleDelta": -10,
+          "grantedFlags": ["lvl_3", "hero_iron_sword"]
+        }
+      ]
+    },
+    {
+      "id": "cv_hero_quest_done",
+      "locationTitle": "启程之村 · 矿洞",
+      "musicKey": "village_peace",
+      "type": "narrative",
+      "text": "蝙蝠在剑光中消散。你喘着气，手臂有些发酸，但——你赢了。\n\n矿工们从藏身处出来，感激地拍着你的肩膀，递给你一块磨好的铁锭。父亲帮你在剑刃上淬了一层精铁。\n\n这把剑现在真正属于你了。",
+      "nextNodeId": "cv_village_converge",
+      "grantedFlags": ["saved_miners"],
+      "moraleDelta": 10
+    },
+    {
+      "id": "cv_hero_quest_hurt",
+      "locationTitle": "启程之村 · 矿洞",
+      "musicKey": "village_peace",
+      "type": "narrative",
+      "text": "蝙蝠在你手臂上留下了一道口子。但你最终还是把它们全都消灭了。\n\n矿工们扶着你回到村里。伤口会愈合——而你已经完成了第一场战斗。父亲默默把一块精铁淬在你的剑刃上。",
+      "nextNodeId": "cv_village_converge",
+      "hpDelta": -10,
+      "moraleDelta": -5
+    },
+
+    {
+      "id": "cv_warrior_start",
+      "locationTitle": "启程之村 · 村口",
+      "musicKey": "village_peace",
+      "type": "narrative",
+      "text": "你蹲下身，用手指摸了摸地上的爪印。很深——是成年魔狼。不只一只，至少三只，昨晚经过这里。\n\n村民们说这些魔狼每晚都会来，叼走牲畜——已经持续一周了。\n\n「它们今晚还会来。」你对围观的村民说。他们脸色发白。\n\n你站起身，拔出背后的战斧。这把老伙计跟你打过北境的兽人、荒野的盗匪。几只魔狼——不在话下。",
+      "nextNodeId": "cv_warrior_wolves"
+    },
+    {
+      "id": "cv_warrior_wolves",
+      "locationTitle": "启程之村 · 牧场",
+      "musicKey": "village_battle",
+      "type": "choice",
+      "text": "夜幕降临。你在牧场栅栏后蹲守，战斧横在膝上。\n\n月亮升起时，三双绿色的眼睛在树林边缘亮起。它们来了——",
+      "choices": [
+        {
+          "text": "【正面迎击】跳出栅栏，直接杀入狼群",
+          "isCombat": true,
+          "combatThreshold": 45,
+          "bonusClasses": ["warrior"],
+          "successNodeId": "cv_warrior_wolves_done",
+          "failureNodeId": "cv_warrior_wolves_hurt",
+          "failHpDelta": -15,
+          "failMoraleDelta": -10,
+          "grantedFlags": ["lvl_3", "war_iron_axe"]
+        }
+      ]
+    },
+    {
+      "id": "cv_warrior_wolves_done",
+      "locationTitle": "启程之村 · 牧场",
+      "musicKey": "village_peace",
+      "type": "narrative",
+      "text": "三只魔狼倒在你的斧下。村民们举着火把从屋里出来，爆发出欢呼。\n\n铁匠走到你面前，看着你斧刃上的缺口：「这把斧头跟你打了不少仗。让我给它加点好钢。」\n\n一晚过后，你的战斧焕然一新。这个村庄——暂时安全了。",
+      "nextNodeId": "cv_village_converge",
+      "grantedFlags": ["saved_livestock"],
+      "moraleDelta": 10
+    },
+    {
+      "id": "cv_warrior_wolves_hurt",
+      "locationTitle": "启程之村 · 牧场",
+      "musicKey": "village_peace",
+      "type": "narrative",
+      "text": "你挨了一爪子——但三只魔狼还是都倒下了。村民们沉默地看着你被撕破的护甲，眼里满是感激。\n\n铁匠连夜给你的斧刃淬了钢。至少下次，它会砍得更深。",
+      "nextNodeId": "cv_village_converge",
+      "hpDelta": -10,
+      "moraleDelta": -5
+    },
+
+    {
+      "id": "cv_archer_start",
+      "locationTitle": "启程之村 · 树林边缘",
+      "musicKey": "forest_mystic",
+      "type": "narrative",
+      "text": "魔物的脚印通向村外的密林。你跟随着它们，弓已搭弦。\n\n前方——一只受伤的森林鹿，被魔化藤蔓缠住了。藤蔓上有黑暗魔力的痕迹。你瞄准藤蔓最粗的那根——",
+      "nextNodeId": "cv_archer_deer"
+    },
+    {
+      "id": "cv_archer_deer",
+      "locationTitle": "启程之村 · 密林深处",
+      "musicKey": "forest_mystic",
+      "type": "choice",
+      "text": "魔化藤蔓感知到了你——几根触须般的长藤向你抽来。鹿在痛苦地嘶鸣。",
+      "choices": [
+        {
+          "text": "【精准射击】一箭切断所有藤蔓",
+          "isCombat": true,
+          "combatThreshold": 45,
+          "bonusClasses": ["archer"],
+          "successNodeId": "cv_archer_deer_saved",
+          "failureNodeId": "cv_archer_deer_hurt",
+          "failHpDelta": -15,
+          "failMoraleDelta": -10,
+          "grantedFlags": ["lvl_3", "arc_hunter_bow"]
+        }
+      ]
+    },
+    {
+      "id": "cv_archer_deer_saved",
+      "locationTitle": "启程之村 · 密林深处",
+      "musicKey": "forest_mystic",
+      "type": "narrative",
+      "text": "三箭——藤蔓断裂，黑暗魔力消散。鹿站起身，用鼻子蹭了蹭你的手，然后消失在树林中。\n\n你低头发现鹿站过的地方有一小段发光的鹿角——它留下了一份礼物。你把鹿角碎片绑在弓上，弓弦泛起微微的绿光。\n\n森林在感谢你。",
+      "nextNodeId": "cv_village_converge",
+      "grantedFlags": ["forest_blessing"],
+      "moraleDelta": 10
+    },
+    {
+      "id": "cv_archer_deer_hurt",
+      "locationTitle": "启程之村 · 密林深处",
+      "musicKey": "forest_mystic",
+      "type": "narrative",
+      "text": "你射中了——但一根藤蔓在你脸颊上划出了血痕。鹿挣脱后逃走了。\n\n你在原地捡到一小块鹿角碎片——它还是留下了一份礼物。你把它绑在弓上。下一次，你的箭会更快。",
+      "nextNodeId": "cv_village_converge",
+      "hpDelta": -10,
+      "moraleDelta": -5
+    },
+
+    {
+      "id": "cv_mage_start",
+      "locationTitle": "启程之村 · 村外小丘",
+      "musicKey": "village_peace",
+      "type": "narrative",
+      "text": "你闭上眼，魔力在指尖流动。果然——东边的魔力波动最为强烈。\n\n但就在你感知四周时，一只魔化的石像鬼从天空俯冲而下——它的目标不是你，而是村里的孩子。",
+      "nextNodeId": "cv_mage_gargoyle"
+    },
+    {
+      "id": "cv_mage_gargoyle",
+      "locationTitle": "启程之村 · 村外小丘",
+      "musicKey": "village_battle",
+      "type": "choice",
+      "text": "石像鬼俯冲着，尖啸刺耳。孩子们尖叫着四散。你抬起手——魔力汇聚成灼热的火球。",
+      "choices": [
+        {
+          "text": "【火球术】释放蓄力的火焰弹",
+          "isCombat": true,
+          "combatThreshold": 45,
+          "bonusClasses": ["mage"],
+          "successNodeId": "cv_mage_win",
+          "failureNodeId": "cv_mage_hurt",
+          "failHpDelta": -15,
+          "failMoraleDelta": -10,
+          "grantedFlags": ["lvl_3", "mag_appr_staff"]
+        }
+      ]
+    },
+    {
+      "id": "cv_mage_win",
+      "locationTitle": "启程之村 · 村外小丘",
+      "musicKey": "village_peace",
+      "type": "narrative",
+      "text": "火球正中石像鬼——它在半空中炸成碎石。孩子们安全了。\n\n村长老泪纵横地握着你的手：「法师大人……请一定要保护好这个村子。」\n\n他从村仓中取出一根保存多年的学徒法杖——虽然朴素，但杖头的水晶能帮你更好地引导魔力。",
+      "nextNodeId": "cv_village_converge",
+      "grantedFlags": ["saved_children"],
+      "moraleDelta": 10
+    },
+    {
+      "id": "cv_mage_hurt",
+      "locationTitle": "启程之村 · 村外小丘",
+      "musicKey": "village_peace",
+      "type": "narrative",
+      "text": "火球擦过石像鬼的翅膀——它还是被你击落了，但在坠落前它的爪子划过了你的肩膀。孩子们安全了，你忍着痛收起法力。\n\n村长给了你一根学徒法杖：「虽然旧了——但能帮你。」",
+      "nextNodeId": "cv_village_converge",
+      "hpDelta": -10,
+      "moraleDelta": -5
+    },
+
+    {
+      "id": "cv_priest_start",
+      "locationTitle": "启程之村 · 小圣堂",
+      "musicKey": "village_peace",
+      "type": "narrative",
+      "text": "启程之村的小圣堂——与其说是圣堂，不如说是一间木屋改的礼拜所。\n\n但圣光不分场所。你跪在简陋的圣坛前祈祷——然后听到了哭声。\n\n一个女孩蹲在角落——她的父亲被魔物咬伤了，伤口正在变黑。魔化——恶性的诅咒正在蔓延。",
+      "nextNodeId": "cv_priest_heal"
+    },
+    {
+      "id": "cv_priest_heal",
+      "locationTitle": "启程之村 · 小圣堂",
+      "musicKey": "village_peace",
+      "type": "choice",
+      "text": "男人痛苦地呻吟着，黑色的诅咒从伤口向心脏蔓延。\n\n「牧师大人——求求你！」女孩哭着。\n\n你将手悬在伤口上方——圣光在你的掌中汇聚。",
+      "choices": [
+        {
+          "text": "【净化】以圣光驱散诅咒",
+          "isCombat": true,
+          "combatThreshold": 45,
+          "bonusClasses": ["priest"],
+          "successNodeId": "cv_priest_win",
+          "failureNodeId": "cv_priest_hurt",
+          "failHpDelta": -10,
+          "failMoraleDelta": -15,
+          "grantedFlags": ["lvl_3", "pri_oak_mace"]
+        }
+      ]
+    },
+    {
+      "id": "cv_priest_win",
+      "locationTitle": "启程之村 · 小圣堂",
+      "musicKey": "village_peace",
+      "type": "narrative",
+      "text": "金光绽放——黑色的诅咒在圣光中蒸发。男人喘着粗气，伤口恢复了正常的红色。女孩扑进你怀里大哭。\n\n圣堂的长老从圣坛下取出一把橡木钉头锤——「这是前任守护牧师留下的。它在你手中，比在我手中更有意义。」",
+      "nextNodeId": "cv_village_converge",
+      "grantedFlags": ["healed_villager"],
+      "moraleDelta": 10
+    },
+    {
+      "id": "cv_priest_hurt",
+      "locationTitle": "启程之村 · 小圣堂",
+      "musicKey": "village_peace",
+      "type": "narrative",
+      "text": "诅咒比你想象中更强——你耗费了大量圣力才把它驱散。男人脱离了危险，但你面色苍白，冷汗涔涔。\n\n长老递给你一把橡木钉头锤：「拿着——你比我们需要它。」",
+      "nextNodeId": "cv_village_converge",
+      "hpDelta": -5,
+      "moraleDelta": -10
+    },
+
+    {
+      "id": "cv_village_converge",
+      "locationTitle": "启程之村 · 村广场",
+      "musicKey": "village_peace",
+      "type": "narrative",
+      "text": "你回到村广场。村民们聚在一起——感激、敬畏、期待，各种情绪在人群中涌动。\n\n但就在这时——瞭望塔上的铃铛疯狂地响了起来。\n\n「魔物！大量魔物正朝村子过来！」\n\n所有人的目光都转向了你。\n\n你是这里唯一能战斗的人。",
+      "nextNodeId": "cv_village_defense"
+    },
+
+    {
+      "id": "cv_village_defense",
+      "locationTitle": "启程之村 · 村口栅栏",
+      "musicKey": "village_battle",
+      "type": "choice",
+      "text": "村口的栅栏外——十几个绿皮哥布林正从树林中涌出。它们后面，隐约能看到一只巨大的身影——那是它们的王。\n\n村民们颤抖着躲在屋里。铁匠抄起了锤子，面包师举着擀面杖——但他们不是战士。\n\n你站在栅栏前。这是你的战斗。",
+      "classText": {
+        "hero": "你握紧手中的剑。它在发着微光——仿佛在告诉你，这就是你拔出它的意义。",
+        "warrior": "你冷笑着举起战斧。这群杂碎——比北境的兽人差远了。",
+        "archer": "你搭箭上弦。栅栏的缺口正好提供了一个绝佳的射击位。风速——两节，从西吹来。",
+        "mage": "魔力在血管中奔涌。一群哥布林——一个精准的火球就能打散它们的阵型。",
+        "priest": "你在心中默念祷文。圣光将庇佑这些无辜的人——也会赐予你击退邪恶的力量。"
+      },
+      "choices": [
+        {
+          "text": "【正面战斗】冲出栅栏迎击前锋",
+          "isCombat": true,
+          "combatThreshold": 55,
+          "bonusClasses": ["hero", "warrior"],
+          "successNodeId": "cv_defense_win",
+          "failureNodeId": "cv_defense_hurt",
+          "failHpDelta": -20,
+          "failMoraleDelta": -15
+        },
+        {
+          "text": "【远程打击】利用栅栏作为掩护狙击",
+          "isCombat": true,
+          "combatThreshold": 50,
+          "bonusClasses": ["archer", "mage"],
+          "successNodeId": "cv_defense_win",
+          "failureNodeId": "cv_defense_hurt",
+          "failHpDelta": -15,
+          "failMoraleDelta": -10
+        },
+        {
+          "text": "【神圣庇护】[牧师] 祝福栅栏形成圣光屏障",
+          "classRestricted": true,
+          "allowedClasses": ["priest"],
+          "isCombat": true,
+          "combatThreshold": 40,
+          "bonusClasses": ["priest"],
+          "successNodeId": "cv_defense_win",
+          "failureNodeId": "cv_defense_hurt",
+          "failHpDelta": -10,
+          "failMoraleDelta": -10,
+          "hpDelta": 0,
+          "moraleDelta": 10
+        }
+      ]
+    },
+    {
+      "id": "cv_defense_win",
+      "locationTitle": "启程之村 · 村口栅栏",
+      "musicKey": "village_battle",
+      "type": "narrative",
+      "text": "哥布林前锋溃散了——它们尖叫着逃回树林。村民们爆发出欢呼。\n\n但战斗还没有结束。树林深处，一声低沉的咆哮震得树叶簌簌落下。\n\n哥布林王——它正在走出树林。每一步都让大地微微震动。它比你高出一倍，手里拖着一根粗大的树干当武器。\n\n这是最后的敌人。",
+      "nextNodeId": "cv_goblin_boss",
+      "grantedFlags": ["lvl_4"],
+      "moraleDelta": 10
+    },
+    {
+      "id": "cv_defense_hurt",
+      "locationTitle": "启程之村 · 村口栅栏",
+      "musicKey": "village_battle",
+      "type": "narrative",
+      "text": "你击退了哥布林前锋——但自己也挂了彩。村民们扶着你，眼中满是感激与担忧。\n\n然而树林深处传来了更沉重的脚步声。哥布林王——它闻到了血腥味，正在逼近。\n\n你没有退路。",
+      "nextNodeId": "cv_goblin_boss",
+      "grantedFlags": ["lvl_4"],
+      "hpDelta": 0,
+      "moraleDelta": 5
+    },
+
+    {
+      "id": "cv_goblin_boss",
+      "locationTitle": "启程之村 · 村口",
+      "musicKey": "boss_theme",
+      "type": "choice",
+      "text": "哥布林王——绿色的皮肤上布满了旧伤疤。它的小眼睛死死盯着你，嘴角流出恶臭的口水。\n\n它举起树干——一声震耳欲聋的咆哮。\n\n这是你的第一个Boss战。",
+      "choices": [
+        {
+          "text": "【全力一击】集中全部力量正面硬拼",
+          "isCombat": true,
+          "combatThreshold": 55,
+          "bonusClasses": ["hero", "warrior"],
+          "successNodeId": "cv_boss_win",
+          "failureNodeId": "cv_boss_fail",
+          "failHpDelta": -25,
+          "failMoraleDelta": -20
+        },
+        {
+          "text": "【弱点攻击】[需等级3] 瞄准它的膝盖——那里有旧伤",
+          "requiredFlags": ["lvl_3"],
+          "isCombat": true,
+          "combatThreshold": 45,
+          "bonusClasses": ["archer", "hero"],
+          "successNodeId": "cv_boss_win",
+          "failureNodeId": "cv_boss_fail",
+          "failHpDelta": -15,
+          "failMoraleDelta": -15
+        },
+        {
+          "text": "【魔法压制】[需法师] 蓄力释放火焰风暴",
+          "classRestricted": true,
+          "allowedClasses": ["mage"],
+          "isCombat": true,
+          "combatThreshold": 50,
+          "bonusClasses": ["mage"],
+          "successNodeId": "cv_boss_win_magic",
+          "failureNodeId": "cv_boss_fail",
+          "failHpDelta": -20,
+          "failMoraleDelta": -15
+        },
+        {
+          "text": "【神圣惩戒】[需牧师] 呼唤圣光审判邪恶",
+          "classRestricted": true,
+          "allowedClasses": ["priest"],
+          "isCombat": true,
+          "combatThreshold": 50,
+          "bonusClasses": ["priest"],
+          "successNodeId": "cv_boss_win_holy",
+          "failureNodeId": "cv_boss_fail",
+          "failHpDelta": -15,
+          "failMoraleDelta": -20
+        }
+      ]
+    },
+    {
+      "id": "cv_boss_win",
+      "locationTitle": "启程之村 · 村口",
+      "musicKey": "victory_theme",
+      "type": "narrative",
+      "text": "哥布林王轰然倒下——大地都震了一震。绿色巨躯抽搐了几下，然后不再动弹。\n\n寂静。然后是欢呼——整个村庄都在为你欢呼。孩子们从屋里跑出来，围着你又跳又叫。\n\n你站在哥布林王的尸体旁，喘着气，浑身酸痛——但你赢了。\n\n这是第一场真正的胜利。",
+      "nextNodeId": "cv_loot",
+      "grantedFlags": ["lvl_5", "defeated_goblin_king"],
+      "hpDelta": 0,
+      "moraleDelta": 15
+    },
+    {
+      "id": "cv_boss_win_magic",
+      "locationTitle": "启程之村 · 村口",
+      "musicKey": "victory_theme",
+      "type": "narrative",
+      "text": "火海吞没了哥布林王——它烧了好一阵才倒下。空气中弥漫着焦味。\n\n村民们敬畏地看着你——魔法的力量让他们说不出话。\n\n你收起法杖。这只是开始——但你证明了自己。",
+      "nextNodeId": "cv_loot",
+      "grantedFlags": ["lvl_5", "defeated_goblin_king"],
+      "hpDelta": 0,
+      "moraleDelta": 15
+    },
+    {
+      "id": "cv_boss_win_holy",
+      "locationTitle": "启程之村 · 村口",
+      "musicKey": "victory_theme",
+      "type": "narrative",
+      "text": "圣光如利剑般刺穿了哥布林王——它连惨叫都没来得及发出，就被净化成了飞灰。\n\n村民们跪下了。不是因为恐惧——而是因为他们亲眼看到了神迹。\n\n你扶起老村长：「不必跪我。跪圣光。」",
+      "nextNodeId": "cv_loot",
+      "grantedFlags": ["lvl_5", "defeated_goblin_king"],
+      "hpDelta": 0,
+      "moraleDelta": 15
+    },
+    {
+      "id": "cv_boss_fail",
+      "locationTitle": "启程之村 · 村口",
+      "musicKey": "defeat_theme",
+      "type": "narrative",
+      "text": "哥布林王的一击把你砸飞出去——你撞在栅栏上，眼前发黑。村民们发出惊恐的叫喊。\n\n但你挣扎着爬起来。不能倒下——不能在这里倒下。\n\n你咬紧牙关，重新握紧武器。这场战斗还没有结束。",
+      "nextNodeId": "cv_loot",
+      "hpDelta": 0,
+      "moraleDelta": -10
+    },
+
+    {
+      "id": "cv_loot",
+      "locationTitle": "启程之村 · 村口",
+      "musicKey": "victory_theme",
+      "type": "choice",
+      "text": "战斗结束。村长颤巍巍地走来：「我们……我们不知道该怎么感谢你。请收下这些——虽然不多，但这是我们能拿出的最好的东西了。」\n\n村子里拿出了他们珍藏的装备。",
+      "classText": {
+        "hero": "村民们递上一面铜盾——这是村子的传家宝。「只有真正的勇者配得上它。」",
+        "warrior": "铁匠递给你一双铁护腕——他连夜打造的。「能帮你在战场上多挨两下。」",
+        "archer": "猎户送你一袋精制箭矢——箭头上抹了麻痹草汁。「对付那些皮厚的家伙有奇效。」",
+        "mage": "老村长拿出一本泛黄的法术书——「我曾祖父留下的，我们看不懂，但你应该能。」",
+        "priest": "小圣堂的坛上放着一条圣光项链——「这是前任守护牧师留下的遗物。」"
+      },
+      "choices": [
+        {
+          "text": "【装备】收下这份礼物",
+          "nextNodeId": "cv_village_victory",
+          "grantedFlags": ["armor_leather", "has_potion"],
+          "moraleDelta": 10
+        },
+        {
+          "text": "【婉拒】把这些留给村民们吧",
+          "nextNodeId": "cv_village_victory",
+          "moraleDelta": 5,
+          "grantedFlags": ["humble_path"]
+        }
+      ]
+    },
+    {
+      "id": "cv_village_victory",
+      "locationTitle": "启程之村 · 村广场",
+      "musicKey": "victory_theme",
+      "type": "narrative",
+      "text": "哥布林王被消灭的消息传遍了四邻。启程之村暂时安全了。\n\n但你不会在这里停下。魔王军的主力还在远方——在东边，在暗影森林的深处，在魔王城的黑暗中。\n\n村民们为你举办了简单的送别会。父母、村长、每一个被你救过的人——他们都来到了村口。\n\n「去吧。」你父亲说。你母亲哭了，但没有阻拦。\n\n你踏上了通往东方的路。第一章，结束。",
+      "isVictory": true
+    },
+
+    {
+      "id": "cv_defeat",
+      "locationTitle": "启程之村",
+      "musicKey": "defeat_theme",
+      "type": "narrative",
+      "text": "你倒下了。\n\n哥布林的尖啸在耳边回响，视野逐渐变为黑暗。\n\n启程之村——你的冒险，在这里结束了。\n\n但也许，另一个时空中，另一个被选中的人会站起来……",
+      "isDefeat": true
+    }
+  ]
+}

@@ -21,7 +21,10 @@ void MenuWidget::setupUi() {
 
     m_stack = new QStackedWidget(this);
 
-    // ===== Panel 0: Main Menu =====
+    // ===== Panel 0: Category Selection =====
+    setupCategoryPanel();
+
+    // ===== Panel 1: Main Menu =====
     m_mainMenuPanel = new QWidget(this);
     QVBoxLayout *mainLayout = new QVBoxLayout(m_mainMenuPanel);
     mainLayout->setContentsMargins(50, 80, 50, 80);
@@ -81,14 +84,14 @@ void MenuWidget::setupUi() {
     mainLayout->addLayout(btnLayout);
 
     // 返回DLC选择按钮
-    QPushButton *dlcBackBtn = new QPushButton(QStringLiteral("返回DLC选择"), m_mainMenuPanel);
-    dlcBackBtn->setObjectName(QStringLiteral("createBackBtn"));
-    dlcBackBtn->setCursor(Qt::PointingHandCursor);
-    dlcBackBtn->setMinimumSize(200, 36);
-    connect(dlcBackBtn, &QPushButton::clicked, this, [this]() {
-        m_stack->setCurrentIndex(1);
+    m_dlcBackBtn = new QPushButton(QStringLiteral("返回DLC选择"), m_mainMenuPanel);
+    m_dlcBackBtn->setObjectName(QStringLiteral("createBackBtn"));
+    m_dlcBackBtn->setCursor(Qt::PointingHandCursor);
+    m_dlcBackBtn->setMinimumSize(200, 36);
+    connect(m_dlcBackBtn, &QPushButton::clicked, this, [this]() {
+        m_stack->setCurrentIndex(2);  // back to DLC list
     });
-    mainLayout->addWidget(dlcBackBtn, 0, Qt::AlignCenter);
+    mainLayout->addWidget(m_dlcBackBtn, 0, Qt::AlignCenter);
 
     mainLayout->addStretch(1);
 
@@ -97,12 +100,126 @@ void MenuWidget::setupUi() {
     footer->setAlignment(Qt::AlignCenter);
     mainLayout->addWidget(footer);
 
-    m_stack->addWidget(m_mainMenuPanel);  // Index 0
+    m_stack->addWidget(m_mainMenuPanel);  // Index 1
 
-    // ===== Panel 1: DLC List =====
+    // ===== Panel 2: DLC List =====
+    setupDlcListPanel();
+
+    // 默认显示类别选择
+    m_stack->setCurrentIndex(0);
+
+    outerLayout->addWidget(m_stack);
+}
+
+void MenuWidget::setupCategoryPanel() {
+    m_categoryPanel = new QWidget(this);
+    QVBoxLayout *catLayout = new QVBoxLayout(m_categoryPanel);
+    catLayout->setContentsMargins(50, 80, 50, 80);
+    catLayout->setSpacing(30);
+    catLayout->setAlignment(Qt::AlignCenter);
+
+    QLabel *catTitle = new QLabel(QStringLiteral("选择你的冒险模式"), m_categoryPanel);
+    catTitle->setObjectName(QStringLiteral("menuTitle"));
+    catTitle->setAlignment(Qt::AlignCenter);
+    catLayout->addWidget(catTitle);
+
+    QLabel *catSubtitle = new QLabel(QStringLiteral("—— 两种截然不同的冒险体验，选择你心仪的征程"), m_categoryPanel);
+    catSubtitle->setObjectName(QStringLiteral("menuSubtitle"));
+    catSubtitle->setAlignment(Qt::AlignCenter);
+    catLayout->addWidget(catSubtitle);
+
+    QFrame *catLine = new QFrame(m_categoryPanel);
+    catLine->setFrameShape(QFrame::HLine);
+    catLine->setObjectName(QStringLiteral("menuDecoLine"));
+    catLayout->addWidget(catLine);
+
+    catLayout->addSpacing(20);
+
+    QHBoxLayout *cardLayout = new QHBoxLayout();
+    cardLayout->setSpacing(40);
+    cardLayout->setAlignment(Qt::AlignCenter);
+
+    // --- 剧情模式卡片 ---
+    QVBoxLayout *narrativeCard = new QVBoxLayout();
+    narrativeCard->setSpacing(12);
+    narrativeCard->setAlignment(Qt::AlignCenter);
+
+    QPushButton *narrativeBtn = new QPushButton(QStringLiteral("剧情模式"), m_categoryPanel);
+    narrativeBtn->setObjectName(QStringLiteral("categoryBtn"));
+    narrativeBtn->setCursor(Qt::PointingHandCursor);
+    narrativeBtn->setMinimumSize(300, 160);
+    narrativeBtn->setStyleSheet(
+        "QPushButton#categoryBtn {"
+        "  font-size: 28px; font-weight: bold;"
+        "  background: #2c3e50; color: #ecf0f1;"
+        "  border: 2px solid #5d6d7e; border-radius: 12px;"
+        "  padding: 20px;"
+        "}"
+        "QPushButton#categoryBtn:hover {"
+        "  background: #34495e; border-color: #aab7c4;"
+        "}"
+    );
+    connect(narrativeBtn, &QPushButton::clicked, this, [this]() {
+        emit categorySelected(QStringLiteral("narrative"));
+    });
+    narrativeCard->addWidget(narrativeBtn);
+
+    QLabel *narrativeDesc = new QLabel(QStringLiteral("文字叙事 · 侧重剧情与抉择\n无战斗养成 · 纯故事体验"), m_categoryPanel);
+    narrativeDesc->setObjectName(QStringLiteral("slotInfo"));
+    narrativeDesc->setAlignment(Qt::AlignCenter);
+    narrativeDesc->setWordWrap(true);
+    narrativeCard->addWidget(narrativeDesc);
+
+    cardLayout->addLayout(narrativeCard);
+
+    // --- 勇者模式卡片 ---
+    QVBoxLayout *rpgCard = new QVBoxLayout();
+    rpgCard->setSpacing(12);
+    rpgCard->setAlignment(Qt::AlignCenter);
+
+    QPushButton *rpgBtn = new QPushButton(QStringLiteral("勇者模式"), m_categoryPanel);
+    rpgBtn->setObjectName(QStringLiteral("categoryBtn"));
+    rpgBtn->setCursor(Qt::PointingHandCursor);
+    rpgBtn->setMinimumSize(300, 160);
+    rpgBtn->setStyleSheet(
+        "QPushButton#categoryBtn {"
+        "  font-size: 28px; font-weight: bold;"
+        "  background: #7d3c1e; color: #f5deb3;"
+        "  border: 2px solid #b87333; border-radius: 12px;"
+        "  padding: 20px;"
+        "}"
+        "QPushButton#categoryBtn:hover {"
+        "  background: #964b2e; border-color: #daa520;"
+        "}"
+    );
+    connect(rpgBtn, &QPushButton::clicked, this, [this]() {
+        emit categorySelected(QStringLiteral("rpg"));
+    });
+    rpgCard->addWidget(rpgBtn);
+
+    QLabel *rpgDesc = new QLabel(QStringLiteral("战斗闯关 · 打怪升级\n装备道具 · 角色养成"), m_categoryPanel);
+    rpgDesc->setObjectName(QStringLiteral("slotInfo"));
+    rpgDesc->setAlignment(Qt::AlignCenter);
+    rpgDesc->setWordWrap(true);
+    rpgCard->addWidget(rpgDesc);
+
+    cardLayout->addLayout(rpgCard);
+
+    catLayout->addLayout(cardLayout);
+    catLayout->addStretch(1);
+
+    QLabel *catFooter = new QLabel(QStringLiteral("选择模式后，将展示该模式下的所有DLC供你挑选"), m_categoryPanel);
+    catFooter->setObjectName(QStringLiteral("menuFooter"));
+    catFooter->setAlignment(Qt::AlignCenter);
+    catLayout->addWidget(catFooter);
+
+    m_stack->addWidget(m_categoryPanel);  // Index 0
+}
+
+void MenuWidget::setupDlcListPanel() {
     m_dlcListPanel = new QWidget(this);
     QVBoxLayout *dlcOuterLayout = new QVBoxLayout(m_dlcListPanel);
-    dlcOuterLayout->setContentsMargins(50, 60, 50, 60);
+    dlcOuterLayout->setContentsMargins(50, 40, 50, 40);
     dlcOuterLayout->setSpacing(20);
     dlcOuterLayout->setAlignment(Qt::AlignCenter);
 
@@ -125,18 +242,30 @@ void MenuWidget::setupUi() {
     m_dlcListLayout->setSpacing(12);
     m_dlcListLayout->setAlignment(Qt::AlignCenter);
     dlcOuterLayout->addLayout(m_dlcListLayout);
+
+    // 返回类别选择按钮
+    m_categoryBackBtn = new QPushButton(QStringLiteral("← 返回类别选择"), m_dlcListPanel);
+    m_categoryBackBtn->setObjectName(QStringLiteral("createBackBtn"));
+    m_categoryBackBtn->setCursor(Qt::PointingHandCursor);
+    m_categoryBackBtn->setMinimumSize(200, 36);
+    connect(m_categoryBackBtn, &QPushButton::clicked, this, [this]() {
+        m_stack->setCurrentIndex(0);
+    });
+    dlcOuterLayout->addWidget(m_categoryBackBtn, 0, Qt::AlignCenter);
+
     dlcOuterLayout->addStretch(1);
 
-    m_stack->addWidget(m_dlcListPanel);  // Index 1
+    m_stack->addWidget(m_dlcListPanel);  // Index 2
+}
 
-    // 默认显示 DLC 选择列表（初始界面，无返回按钮）
-    m_stack->setCurrentIndex(1);
-
-    outerLayout->addWidget(m_stack);
+void MenuWidget::showCategorySelect() {
+    m_stack->setCurrentIndex(0);
 }
 
 void MenuWidget::showDlcList(const QList<DlcManifest> &manifests) {
-    // Clear existing DLC cards
+    // Clear existing DLC cards (but keep the back button — it's at index 1 in the outer layout, not in m_dlcListLayout)
+    // We need to clear only DLC cards. The last item in the layout is stretch, second-to-last is the back button.
+    // Let's just remove all items and re-add what we need.
     QLayoutItem *child;
     while ((child = m_dlcListLayout->takeAt(0)) != nullptr) {
         if (child->widget()) child->widget()->deleteLater();
@@ -144,7 +273,7 @@ void MenuWidget::showDlcList(const QList<DlcManifest> &manifests) {
     }
 
     if (manifests.isEmpty()) {
-        QLabel *emptyLabel = new QLabel(QStringLiteral("未检测到任何DLC模块。\n请在dlc/目录下放入DLC文件夹。"), m_dlcListPanel);
+        QLabel *emptyLabel = new QLabel(QStringLiteral("该模式下暂未检测到DLC模块。\n请在dlc/目录下放入对应类别的DLC文件夹。"), m_dlcListPanel);
         emptyLabel->setObjectName(QStringLiteral("slotInfo"));
         emptyLabel->setAlignment(Qt::AlignCenter);
         m_dlcListLayout->addWidget(emptyLabel);
@@ -178,11 +307,18 @@ void MenuWidget::showDlcList(const QList<DlcManifest> &manifests) {
         }
     }
 
-    m_stack->setCurrentIndex(1);
+    m_stack->setCurrentIndex(2);
 }
 
-void MenuWidget::showMainMenu(const QString &title, const QString &subtitle) {
+void MenuWidget::showMainMenu(const QString &title, const QString &subtitle, const QString &category) {
     m_mainTitle->setText(title);
     m_mainSubtitle->setText(subtitle);
-    m_stack->setCurrentIndex(0);
+
+    bool isRpg = (category == QStringLiteral("rpg"));
+    m_newGameBtn->setText(isRpg ? QStringLiteral("开始新的冒险") : QStringLiteral("开始新的战役"));
+    m_loadGameBtn->setText(isRpg ? QStringLiteral("继续冒险") : QStringLiteral("继续旧的战役"));
+    m_exitGameBtn->setText(isRpg ? QStringLiteral("结束冒险") : QStringLiteral("退出战役"));
+    m_dlcBackBtn->setText(isRpg ? QStringLiteral("返回DLC选择") : QStringLiteral("返回DLC选择"));
+
+    m_stack->setCurrentIndex(1);
 }
