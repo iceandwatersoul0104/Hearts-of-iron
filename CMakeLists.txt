@@ -20,6 +20,7 @@ set(SOURCES
     ui/MainWindow.cpp
     ui/MenuWidget.cpp
     ui/GameWidget.cpp
+    ui/RpgGameWidget.cpp
     ui/CharacterCreateWidget.cpp
     ui/SaveLoadDialog.cpp
 )
@@ -35,6 +36,7 @@ set(HEADERS
     ui/MainWindow.h
     ui/MenuWidget.h
     ui/GameWidget.h
+    ui/RpgGameWidget.h
     ui/CharacterCreateWidget.h
     ui/SaveLoadDialog.h
 )

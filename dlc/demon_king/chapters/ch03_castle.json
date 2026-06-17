@@ -1,0 +1,586 @@
+{
+  "chapterId": "castle",
+  "startNodeId": "cc_chapter_start",
+  "defeatNodeId": "cc_defeat",
+  "classStartNodes": {
+    "hero":    "cc_hero_entry",
+    "warrior": "cc_warrior_entry",
+    "archer":  "cc_archer_entry",
+    "mage":    "cc_mage_entry",
+    "priest":  "cc_priest_entry"
+  },
+  "nodes": [
+    {
+      "id": "cc_chapter_start",
+      "locationTitle": "魔王城 · 外围",
+      "musicKey": "castle_theme",
+      "type": "narrative",
+      "text": "魔王城——\n\n它比你想象中更大。黑色的尖塔刺入血红色的天空，城墙是用不知道什么生物的骨头砌成的。空气中弥漫着硫磺和灰烬的味道。\n\n从启程之村走到这里，已经过了两个月。你打败了哥布林王，穿越了暗影森林，击杀了暗精灵领主。\n\n现在——你站在魔王军的大本营前。\n\n四大天王在城内守卫。打败他们——才能见到魔王。",
+      "nextNodeId": "cc_exit",
+      "classText": {
+        "hero": "你的剑从未如此明亮——它在渴望斩除这世间最大的邪恶。",
+        "warrior": "你握紧战斧。两个月的旅程——就是为了今天。没有什么能挡住你。",
+        "archer": "你在城外的高地上观察着城堡的防御。城墙上有射击孔——但也有死角。",
+        "mage": "魔王城的魔力波动让空气都在震颤。这里面的魔力源——是你这辈子感受过的最强的。",
+        "priest": "整座城堡散发着令人窒息的邪气。圣光在你体内燃烧——它不允许你在此退缩。"
+      }
+    },
+    {
+      "id": "cc_exit",
+      "locationTitle": "魔王城 · 外围",
+      "musicKey": "castle_theme",
+      "type": "choice",
+      "text": "你检查着装备和状态。两个月的历练，你已今非昔比。\n\n魔王城的大门就在前方——",
+      "choices": [
+        { "text": "【前进】进军魔王城", "nextNodeId": "cc_hero_entry", "classRestricted": true, "allowedClasses": ["hero"], "grantedFlags": ["lvl_10", "hero_steel_sword", "armor_chain"] },
+        { "text": "【前进】进军魔王城", "nextNodeId": "cc_warrior_entry", "classRestricted": true, "allowedClasses": ["warrior"], "grantedFlags": ["lvl_10", "war_battle_axe", "armor_chain"] },
+        { "text": "【前进】进军魔王城", "nextNodeId": "cc_archer_entry", "classRestricted": true, "allowedClasses": ["archer"], "grantedFlags": ["lvl_10", "arc_long_bow", "armor_chain"] },
+        { "text": "【前进】进军魔王城", "nextNodeId": "cc_mage_entry", "classRestricted": true, "allowedClasses": ["mage"], "grantedFlags": ["lvl_10", "mag_arcane_staff", "armor_chain"] },
+        { "text": "【前进】进军魔王城", "nextNodeId": "cc_priest_entry", "classRestricted": true, "allowedClasses": ["priest"], "grantedFlags": ["lvl_10", "pri_blessed_mace", "armor_chain"] }
+      ]
+    },
+
+    {
+      "id": "cc_hero_entry",
+      "locationTitle": "魔王城 · 城门",
+      "musicKey": "castle_theme",
+      "type": "narrative",
+      "text": "你是勇者。你不绕路——你走正门。\n\n城门前的两个黑暗骑士注意到你，长枪平举，马铠在月光下反射出冷光。\n\n你拔出剑——剑光在黑暗中划出一条金色的线。",
+      "nextNodeId": "cc_hero_gate"
+    },
+    {
+      "id": "cc_hero_gate",
+      "locationTitle": "魔王城 · 城门",
+      "musicKey": "castle_theme",
+      "type": "choice",
+      "text": "「让开——或者死。」\n\n黑暗骑士没有回答。它们策马冲锋——",
+      "choices": [
+        {
+          "text": "【圣剑斩】以勇者之力正面迎击",
+          "isCombat": true, "combatThreshold": 50,
+          "bonusClasses": ["hero"],
+          "successNodeId": "cc_hero_gate_done", "failureNodeId": "cc_hero_gate_hurt",
+          "failHpDelta": -25, "failMoraleDelta": -15,
+          "grantedFlags": ["lvl_11"]
+        }
+      ]
+    },
+    {
+      "id": "cc_hero_gate_done",
+      "locationTitle": "魔王城 · 城门",
+      "musicKey": "castle_theme",
+      "type": "narrative",
+      "text": "剑光划过——两个黑暗骑士连人带马裂成两半。\n\n你甩掉剑上的黑血。正门已通——但城里还有更强大的敌人在等。\n\n勇者从不绕路。",
+      "nextNodeId": "cc_gate_converge",
+      "hpDelta": 0, "moraleDelta": 15
+    },
+    {
+      "id": "cc_hero_gate_hurt",
+      "locationTitle": "魔王城 · 城门",
+      "musicKey": "castle_theme",
+      "type": "narrative",
+      "text": "黑暗骑士的长枪擦过了你的肩膀——但你还是把它们两个都斩了。\n\n伤口火辣辣的，但不深。你继续前进——正门已破。",
+      "nextNodeId": "cc_gate_converge",
+      "hpDelta": 0, "moraleDelta": 5
+    },
+
+    {
+      "id": "cc_warrior_entry",
+      "locationTitle": "魔王城 · 外墙",
+      "musicKey": "castle_theme",
+      "type": "narrative",
+      "text": "正门太慢了。你看中了城墙上的一处薄弱点——一次精准的冲锋就能撞开。\n\n你举起战斧，后退几步——然后像一头蛮牛一样冲了过去。",
+      "nextNodeId": "cc_warrior_wall"
+    },
+    {
+      "id": "cc_warrior_wall",
+      "locationTitle": "魔王城 · 外墙",
+      "musicKey": "castle_theme",
+      "type": "choice",
+      "text": "城墙上的黑暗守卫发现你了——弓箭和魔法弹幕倾泻而下。但你不在乎——你只在乎眼前的墙。",
+      "choices": [
+        {
+          "text": "【破墙】用斧头砸穿城墙",
+          "isCombat": true, "combatThreshold": 50,
+          "bonusClasses": ["warrior"],
+          "successNodeId": "cc_warrior_wall_done", "failureNodeId": "cc_warrior_wall_hurt",
+          "failHpDelta": -25, "failMoraleDelta": -15,
+          "grantedFlags": ["lvl_11"]
+        }
+      ]
+    },
+    {
+      "id": "cc_warrior_wall_done",
+      "locationTitle": "魔王城 · 外墙",
+      "musicKey": "castle_theme",
+      "type": "narrative",
+      "text": "墙壁在斧头下崩塌——你从瓦砾中冲进了城内。守军目瞪口呆地看着你——这哪是人啊，简直就是一台攻城锤。\n\n你拍了拍身上的灰：「战士就要走战士的路。」",
+      "nextNodeId": "cc_gate_converge",
+      "hpDelta": 0, "moraleDelta": 15
+    },
+    {
+      "id": "cc_warrior_wall_hurt",
+      "locationTitle": "魔王城 · 外墙",
+      "musicKey": "castle_theme",
+      "type": "narrative",
+      "text": "你撞开了墙——但是也挨了好几箭。箭头卡在护甲上，不深——但疼。\n\n你拔掉箭杆，不管它了。城内——战斗等着你。",
+      "nextNodeId": "cc_gate_converge",
+      "hpDelta": 0, "moraleDelta": 5
+    },
+
+    {
+      "id": "cc_archer_entry",
+      "locationTitle": "魔王城 · 城墙上",
+      "musicKey": "castle_theme",
+      "type": "narrative",
+      "text": "正门？太显眼了。你找到了城墙上的一个暗哨入口——狭窄、隐蔽，守军只有两个。\n\n你的弓在黑暗中优势尽显——先发制人。",
+      "nextNodeId": "cc_archer_stealth"
+    },
+    {
+      "id": "cc_archer_stealth",
+      "locationTitle": "魔王城 · 城墙上",
+      "musicKey": "castle_theme",
+      "type": "choice",
+      "text": "两个守卫背对着你。风从东边吹来——箭矢的轨迹不会偏。\n\n你搭箭——瞄准——",
+      "choices": [
+        {
+          "text": "【暗杀】一箭双杀——快速解决",
+          "isCombat": true, "combatThreshold": 50,
+          "bonusClasses": ["archer"],
+          "successNodeId": "cc_archer_done", "failureNodeId": "cc_archer_hurt",
+          "failHpDelta": -25, "failMoraleDelta": -15,
+          "grantedFlags": ["lvl_11"]
+        }
+      ]
+    },
+    {
+      "id": "cc_archer_done",
+      "locationTitle": "魔王城 · 城墙上",
+      "musicKey": "castle_theme",
+      "type": "narrative",
+      "text": "两支箭——两个守卫无声地倒下。没人看到你。\n\n你从暗处潜入城内——猎人最擅长的就是不被猎物发现。",
+      "nextNodeId": "cc_gate_converge",
+      "hpDelta": 0, "moraleDelta": 15
+    },
+    {
+      "id": "cc_archer_hurt",
+      "locationTitle": "魔王城 · 城墙上",
+      "musicKey": "castle_theme",
+      "type": "narrative",
+      "text": "第一箭命中——但第二箭擦过了守卫的盔甲。它发出了警报才被你射死。\n\n更多守卫正在赶来——你快速潜入城中。不完美，但进来了。",
+      "nextNodeId": "cc_gate_converge",
+      "hpDelta": 0, "moraleDelta": 0
+    },
+
+    {
+      "id": "cc_mage_entry",
+      "locationTitle": "魔王城 · 魔法结界前",
+      "musicKey": "castle_theme",
+      "type": "narrative",
+      "text": "魔王城的城墙被一层魔法结界保护着。普通士兵根本无法靠近——但你不是普通士兵。\n\n你感受到了结界中的裂缝——黑暗魔力虽然强大，但不稳定。只需要在正确的点上释放一道精准的法术——",
+      "nextNodeId": "cc_mage_barrier"
+    },
+    {
+      "id": "cc_mage_barrier",
+      "locationTitle": "魔王城 · 魔法结界前",
+      "musicKey": "castle_theme",
+      "type": "choice",
+      "text": "结界察觉到了你的魔力——法术反噬的冲击波袭来。但你准备好了。",
+      "choices": [
+        {
+          "text": "【破界】以奥术之力撕裂结界",
+          "isCombat": true, "combatThreshold": 50,
+          "bonusClasses": ["mage"],
+          "successNodeId": "cc_mage_done", "failureNodeId": "cc_mage_hurt",
+          "failHpDelta": -25, "failMoraleDelta": -15,
+          "grantedFlags": ["lvl_11"]
+        }
+      ]
+    },
+    {
+      "id": "cc_mage_done",
+      "locationTitle": "魔王城 · 魔法结界前",
+      "musicKey": "castle_theme",
+      "type": "narrative",
+      "text": "结界在你的法术下像玻璃一样碎裂。黑暗魔力反噬了施法者——不知道那个倒霉的法师在城里哪个角落吐血。\n\n你优雅地穿过结界碎片——大摇大摆地走进了魔王城。",
+      "nextNodeId": "cc_gate_converge",
+      "hpDelta": 0, "moraleDelta": 15
+    },
+    {
+      "id": "cc_mage_hurt",
+      "locationTitle": "魔王城 · 魔法结界前",
+      "musicKey": "castle_theme",
+      "type": "narrative",
+      "text": "结界反噬比你预想的更强——你被冲击波震退，内脏翻涌。但结界确实破了。\n\n你擦掉嘴角的血——这点代价，值得。",
+      "nextNodeId": "cc_gate_converge",
+      "hpDelta": 0, "moraleDelta": 5
+    },
+
+    {
+      "id": "cc_priest_entry",
+      "locationTitle": "魔王城 · 地下暗道",
+      "musicKey": "castle_theme",
+      "type": "narrative",
+      "text": "圣光指引着你——不是走向正门，而是走向一处隐蔽的暗道。这是很久以前被关押在魔王城里的圣职者挖的逃生通道。\n\n暗道尽头是城堡的地下圣堂——曾经是圣光的领地，现在被黑暗玷污了。\n\n你需要净化它——然后通过圣堂进入城堡。",
+      "nextNodeId": "cc_priest_chapel"
+    },
+    {
+      "id": "cc_priest_chapel",
+      "locationTitle": "魔王城 · 地下圣堂",
+      "musicKey": "castle_theme",
+      "type": "choice",
+      "text": "圣坛已经被黑暗腐蚀——邪物在上面筑巢。一只暗影恶魔盘踞在上方，它的眼睛像两团黑火。\n\n「圣光——堕——落——」它嘶嘶地说。",
+      "choices": [
+        {
+          "text": "【净化】以圣光重新祝圣这座圣堂",
+          "isCombat": true, "combatThreshold": 40,
+          "bonusClasses": ["priest"],
+          "successNodeId": "cc_priest_done", "failureNodeId": "cc_priest_hurt",
+          "failHpDelta": -20, "failMoraleDelta": -15,
+          "grantedFlags": ["lvl_11"]
+        }
+      ]
+    },
+    {
+      "id": "cc_priest_done",
+      "locationTitle": "魔王城 · 地下圣堂",
+      "musicKey": "castle_theme",
+      "type": "narrative",
+      "text": "圣光在圣堂重新燃起——暗影恶魔在尖啸中被烧成了灰。\n\n圣坛恢复了往日的纯净。你在这里感受到了久违的安宁——虽然只有片刻。\n\n你起身——走向通往城堡上层的楼梯。",
+      "nextNodeId": "cc_gate_converge",
+      "hpDelta": 0, "moraleDelta": 15
+    },
+    {
+      "id": "cc_priest_hurt",
+      "locationTitle": "魔王城 · 地下圣堂",
+      "musicKey": "castle_theme",
+      "type": "narrative",
+      "text": "暗影恶魔比你预想的更顽强——净化它耗费了大量的圣力。圣坛虽然恢复了，但你已经筋疲力尽。\n\n休息片刻后——你继续向上。",
+      "nextNodeId": "cc_gate_converge",
+      "hpDelta": 0, "moraleDelta": 0
+    },
+
+    {
+      "id": "cc_gate_converge",
+      "locationTitle": "魔王城 · 中央大厅",
+      "musicKey": "castle_theme",
+      "type": "choice",
+      "text": "你进入了魔王城的中央大厅——四条通道通往四座塔楼。每座塔楼上都坐镇着一位魔王军的天王。\n\n必须击败他们——才能打开通往王座的大门。\n\n你先挑战哪一座？",
+      "choices": [
+        {
+          "text": "【南塔·炎将】火之将军 — 烈焰与毁灭的化身 [勇者/射手擅长]",
+          "nextNodeId": "cc_fire_general",
+          "bonusClasses": ["hero", "archer"]
+        },
+        {
+          "text": "【北塔·冰将】冰之将军 — 冻结一切的寒冰领主 [战士/法师擅长]",
+          "nextNodeId": "cc_ice_general",
+          "bonusClasses": ["warrior", "mage"]
+        },
+        {
+          "text": "【东塔·岚将】风暴将军 — 掌控雷电的狂战士 [射手/法师擅长]",
+          "nextNodeId": "cc_storm_general",
+          "bonusClasses": ["archer", "mage"]
+        },
+        {
+          "text": "【西塔·影将】暗影将军 — 无形暗杀者 [牧师/勇者擅长]",
+          "nextNodeId": "cc_shadow_general",
+          "bonusClasses": ["priest", "hero"]
+        }
+      ]
+    },
+
+    {
+      "id": "cc_fire_general",
+      "locationTitle": "南塔 · 炎将之间",
+      "musicKey": "boss_theme",
+      "type": "choice",
+      "text": "火之将军——一个熔岩构成的巨人。整个房间被它身上的热量烤得扭曲。\n\n「来——让火焰净化你的一切——」\n\n它举起熔岩巨拳。",
+      "choices": [
+        {
+          "text": "【精准打击】瞄准熔岩核心的裂缝",
+          "isCombat": true, "combatThreshold": 60, "bonusClasses": ["hero", "archer"],
+          "successNodeId": "cc_fire_win", "failureNodeId": "cc_fire_fail",
+          "failHpDelta": -30, "failMoraleDelta": -20
+        },
+        {
+          "text": "【水系法术】[需法师] 用冰水魔法克制火焰",
+          "classRestricted": true, "allowedClasses": ["mage"],
+          "isCombat": true, "combatThreshold": 50, "bonusClasses": ["mage"],
+          "successNodeId": "cc_fire_win", "failureNodeId": "cc_fire_fail",
+          "failHpDelta": -20, "failMoraleDelta": -15
+        }
+      ]
+    },
+    {
+      "id": "cc_fire_win",
+      "locationTitle": "南塔 · 炎将之间",
+      "musicKey": "victory_theme",
+      "type": "narrative",
+      "text": "炎将在绝望的咆哮中冷却——变成了一座漆黑的石像，然后裂开崩塌。\n\n四天王——还剩三个。",
+      "nextNodeId": "cc_after_generals",
+      "grantedFlags": ["defeated_fire_general", "lvl_12"],
+      "hpDelta": 0, "moraleDelta": 15
+    },
+    {
+      "id": "cc_fire_fail",
+      "locationTitle": "南塔 · 炎将之间",
+      "musicKey": "boss_theme",
+      "type": "narrative",
+      "text": "炎将把你的武器打飞——但你在最后一刻捡起一块碎石，精准地刺入了它的核心裂缝。\n\n它倒了。你也被烧得不轻——但你赢了。",
+      "nextNodeId": "cc_after_generals",
+      "grantedFlags": ["defeated_fire_general"],
+      "hpDelta": 0, "moraleDelta": 5
+    },
+
+    {
+      "id": "cc_ice_general",
+      "locationTitle": "北塔 · 冰将之间",
+      "musicKey": "boss_theme",
+      "type": "choice",
+      "text": "冰之将军——一个永恒冰棺中的女武神。她的呼吸就是暴风雪。\n\n「你的热血——将会在这里冻结——」\n\n冰晶从她身边蔓延开来——地面在你脚下结冰。",
+      "choices": [
+        {
+          "text": "【蛮力突破】无视冰霜正面冲锋",
+          "isCombat": true, "combatThreshold": 60, "bonusClasses": ["warrior", "hero"],
+          "successNodeId": "cc_ice_win", "failureNodeId": "cc_ice_fail",
+          "failHpDelta": -30, "failMoraleDelta": -20
+        },
+        {
+          "text": "【火焰法术】[需法师] 用火系魔法融化冰晶",
+          "classRestricted": true, "allowedClasses": ["mage"],
+          "isCombat": true, "combatThreshold": 50, "bonusClasses": ["mage"],
+          "successNodeId": "cc_ice_win", "failureNodeId": "cc_ice_fail",
+          "failHpDelta": -20, "failMoraleDelta": -15
+        }
+      ]
+    },
+    {
+      "id": "cc_ice_win",
+      "locationTitle": "北塔 · 冰将之间",
+      "musicKey": "victory_theme",
+      "type": "narrative",
+      "text": "冰棺碎裂——冰将在暖风中化为一滩清水。她最后的叹息像风声一样消失在塔中。\n\n四天王——还剩两个。",
+      "nextNodeId": "cc_after_generals",
+      "grantedFlags": ["defeated_ice_general", "lvl_12"],
+      "hpDelta": 0, "moraleDelta": 15
+    },
+    {
+      "id": "cc_ice_fail",
+      "locationTitle": "北塔 · 冰将之间",
+      "musicKey": "boss_theme",
+      "type": "narrative",
+      "text": "你的武器差点被冻在手里——但你最终还是突破了她的冰墙。冰将的头盔被你劈裂——她败了。\n\n不过你的手指现在还是冻僵的状态。",
+      "nextNodeId": "cc_after_generals",
+      "grantedFlags": ["defeated_ice_general"],
+      "hpDelta": 0, "moraleDelta": 5
+    },
+
+    {
+      "id": "cc_storm_general",
+      "locationTitle": "东塔 · 岚将之间",
+      "musicKey": "boss_theme",
+      "type": "choice",
+      "text": "风暴将军——一个驾驭雷电的鹰身恶魔。它在空中盘旋，每一次振翅都是一道劈雷。\n\n「凡人——飞不起来吧？那就——等死！」",
+      "choices": [
+        {
+          "text": "【远程压制】用远程攻击封住它的飞行路线",
+          "isCombat": true, "combatThreshold": 60, "bonusClasses": ["archer", "mage"],
+          "successNodeId": "cc_storm_win", "failureNodeId": "cc_storm_fail",
+          "failHpDelta": -30, "failMoraleDelta": -20
+        },
+        {
+          "text": "【落地诱敌】[需战士/勇者] 故意被击中诱使它俯冲",
+          "classRestricted": true, "allowedClasses": ["warrior", "hero"],
+          "isCombat": true, "combatThreshold": 55, "bonusClasses": ["warrior", "hero"],
+          "successNodeId": "cc_storm_win", "failureNodeId": "cc_storm_fail",
+          "failHpDelta": -35, "failMoraleDelta": -15
+        }
+      ]
+    },
+    {
+      "id": "cc_storm_win",
+      "locationTitle": "东塔 · 岚将之间",
+      "musicKey": "victory_theme",
+      "type": "narrative",
+      "text": "风暴将军坠地——雷电在它身上反噬，炸成了一片火花。羽毛散落一地，房间重归寂静。\n\n四天王——还剩一个。",
+      "nextNodeId": "cc_after_generals",
+      "grantedFlags": ["defeated_storm_general", "lvl_12"],
+      "hpDelta": 0, "moraleDelta": 15
+    },
+    {
+      "id": "cc_storm_fail",
+      "locationTitle": "东塔 · 岚将之间",
+      "musicKey": "boss_theme",
+      "type": "narrative",
+      "text": "一道闪电击中了你的武器——电流从手臂窜上来，差点让你失去知觉。但你挺住了——反手一击，把它射了下来。\n\n雷电散去。你浑身还在发麻——但还活着。",
+      "nextNodeId": "cc_after_generals",
+      "grantedFlags": ["defeated_storm_general"],
+      "hpDelta": 0, "moraleDelta": 5
+    },
+
+    {
+      "id": "cc_shadow_general",
+      "locationTitle": "西塔 · 影将之间",
+      "musicKey": "boss_theme",
+      "type": "choice",
+      "text": "暗影将军——你甚至看不清它的实体。它在阴影中闪烁、跳跃——无处不在，又无处可寻。\n\n「你——的影子——就是我——的武器——」\n\n你自己的影子扭曲着向你袭来。",
+      "choices": [
+        {
+          "text": "【圣光感知】[需牧师/勇者] 用光逼出它的实体",
+          "classRestricted": true, "allowedClasses": ["priest", "hero"],
+          "isCombat": true, "combatThreshold": 45, "bonusClasses": ["priest", "hero"],
+          "successNodeId": "cc_shadow_win", "failureNodeId": "cc_shadow_fail",
+          "failHpDelta": -20, "failMoraleDelta": -15
+        },
+        {
+          "text": "【范围攻击】用大范围火力覆盖所有阴影",
+          "isCombat": true, "combatThreshold": 65, "bonusClasses": ["mage", "archer"],
+          "successNodeId": "cc_shadow_win", "failureNodeId": "cc_shadow_fail",
+          "failHpDelta": -25, "failMoraleDelta": -20
+        }
+      ]
+    },
+    {
+      "id": "cc_shadow_win",
+      "locationTitle": "西塔 · 影将之间",
+      "musicKey": "victory_theme",
+      "type": "narrative",
+      "text": "光——影将在尖啸中显形。你的武器毫不留情地穿过它的黑色心脏。\n\n它碎成了满地暗影碎片——然后蒸发殆尽。\n\n四天王——全部歼灭。",
+      "nextNodeId": "cc_after_generals",
+      "grantedFlags": ["defeated_shadow_general", "lvl_12"],
+      "hpDelta": 0, "moraleDelta": 15
+    },
+    {
+      "id": "cc_shadow_fail",
+      "locationTitle": "西塔 · 影将之间",
+      "musicKey": "boss_theme",
+      "type": "narrative",
+      "text": "你的影子掐住了你的喉咙——但你在最后一刻爆发了力量，反手捅穿了影将的心脏。\n\n它消散了——但你的脖子上留下了黑色的手印。不能被它吓倒。",
+      "nextNodeId": "cc_after_generals",
+      "grantedFlags": ["defeated_shadow_general"],
+      "hpDelta": 0, "moraleDelta": 0
+    },
+
+    {
+      "id": "cc_after_generals",
+      "locationTitle": "魔王城 · 中央大厅",
+      "musicKey": "castle_theme",
+      "type": "narrative",
+      "text": "四天王倒下了。中央大厅的封印在你的脚下碎裂——通往王座的巨门缓缓打开。\n\n门后——是魔王城最深处。\n\n你的伤势在战斗后隐隐作痛。但在继续前，你注意到大厅角落有一个圣泉——魔王城里居然有这种地方。也许是很久以前被俘的圣职者留下的。",
+      "nextNodeId": "cc_heal_choice"
+    },
+    {
+      "id": "cc_heal_choice",
+      "locationTitle": "魔王城 · 中央大厅",
+      "musicKey": "castle_theme",
+      "type": "choice",
+      "text": "圣泉的水泛着柔和的蓝光——这是魔王城中唯一的纯净之物。",
+      "choices": [
+        {
+          "text": "【治愈】饮用圣泉水（恢复40HP 20士气）",
+          "nextNodeId": "cc_demon_general",
+          "hpDelta": 40, "moraleDelta": 20
+        },
+        {
+          "text": "【保留】也许之后更需要——继续前进",
+          "nextNodeId": "cc_demon_general",
+          "grantedFlags": ["has_elixir"],
+          "moraleDelta": -5
+        }
+      ]
+    },
+
+    {
+      "id": "cc_demon_general",
+      "locationTitle": "魔王城 · 王座前厅",
+      "musicKey": "boss_theme",
+      "type": "choice",
+      "text": "恶魔将军——魔王的副手。不是四大天王那种货色——它是真正的恶魔族精英。\n\n身高是你三倍，手持一把燃烧着黑火的巨剑。它的声音像石头在摩擦：「你——杀了——我的——部下——」\n\n「很好。你的灵魂——会亲自在魔王面前——被献祭。」",
+      "choices": [
+        {
+          "text": "【决战】全力以赴——这场战斗不容失误",
+          "isCombat": true, "combatThreshold": 65,
+          "bonusClasses": ["hero", "warrior"],
+          "successNodeId": "cc_general_win", "failureNodeId": "cc_general_fail",
+          "failHpDelta": -35, "failMoraleDelta": -25
+        },
+        {
+          "text": "【战术弱点】[需等级12] 它的左腿有旧伤——攻击那里",
+          "requiredFlags": ["lvl_12"],
+          "isCombat": true, "combatThreshold": 55,
+          "bonusClasses": ["archer", "hero"],
+          "successNodeId": "cc_general_win", "failureNodeId": "cc_general_fail",
+          "failHpDelta": -25, "failMoraleDelta": -20
+        },
+        {
+          "text": "【元素轰炸】[需法师] 四元素齐发——压倒它的黑暗之火",
+          "classRestricted": true, "allowedClasses": ["mage"],
+          "isCombat": true, "combatThreshold": 55,
+          "bonusClasses": ["mage"],
+          "successNodeId": "cc_general_win", "failureNodeId": "cc_general_fail",
+          "failHpDelta": -30, "failMoraleDelta": -20
+        },
+        {
+          "text": "【圣光净化】[需牧师] 以圣光焚烧恶魔之躯",
+          "classRestricted": true, "allowedClasses": ["priest"],
+          "isCombat": true, "combatThreshold": 45,
+          "bonusClasses": ["priest"],
+          "successNodeId": "cc_general_win", "failureNodeId": "cc_general_fail",
+          "failHpDelta": -20, "failMoraleDelta": -15
+        }
+      ]
+    },
+    {
+      "id": "cc_general_win",
+      "locationTitle": "魔王城 · 王座前厅",
+      "musicKey": "victory_theme",
+      "type": "narrative",
+      "text": "恶魔将军的巨剑在你面前断裂——然后是你对准了它的心脏。\n\n黑火熄灭了。它庞大的身躯轰然倒塌。\n\n王座之门——就在你面前。魔王就在里面等着。\n\n你深吸一口气。最后的敌人。",
+      "nextNodeId": "cc_castle_loot",
+      "grantedFlags": ["lvl_15", "defeated_demon_general"],
+      "hpDelta": 0, "moraleDelta": 25
+    },
+    {
+      "id": "cc_general_fail",
+      "locationTitle": "魔王城 · 王座前厅",
+      "musicKey": "boss_theme",
+      "type": "narrative",
+      "text": "恶魔将军的剑在地板上劈出一道裂缝——你差一点就被劈成两半。\n\n但在最后关头——你抓住了它的攻击间隙。你用剩下的所有力气刺穿了它的心脏。\n\n它倒下了——你也倒下了。但你还活着。这是最重要的。",
+      "nextNodeId": "cc_castle_loot",
+      "hpDelta": 0, "moraleDelta": 10
+    },
+
+    {
+      "id": "cc_castle_loot",
+      "locationTitle": "魔王城 · 王座前厅",
+      "musicKey": "victory_theme",
+      "type": "choice",
+      "text": "恶魔将军倒下后，它守卫的宝库打开了——里面是它多年来从战败的勇者手中夺取的武器。\n\n你从中挑选出最适合你的——",
+      "choices": [
+        { "text": "【圣剑】拿起这把泛着金光的剑（勇者）", "classRestricted": true, "allowedClasses": ["hero"], "nextNodeId": "cc_castle_victory", "grantedFlags": ["hero_holy_blade", "lvl_15"], "moraleDelta": 15 },
+        { "text": "【狂战斧】拿起这把沉重的双刃斧（战士）", "classRestricted": true, "allowedClasses": ["warrior"], "nextNodeId": "cc_castle_victory", "grantedFlags": ["war_berserk_axe", "lvl_15"], "moraleDelta": 15 },
+        { "text": "【精灵弓】拿起这把轻盈的长弓（射手）", "classRestricted": true, "allowedClasses": ["archer"], "nextNodeId": "cc_castle_victory", "grantedFlags": ["arc_elf_bow", "lvl_15"], "moraleDelta": 15 },
+        { "text": "【长老杖】拿起这把古老的法杖（法师）", "classRestricted": true, "allowedClasses": ["mage"], "nextNodeId": "cc_castle_victory", "grantedFlags": ["mag_elder_staff", "lvl_15"], "moraleDelta": 15 },
+        { "text": "【圣锤】拿起这把神圣的钉头锤（牧师）", "classRestricted": true, "allowedClasses": ["priest"], "nextNodeId": "cc_castle_victory", "grantedFlags": ["pri_holy_mace", "lvl_15"], "moraleDelta": 15 }
+      ]
+    },
+    {
+      "id": "cc_castle_victory",
+      "locationTitle": "魔王城 · 王座之门前",
+      "musicKey": "victory_theme",
+      "type": "narrative",
+      "text": "四大天王已灭。恶魔将军已死。\n\n你站在王座之门前——这扇巨门上刻着古代魔王的浮雕。门缝中透出暗红色的光。\n\n魔王就在里面。最终的战斗。\n\n你已经走了这么远。没有回头路了——也不需要回头路。\n\n你推开门。\n\n第三章，结束。",
+      "isVictory": true
+    },
+
+    {
+      "id": "cc_defeat",
+      "locationTitle": "魔王城",
+      "musicKey": "defeat_theme",
+      "type": "narrative",
+      "text": "你倒在了魔王城的石板上。\n\n魔王军在你的身体周围继续他们的黑暗仪式。世界——不会得救。\n\n但你的奋战不会毫无意义。也许另一个勇者——在另一个时代——能够完成你没有完成的使命……",
+      "isDefeat": true
+    }
+  ]
+}

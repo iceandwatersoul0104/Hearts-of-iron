@@ -24,15 +24,15 @@ void CharacterCreateWidget::setupUi() {
     mainLayout->setSpacing(25);
 
     // 标题
-    QLabel *titleLabel = new QLabel(QStringLiteral("投身命运 — 创建你的军人"), this);
-    titleLabel->setObjectName(QStringLiteral("createTitle"));
-    mainLayout->addWidget(titleLabel);
+    m_titleLabel = new QLabel(QStringLiteral("投身命运 — 创建你的军人"), this);
+    m_titleLabel->setObjectName(QStringLiteral("createTitle"));
+    mainLayout->addWidget(m_titleLabel);
 
     // 姓名输入区
     QHBoxLayout *nameLayout = new QHBoxLayout();
     nameLayout->setSpacing(15);
-    QLabel *nameTip = new QLabel(QStringLiteral("军官姓名："), this);
-    nameTip->setObjectName(QStringLiteral("nameTipLabel"));
+    m_nameTipLabel = new QLabel(QStringLiteral("军官姓名："), this);
+    m_nameTipLabel->setObjectName(QStringLiteral("nameTipLabel"));
 
     m_nameEdit = new QLineEdit(this);
     m_nameEdit->setObjectName(QStringLiteral("nameEdit"));
@@ -40,7 +40,7 @@ void CharacterCreateWidget::setupUi() {
     m_nameEdit->setMaxLength(15);
     m_nameEdit->setPlaceholderText(QStringLiteral("请输入你的姓名..."));
 
-    nameLayout->addWidget(nameTip);
+    nameLayout->addWidget(m_nameTipLabel);
     nameLayout->addWidget(m_nameEdit);
     nameLayout->addStretch();
     mainLayout->addLayout(nameLayout);
@@ -53,9 +53,9 @@ void CharacterCreateWidget::setupUi() {
     QVBoxLayout *leftLayout = new QVBoxLayout();
     leftLayout->setSpacing(10);
 
-    QLabel *classTip = new QLabel(QStringLiteral("选择你的服役兵种："), this);
-    classTip->setObjectName(QStringLiteral("sectionTitle"));
-    leftLayout->addWidget(classTip);
+    m_classTipLabel = new QLabel(QStringLiteral("选择你的服役兵种："), this);
+    m_classTipLabel->setObjectName(QStringLiteral("sectionTitle"));
+    leftLayout->addWidget(m_classTipLabel);
 
     m_grid = new QGridLayout();
     m_grid->setSpacing(10);
@@ -71,9 +71,9 @@ void CharacterCreateWidget::setupUi() {
     prevLayout->setContentsMargins(20, 20, 20, 20);
     prevLayout->setSpacing(15);
 
-    QLabel *prevTitle = new QLabel(QStringLiteral("兵种特征简报"), previewCard);
-    prevTitle->setObjectName(QStringLiteral("previewTitle"));
-    prevLayout->addWidget(prevTitle);
+    m_previewTitleLabel = new QLabel(QStringLiteral("兵种特征简报"), previewCard);
+    m_previewTitleLabel->setObjectName(QStringLiteral("previewTitle"));
+    prevLayout->addWidget(m_previewTitleLabel);
 
     // 属性行
     QHBoxLayout *statsLayout = new QHBoxLayout();
@@ -126,9 +126,22 @@ void CharacterCreateWidget::setupUi() {
     mainLayout->addLayout(ctrlLayout);
 }
 
-void CharacterCreateWidget::setClasses(const QList<DlcClass> &classes) {
+void CharacterCreateWidget::setClasses(const QList<DlcClass> &classes, const QString &category) {
     m_classes = classes;
+    m_category = category;
     m_selectedIndex = 0;
+
+    bool isRpg = (category == QStringLiteral("rpg"));
+    m_titleLabel->setText(isRpg
+        ? QStringLiteral("命运的召唤 — 创建你的冒险者")
+        : QStringLiteral("投身命运 — 创建你的军人"));
+    m_nameTipLabel->setText(isRpg ? QStringLiteral("冒险者名：") : QStringLiteral("军官姓名："));
+    m_classTipLabel->setText(isRpg ? QStringLiteral("选择你的职业：") : QStringLiteral("选择你的服役兵种："));
+    m_previewTitleLabel->setText(isRpg ? QStringLiteral("职业能力面板") : QStringLiteral("兵种特征简报"));
+    m_startBtn->setText(isRpg ? QStringLiteral("踏上冒险") : QStringLiteral("投身战场"));
+    m_nameEdit->setPlaceholderText(isRpg ? QStringLiteral("请输入你的名字...") : QStringLiteral("请输入你的姓名..."));
+    m_nameEdit->setText(isRpg ? QStringLiteral("艾伦") : QStringLiteral("汉斯 · 缪勒"));
+
     rebuildClassCards();
     if (!m_classes.isEmpty()) {
         onClassSelected(0);
@@ -188,9 +201,16 @@ void CharacterCreateWidget::onClassSelected(int id) {
 }
 
 void CharacterCreateWidget::updatePreview(const DlcClass &cls) {
-    m_hpLabel->setText(QStringLiteral("初始生命值：100"));
-    m_moraleLabel->setText(QStringLiteral("初始士气值：100"));
-    m_scenarioLabel->setText(QStringLiteral("初战方向：跟随剧情推进"));
+    if (m_category == QStringLiteral("rpg")) {
+        m_hpLabel->setText(QStringLiteral("生命值: %1").arg(cls.baseHp));
+        m_moraleLabel->setText(QStringLiteral("魔力值: %1").arg(cls.baseMp));
+        m_scenarioLabel->setText(QStringLiteral("力量:%1  敏捷:%2  智力:%3")
+            .arg(cls.baseStr).arg(cls.baseAgi).arg(cls.baseInt));
+    } else {
+        m_hpLabel->setText(QStringLiteral("初始生命值：100"));
+        m_moraleLabel->setText(QStringLiteral("初始士气值：100"));
+        m_scenarioLabel->setText(QStringLiteral("初战方向：跟随剧情推进"));
+    }
     m_descLabel->setText(cls.desc);
 }
 

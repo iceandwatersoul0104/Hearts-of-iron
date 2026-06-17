@@ -4,6 +4,7 @@
   "subtitle": "一部关于战争残酷与无义的文字悲剧",
   "author": "Official",
   "version": "1.0.0",
+  "category": "narrative",
 
   "classes": [
     { "id": "infantry",       "name": "步兵",             "desc": "在前线堑壕中匍匐前进，见证战争最残酷的一面" },

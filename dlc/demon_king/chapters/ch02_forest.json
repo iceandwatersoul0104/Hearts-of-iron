@@ -1,0 +1,721 @@
+{
+  "chapterId": "forest",
+  "startNodeId": "cf_chapter_start",
+  "defeatNodeId": "cf_defeat",
+  "classStartNodes": {
+    "hero":    "cf_hero_entry",
+    "warrior": "cf_warrior_entry",
+    "archer":  "cf_archer_entry",
+    "mage":    "cf_mage_entry",
+    "priest":  "cf_priest_entry"
+  },
+  "nodes": [
+    {
+      "id": "cf_chapter_start",
+      "locationTitle": "暗影森林 · 入口",
+      "musicKey": "forest_mystic",
+      "type": "narrative",
+      "text": "暗影森林——\n\n一片自古就笼罩在薄雾中的古老林地。老人们说，森林深处有远古的遗迹——以及守卫它们的什么东西。\n\n自哥布林王被击败后，你已经走了一个月的路。剑更锋利了，脚步更稳了。但前方等待着的——远比哥布林危险。\n\n你站在森林的入口。迷雾中，隐约能看到一条蜿蜒的小路消失在黑暗的树影中。",
+      "nextNodeId": "cf_exit",
+      "classText": {
+        "hero": "你的剑在鞘中微微发热——它在警告你。这座森林不欢迎访客。",
+        "warrior": "你嗅了嗅空气——霉菌、腐叶、还有一种说不出的腥甜味。魔物，近在咫尺。",
+        "archer": "你的猎手直觉在尖叫——这片森林里的生物链被什么东西打乱了。顶端捕食者不是狼。是别的什么。",
+        "mage": "你伸出手——空气中魔力浓度异常。在这座森林深处，有什么巨大的魔力源头。",
+        "priest": "你画了个圣光符文——符文在雾气中闪烁了两下就黯淡了。黑暗的力量正在压抑圣光。"
+      }
+    },
+    {
+      "id": "cf_exit",
+      "locationTitle": "暗影森林 · 入口",
+      "musicKey": "forest_mystic",
+      "type": "choice",
+      "text": "你检查了一下装备。一个月来的历练让你更强了。\n\n深呼吸——踏入暗影森林。",
+      "choices": [
+        {
+          "text": "【继续】凭借历练的成果——前进",
+          "nextNodeId": "cf_hero_entry",
+          "classRestricted": true,
+          "allowedClasses": ["hero"],
+          "grantedFlags": ["lvl_5", "hero_iron_sword"]
+        },
+        {
+          "text": "【继续】凭借历练的成果——前进",
+          "nextNodeId": "cf_warrior_entry",
+          "classRestricted": true,
+          "allowedClasses": ["warrior"],
+          "grantedFlags": ["lvl_5", "war_iron_axe"]
+        },
+        {
+          "text": "【继续】凭借历练的成果——前进",
+          "nextNodeId": "cf_archer_entry",
+          "classRestricted": true,
+          "allowedClasses": ["archer"],
+          "grantedFlags": ["lvl_5", "arc_hunter_bow"]
+        },
+        {
+          "text": "【继续】凭借历练的成果——前进",
+          "nextNodeId": "cf_mage_entry",
+          "classRestricted": true,
+          "allowedClasses": ["mage"],
+          "grantedFlags": ["lvl_5", "mag_appr_staff"]
+        },
+        {
+          "text": "【继续】凭借历练的成果——前进",
+          "nextNodeId": "cf_priest_entry",
+          "classRestricted": true,
+          "allowedClasses": ["priest"],
+          "grantedFlags": ["lvl_5", "pri_oak_mace"]
+        }
+      ]
+    },
+
+    {
+      "id": "cf_hero_entry",
+      "locationTitle": "暗影森林 · 古木小径",
+      "musicKey": "forest_mystic",
+      "type": "narrative",
+      "text": "剑在你手中发着微光——它驱散了近处的雾气。\n\n古木参天，遮天蔽日。小径两旁的树根像握紧的手指一样抓进泥土。\n\n突然——前方传来翅膀扑动的声音。不是鸟。更大。更危险。",
+      "nextNodeId": "cf_hero_harpy"
+    },
+    {
+      "id": "cf_hero_harpy",
+      "locationTitle": "暗影森林 · 古木小径",
+      "musicKey": "forest_battle",
+      "type": "choice",
+      "text": "三只鹰身女妖从树冠俯冲而下——它们的爪子像剃刀，尖叫撕裂了森林的寂静。",
+      "choices": [
+        {
+          "text": "【剑术】迎击俯冲的女妖",
+          "isCombat": true,
+          "combatThreshold": 50,
+          "bonusClasses": ["hero"],
+          "successNodeId": "cf_hero_harpy_done",
+          "failureNodeId": "cf_hero_harpy_hurt",
+          "failHpDelta": -20,
+          "failMoraleDelta": -10,
+          "grantedFlags": ["lvl_6"]
+        }
+      ]
+    },
+    {
+      "id": "cf_hero_harpy_done",
+      "locationTitle": "暗影森林 · 古木小径",
+      "musicKey": "forest_mystic",
+      "type": "narrative",
+      "text": "三剑——三只女妖坠落。你的剑法比一个月前强太多了。\n\n森林重归寂静。但你的剑还在微微震动——它在告诉你，更深处还有更强大的敌人。",
+      "nextNodeId": "cf_crossroads",
+      "hpDelta": 0,
+      "moraleDelta": 10
+    },
+    {
+      "id": "cf_hero_harpy_hurt",
+      "locationTitle": "暗影森林 · 古木小径",
+      "musicKey": "forest_mystic",
+      "type": "narrative",
+      "text": "你击落了两只——第三只在你手臂上留下了一道不浅的抓痕。但你还是赢了。\n\n用剑的技巧在战斗中磨砺——你已经感觉到了自己的进步。",
+      "nextNodeId": "cf_crossroads",
+      "hpDelta": 0,
+      "moraleDelta": 5
+    },
+
+    {
+      "id": "cf_warrior_entry",
+      "locationTitle": "暗影森林 · 沼泽边缘",
+      "musicKey": "forest_mystic",
+      "type": "narrative",
+      "text": "森林中央有一片沼泽。泥浆冒着气泡，空气中弥漫着腐败的臭味。\n\n你的战斧在手中沉甸甸的——这里的什么东西让斧柄微微发热。那是魔物的气息。\n\n沼泽中央——泥浆翻涌。一只巨大的沼泽巨鳄钻了出来，背上覆盖着苔藓和碎骨。",
+      "nextNodeId": "cf_warrior_croc"
+    },
+    {
+      "id": "cf_warrior_croc",
+      "locationTitle": "暗影森林 · 沼泽边缘",
+      "musicKey": "forest_battle",
+      "type": "choice",
+      "text": "巨鳄张开嘴——它的牙齿之间还嵌着上一只猎物的骨头。退路被沼泽切断——只有战斗。",
+      "choices": [
+        {
+          "text": "【劈砍】一斧砍向它的上颚",
+          "isCombat": true,
+          "combatThreshold": 50,
+          "bonusClasses": ["warrior"],
+          "successNodeId": "cf_warrior_croc_done",
+          "failureNodeId": "cf_warrior_croc_hurt",
+          "failHpDelta": -20,
+          "failMoraleDelta": -10,
+          "grantedFlags": ["lvl_6"]
+        }
+      ]
+    },
+    {
+      "id": "cf_warrior_croc_done",
+      "locationTitle": "暗影森林 · 沼泽边缘",
+      "musicKey": "forest_mystic",
+      "type": "narrative",
+      "text": "斧头劈开了巨鳄的头骨。它沉入沼泽，只留下一串气泡。\n\n你从它尸体上跨过去——这种程度的战斗对你来说已经是家常便饭了。但你知道，更大的战斗还在前面。",
+      "nextNodeId": "cf_crossroads",
+      "hpDelta": 0,
+      "moraleDelta": 10
+    },
+    {
+      "id": "cf_warrior_croc_hurt",
+      "locationTitle": "暗影森林 · 沼泽边缘",
+      "musicKey": "forest_mystic",
+      "type": "narrative",
+      "text": "你杀了它——但它的尾巴扫中了你，在肋骨上留下了一片淤青。\n\n不碍事。继续前进。",
+      "nextNodeId": "cf_crossroads",
+      "hpDelta": 0,
+      "moraleDelta": 5
+    },
+
+    {
+      "id": "cf_archer_entry",
+      "locationTitle": "暗影森林 · 藤蔓之壁",
+      "musicKey": "forest_mystic",
+      "type": "narrative",
+      "text": "一堵巨大藤蔓筑成的墙挡住了去路。藤蔓上有锋利的刺——更麻烦的是，藤蔓在动。\n\n它们不是植物——是被黑暗魔力活化的陷阱。\n\n你在高处看到了一个弱点——藤蔓交汇处的核心。一箭就够了。",
+      "nextNodeId": "cf_archer_vine"
+    },
+    {
+      "id": "cf_archer_vine",
+      "locationTitle": "暗影森林 · 藤蔓之壁",
+      "musicKey": "forest_battle",
+      "type": "choice",
+      "text": "藤蔓感知到了你——几十条触手同时向你抽来。核心在它们后面，只有一瞬间的瞄准窗口。",
+      "choices": [
+        {
+          "text": "【要害射击】穿过触手的缝隙射中核心",
+          "isCombat": true,
+          "combatThreshold": 50,
+          "bonusClasses": ["archer"],
+          "successNodeId": "cf_archer_vine_done",
+          "failureNodeId": "cf_archer_vine_hurt",
+          "failHpDelta": -20,
+          "failMoraleDelta": -10,
+          "grantedFlags": ["lvl_6"]
+        }
+      ]
+    },
+    {
+      "id": "cf_archer_vine_done",
+      "locationTitle": "暗影森林 · 藤蔓之壁",
+      "musicKey": "forest_mystic",
+      "type": "narrative",
+      "text": "一箭命中——藤蔓核心炸开，整堵墙枯萎脱落。道路通畅了。\n\n你的箭术进步了——在启程之村时你还不敢这样射。",
+      "nextNodeId": "cf_crossroads",
+      "hpDelta": 0,
+      "moraleDelta": 10
+    },
+    {
+      "id": "cf_archer_vine_hurt",
+      "locationTitle": "暗影森林 · 藤蔓之壁",
+      "musicKey": "forest_mystic",
+      "type": "narrative",
+      "text": "你射中了核心——但藤蔓在你手臂上划了好几条血口。\n\n不过路通了。继续走。",
+      "nextNodeId": "cf_crossroads",
+      "hpDelta": 0,
+      "moraleDelta": 5
+    },
+
+    {
+      "id": "cf_mage_entry",
+      "locationTitle": "暗影森林 · 魔力漩涡",
+      "musicKey": "forest_mystic",
+      "type": "narrative",
+      "text": "森林深处的魔力浓度超乎想象——法师的感知让你看到了空气中流动的魔力纹路。\n\n但魔力太浓了——一处魔力漩涡正在形成。如果不稳定，它会引爆周围的一切。\n\n你需要用法术去引导它——或者压制它。",
+      "nextNodeId": "cf_mage_vortex"
+    },
+    {
+      "id": "cf_mage_vortex",
+      "locationTitle": "暗影森林 · 魔力漩涡",
+      "musicKey": "forest_battle",
+      "type": "choice",
+      "text": "漩涡旋转得越来越快——能量正在失控边缘。",
+      "choices": [
+        {
+          "text": "【稳定】释放调和法术引导魔力平缓释放",
+          "isCombat": true,
+          "combatThreshold": 50,
+          "bonusClasses": ["mage"],
+          "successNodeId": "cf_mage_vortex_done",
+          "failureNodeId": "cf_mage_vortex_hurt",
+          "failHpDelta": -20,
+          "failMoraleDelta": -10,
+          "grantedFlags": ["lvl_6"]
+        }
+      ]
+    },
+    {
+      "id": "cf_mage_vortex_done",
+      "locationTitle": "暗影森林 · 魔力漩涡",
+      "musicKey": "forest_mystic",
+      "type": "narrative",
+      "text": "你引导着魔力平稳地散发——漩涡变成了一阵温暖的风。\n\n你的法力控制在实战中越来越精准了。学院的老师们会为你骄傲。",
+      "nextNodeId": "cf_crossroads",
+      "hpDelta": 0,
+      "moraleDelta": 10
+    },
+    {
+      "id": "cf_mage_vortex_hurt",
+      "locationTitle": "暗影森林 · 魔力漩涡",
+      "musicKey": "forest_mystic",
+      "type": "narrative",
+      "text": "魔力反弹——你被冲击波震退了好几步，嘴角溢出了血。但总算控制住了。\n\n下次需要更快才行。",
+      "nextNodeId": "cf_crossroads",
+      "hpDelta": 0,
+      "moraleDelta": 5
+    },
+
+    {
+      "id": "cf_priest_entry",
+      "locationTitle": "暗影森林 · 亡灵小径",
+      "musicKey": "forest_mystic",
+      "type": "narrative",
+      "text": "这条小径两旁的树上挂着残破的布条和锈蚀的兵器——这是战场遗址。被杀死的士兵没有被安葬，黑暗魔力把它们的怨念变成了活动尸。\n\n骷髅从地下破土而出——空洞的眼眶中燃烧着暗绿色的鬼火。\n\n「亡者当安息。」你举起钉头锤——圣光在锤头上聚集。",
+      "nextNodeId": "cf_priest_skeleton"
+    },
+    {
+      "id": "cf_priest_skeleton",
+      "locationTitle": "暗影森林 · 亡灵小径",
+      "musicKey": "forest_battle",
+      "type": "choice",
+      "text": "四具骷髅举着锈剑向你走来——它们的步伐僵硬但不停歇。",
+      "choices": [
+        {
+          "text": "【净化】以圣光之力赐予亡者安息",
+          "isCombat": true,
+          "combatThreshold": 40,
+          "bonusClasses": ["priest"],
+          "successNodeId": "cf_priest_skel_done",
+          "failureNodeId": "cf_priest_skel_hurt",
+          "failHpDelta": -15,
+          "failMoraleDelta": -10,
+          "grantedFlags": ["lvl_6"]
+        }
+      ]
+    },
+    {
+      "id": "cf_priest_skel_done",
+      "locationTitle": "暗影森林 · 亡灵小径",
+      "musicKey": "forest_mystic",
+      "type": "narrative",
+      "text": "圣光所到之处，骷髅化为烟尘。亡者的灵魂终于获得了安息。\n\n你为它们念了一段简短的安魂祷文。然后继续前行——更多的灵魂还在等待拯救。",
+      "nextNodeId": "cf_crossroads",
+      "hpDelta": 0,
+      "moraleDelta": 10
+    },
+    {
+      "id": "cf_priest_skel_hurt",
+      "locationTitle": "暗影森林 · 亡灵小径",
+      "musicKey": "forest_mystic",
+      "type": "narrative",
+      "text": "圣光驱散了它们——但一具骷髅在消散前划中了你的手臂。黑暗魔力的残余在伤口上灼烧。\n\n你用圣光净化了伤口。继续前进。",
+      "nextNodeId": "cf_crossroads",
+      "hpDelta": 0,
+      "moraleDelta": 5
+    },
+
+    {
+      "id": "cf_crossroads",
+      "locationTitle": "暗影森林 · 十字路口",
+      "musicKey": "forest_mystic",
+      "type": "choice",
+      "text": "你来到一个十字路口。三条路——三个方向。\n\n东边——巨木倒塌的声音，伴随着低沉的咆哮。有什么大东西在那边。\n\n西边——远方的树冠之间有微弱的灯火。可能是精灵聚落。\n\n北边——一条阴暗的洞穴入口，周围散落着古代文明的碎石。",
+      "classText": {
+        "hero": "你的剑指向东方——那里有邪恶需要被斩除。但其他方向也许有你需要的东西。",
+        "warrior": "东边的咆哮声让斧柄发颤。你露出笑容——这才是你期待的战斗。",
+        "archer": "西边的灯火——精灵族。你对森林的了解告诉你，他们可能有你需要的补给。",
+        "mage": "北边的遗迹碎石上刻着古代魔文——那里面可能有古老的魔法知识。",
+        "priest": "三条路都有黑暗的气息。但北边的洞穴——那里的邪气最为浓烈。"
+      },
+      "choices": [
+        {
+          "text": "【东】前往发出咆哮的方向——巨魔巢穴",
+          "nextNodeId": "cf_troll_lair",
+          "moraleDelta": 5
+        },
+        {
+          "text": "【西】前往灯火的方向——精灵聚落",
+          "nextNodeId": "cf_elf_village"
+        },
+        {
+          "text": "【北】进入古代遗迹洞穴——暗穴",
+          "nextNodeId": "cf_dark_cave",
+          "moraleDelta": -5
+        }
+      ]
+    },
+
+    {
+      "id": "cf_troll_lair",
+      "locationTitle": "暗影森林 · 巨魔巢穴",
+      "musicKey": "forest_battle",
+      "type": "choice",
+      "text": "一只巨大的森林巨魔——两倍于你的身高，肌肉像岩石一样坚硬。它的巢穴里堆满了之前猎物的残骸。\n\n在那些残骸之间——有什么在发光。一件武器。前一位闯入者留下的遗物。",
+      "choices": [
+        {
+          "text": "【战斗】打倒巨魔夺取宝物",
+          "isCombat": true,
+          "combatThreshold": 55,
+          "bonusClasses": ["warrior", "hero"],
+          "successNodeId": "cf_troll_rare",
+          "failureNodeId": "cf_troll_common",
+          "failHpDelta": -25,
+          "failMoraleDelta": -15
+        },
+        {
+          "text": "【潜行】悄悄绕过巨魔偷取宝物",
+          "isCombat": true,
+          "combatThreshold": 60,
+          "bonusClasses": ["archer"],
+          "successNodeId": "cf_troll_rare",
+          "failureNodeId": "cf_troll_caught",
+          "failHpDelta": -30,
+          "failMoraleDelta": -10
+        },
+        {
+          "text": "【离开】不冒险——继续前进",
+          "nextNodeId": "cf_dungeon_entrance",
+          "moraleDelta": -5
+        }
+      ]
+    },
+    {
+      "id": "cf_troll_rare",
+      "locationTitle": "暗影森林 · 巨魔巢穴",
+      "musicKey": "victory_theme",
+      "type": "choice",
+      "text": "巨魔轰然倒下。你在它的巢穴中仔细搜索——除了发光的武器，还有一些金币和一瓶恢复药水。\n\n这件武器的品质远超你手中现有的——是时候升级装备了。",
+      "choices": [
+        {
+          "text": "【装备】换上这件更精良的武器",
+          "nextNodeId": "cf_dungeon_entrance",
+          "grantedFlags": ["hero_steel_sword", "lvl_7"],
+          "classRestricted": true,
+          "allowedClasses": ["hero"],
+          "moraleDelta": 10
+        },
+        {
+          "text": "【装备】换上这件更精良的武器",
+          "nextNodeId": "cf_dungeon_entrance",
+          "grantedFlags": ["war_battle_axe", "lvl_7"],
+          "classRestricted": true,
+          "allowedClasses": ["warrior"],
+          "moraleDelta": 10
+        },
+        {
+          "text": "【装备】换上这件更精良的武器",
+          "nextNodeId": "cf_dungeon_entrance",
+          "grantedFlags": ["arc_long_bow", "lvl_7"],
+          "classRestricted": true,
+          "allowedClasses": ["archer"],
+          "moraleDelta": 10
+        },
+        {
+          "text": "【装备】换上这件更精良的武器",
+          "nextNodeId": "cf_dungeon_entrance",
+          "grantedFlags": ["mag_arcane_staff", "lvl_7"],
+          "classRestricted": true,
+          "allowedClasses": ["mage"],
+          "moraleDelta": 10
+        },
+        {
+          "text": "【装备】换上这件更精良的武器",
+          "nextNodeId": "cf_dungeon_entrance",
+          "grantedFlags": ["pri_blessed_mace", "lvl_7"],
+          "classRestricted": true,
+          "allowedClasses": ["priest"],
+          "moraleDelta": 10
+        }
+      ]
+    },
+    {
+      "id": "cf_troll_common",
+      "locationTitle": "暗影森林 · 巨魔巢穴",
+      "musicKey": "forest_mystic",
+      "type": "narrative",
+      "text": "你勉强击退了巨魔，自己也挂了彩。它在逃跑时甩下了几件东西——一瓶治疗药水和一些金币。\n\n不算最好的结果，但总比什么都没有强。",
+      "nextNodeId": "cf_dungeon_entrance",
+      "grantedFlags": ["has_potion"],
+      "hpDelta": 0,
+      "moraleDelta": 5
+    },
+    {
+      "id": "cf_troll_caught",
+      "locationTitle": "暗影森林 · 巨魔巢穴",
+      "musicKey": "forest_mystic",
+      "type": "narrative",
+      "text": "巨魔听到了你的脚步声——它转身一巴掌把你拍飞。你重重撞在石壁上，但顺手捞到了那件发光的武器。\n\n勉强脱身——值得吗？也许。也许不值得。",
+      "nextNodeId": "cf_dungeon_entrance",
+      "grantedFlags": ["has_potion"],
+      "hpDelta": 0,
+      "moraleDelta": -10
+    },
+
+    {
+      "id": "cf_elf_village",
+      "locationTitle": "暗影森林 · 精灵聚落",
+      "musicKey": "forest_mystic",
+      "type": "choice",
+      "text": "隐藏在古老橡树之间的精灵聚落——树屋在枝桠间若隐若现，萤火虫在暮色中飞舞。\n\n精灵长老向你微微点头：「旅行者——我们感受到了你的光。森林在感谢你。这里有些东西也许能帮到你。」",
+      "choices": [
+        {
+          "text": "【休息】在精灵旅馆过夜（恢复30HP 15士气）",
+          "nextNodeId": "cf_dungeon_entrance",
+          "hpDelta": 30,
+          "moraleDelta": 15
+        },
+        {
+          "text": "【补给】购买治疗药水",
+          "nextNodeId": "cf_dungeon_entrance",
+          "grantedFlags": ["has_potion", "has_hipotion"],
+          "moraleDelta": 5
+        },
+        {
+          "text": "【强化】[需等级7] 请求精灵为武器附魔",
+          "requiredFlags": ["lvl_7"],
+          "nextNodeId": "cf_elf_upgrade",
+          "moraleDelta": 5
+        },
+        {
+          "text": "【圣水】[牧师] 在精灵圣泉中为圣水祝福",
+          "classRestricted": true,
+          "allowedClasses": ["priest"],
+          "nextNodeId": "cf_dungeon_entrance",
+          "grantedFlags": ["has_holy_water"],
+          "moraleDelta": 10
+        },
+        {
+          "text": "【离开】继续赶路",
+          "nextNodeId": "cf_dungeon_entrance"
+        }
+      ]
+    },
+    {
+      "id": "cf_elf_upgrade",
+      "locationTitle": "暗影森林 · 精灵铁匠铺",
+      "musicKey": "forest_mystic",
+      "type": "choice",
+      "text": "精灵铁匠看着你的武器，眼中闪过一丝赞赏：「不错的兵器——但精灵的工艺可以把它变得更好。」\n\n他在你的武器上刻了几个细小的符文——光芒一闪，武器的平衡感和锋利度都提升了。",
+      "choices": [
+        {
+          "text": "【感谢】收下强化后的武器",
+          "nextNodeId": "cf_dungeon_entrance",
+          "grantedFlags": ["shield_steel", "lvl_8"],
+          "moraleDelta": 10
+        }
+      ]
+    },
+
+    {
+      "id": "cf_dark_cave",
+      "locationTitle": "暗影森林 · 古代遗迹暗穴",
+      "musicKey": "dungeon_dark",
+      "type": "choice",
+      "text": "洞穴深处——一座古老的石台上放着一只宝箱。但石台周围的地面上散落着白骨——之前的闯入者都没能走出去。\n\n石台上刻着文字的碎片——「……心正则门开……贪念则……」",
+      "choices": [
+        {
+          "text": "【开锁】小心解除宝箱上的古代陷阱",
+          "isCombat": true,
+          "combatThreshold": 60,
+          "bonusClasses": ["archer", "mage"],
+          "successNodeId": "cf_cave_rare",
+          "failureNodeId": "cf_cave_trap",
+          "failHpDelta": -25,
+          "failMoraleDelta": -15
+        },
+        {
+          "text": "【圣光感知】[牧师] 用圣光检测陷阱",
+          "classRestricted": true,
+          "allowedClasses": ["priest"],
+          "isCombat": true,
+          "combatThreshold": 50,
+          "bonusClasses": ["priest"],
+          "successNodeId": "cf_cave_rare",
+          "failureNodeId": "cf_cave_trap",
+          "failHpDelta": -15,
+          "failMoraleDelta": -10
+        },
+        {
+          "text": "【离开】不值得冒这个险",
+          "nextNodeId": "cf_dungeon_entrance",
+          "moraleDelta": -5
+        }
+      ]
+    },
+    {
+      "id": "cf_cave_rare",
+      "locationTitle": "暗影森林 · 古代遗迹暗穴",
+      "musicKey": "victory_theme",
+      "type": "narrative",
+      "text": "宝箱打开了——里面是一枚流转着微光的防护戒指，以及一块刻着古代符文的护身符。\n\n它们是远古勇者留下的遗物——在对付魔王军的时候，这些古老的力量会保护你。",
+      "nextNodeId": "cf_dungeon_entrance",
+      "grantedFlags": ["ring_protection", "amulet_wisdom", "lvl_8"],
+      "moraleDelta": 15
+    },
+    {
+      "id": "cf_cave_trap",
+      "locationTitle": "暗影森林 · 古代遗迹暗穴",
+      "musicKey": "forest_mystic",
+      "type": "narrative",
+      "text": "陷阱触发了——毒针从墙壁射出。你躲过了大半，但还是中了一针。伤口火辣辣地疼。\n\n宝箱还是打开了——但里面只剩下一瓶治疗药水。古代防卫魔法把真正的好东西传送走了。",
+      "nextNodeId": "cf_dungeon_entrance",
+      "grantedFlags": ["has_potion"],
+      "hpDelta": 0,
+      "moraleDelta": -10
+    },
+
+    {
+      "id": "cf_dungeon_entrance",
+      "locationTitle": "暗影森林 · 古代遗迹入口",
+      "musicKey": "dungeon_dark",
+      "type": "narrative",
+      "text": "三条路径最终汇合在一座巨大的古代遗迹前。这座祭坛比森林本身还古老——古老到你甚至不知道是谁建造的。\n\n但你知道谁在这里。\n\n暗精灵领主——魔王军的前线指挥官。它就盘踞在遗迹深处，黑暗魔力的浓度让周围的树木都枯萎了。\n\n你深吸一口气。该面对的必须面对。",
+      "nextNodeId": "cf_dark_elf_boss"
+    },
+
+    {
+      "id": "cf_dark_elf_boss",
+      "locationTitle": "暗影森林 · 遗迹深处",
+      "musicKey": "boss_theme",
+      "type": "choice",
+      "text": "暗精灵领主——\n\n不是普通精灵。它的皮肤是暗紫色的，眼睛燃烧着血红色的光——它自愿投靠了魔王，换取黑暗之力。\n\n它从阴影中出现，手里拿着一把泛着紫色毒光的弯刀。\n\n「又一个来送死的凡人。」它嘲讽地笑着。「你以为杀了几个哥布林，就能挑战魔王军了？」",
+      "classText": {
+        "hero": "你的剑绽放出更强的光芒——对黑暗，圣光有本能的克制。「我不是来挑战魔王军的。我是来消灭它们的。」",
+        "warrior": "你大笑着摆出战斗姿态：「讲够了没？我的斧头渴了。」",
+        "archer": "你已经搭好了箭。跟它废话是浪费时间——先下手为强。",
+        "mage": "你感受到了它身上的黑暗魔力——强大，但不稳定。自负是它的弱点。「你的魔力控制糟透了。」",
+        "priest": "你握紧钉头锤——圣光在锤头上燃烧。「忏悔吧。虽然已经来不及了。」"
+      },
+      "choices": [
+        {
+          "text": "【全力攻击】正面对抗暗精灵领主",
+          "isCombat": true,
+          "combatThreshold": 60,
+          "bonusClasses": ["hero", "warrior"],
+          "successNodeId": "cf_boss_win",
+          "failureNodeId": "cf_boss_fail",
+          "failHpDelta": -30,
+          "failMoraleDelta": -20
+        },
+        {
+          "text": "【战术打击】[需等级7] 利用遗迹地形制造有利局面",
+          "requiredFlags": ["lvl_7"],
+          "isCombat": true,
+          "combatThreshold": 50,
+          "bonusClasses": ["archer", "hero"],
+          "successNodeId": "cf_boss_win",
+          "failureNodeId": "cf_boss_fail",
+          "failHpDelta": -20,
+          "failMoraleDelta": -15
+        },
+        {
+          "text": "【魔法对决】[需法师] 用奥术破解它的黑暗魔法",
+          "classRestricted": true,
+          "allowedClasses": ["mage"],
+          "isCombat": true,
+          "combatThreshold": 55,
+          "bonusClasses": ["mage"],
+          "successNodeId": "cf_boss_win_magic",
+          "failureNodeId": "cf_boss_fail",
+          "failHpDelta": -25,
+          "failMoraleDelta": -20
+        },
+        {
+          "text": "【神圣制裁】[需牧师] 以圣光破除黑暗",
+          "classRestricted": true,
+          "allowedClasses": ["priest"],
+          "isCombat": true,
+          "combatThreshold": 45,
+          "bonusClasses": ["priest"],
+          "successNodeId": "cf_boss_win_holy",
+          "failureNodeId": "cf_boss_fail",
+          "failHpDelta": -20,
+          "failMoraleDelta": -15
+        }
+      ]
+    },
+    {
+      "id": "cf_boss_win",
+      "locationTitle": "暗影森林 · 遗迹深处",
+      "musicKey": "victory_theme",
+      "type": "narrative",
+      "text": "暗精灵领主倒下了——黑暗魔力从它体内溢出，消散在空气中。遗迹的诅咒被解除了。\n\n你喘着粗气，浑身酸痛——但你赢了。又一道障碍被跨越了。\n\n魔王军少了一员大将。你离魔王又近了一步。",
+      "nextNodeId": "cf_boss_loot",
+      "grantedFlags": ["lvl_10", "defeated_dark_elf"],
+      "hpDelta": 0,
+      "moraleDelta": 20
+    },
+    {
+      "id": "cf_boss_win_magic",
+      "locationTitle": "暗影森林 · 遗迹深处",
+      "musicKey": "victory_theme",
+      "type": "narrative",
+      "text": "你用奥术反制了它的黑暗魔法——紫色的毒火被你的元素之力吞没。暗精灵领主在不解中倒下。\n\n「区区一个学徒——怎么可能——」它的声音消散了。\n\n你收起法杖：「学院的课程包括反暗术——你没上过学而已。」",
+      "nextNodeId": "cf_boss_loot",
+      "grantedFlags": ["lvl_10", "defeated_dark_elf"],
+      "hpDelta": 0,
+      "moraleDelta": 20
+    },
+    {
+      "id": "cf_boss_win_holy",
+      "locationTitle": "暗影森林 · 遗迹深处",
+      "musicKey": "victory_theme",
+      "type": "narrative",
+      "text": "圣光如潮水般淹没了暗精灵——它甚至来不及惨叫，就被净化成了光点。\n\n黑暗被驱散了。遗迹重新沐浴在月光中。\n\n你跪下来感谢圣光——然后继续前进。",
+      "nextNodeId": "cf_boss_loot",
+      "grantedFlags": ["lvl_10", "defeated_dark_elf"],
+      "hpDelta": 0,
+      "moraleDelta": 20
+    },
+    {
+      "id": "cf_boss_fail",
+      "locationTitle": "暗影森林 · 遗迹深处",
+      "musicKey": "defeat_theme",
+      "type": "narrative",
+      "text": "暗精灵的弯刀在你身上留下了深深的伤口。但你没有倒下——你用最后一分力气刺中了它的要害。\n\n它是死了。但你伤得不轻。\n\n你靠在遗迹的石柱上喘息——伤口需要时间愈合。但你活着。这就够了。",
+      "nextNodeId": "cf_boss_loot",
+      "hpDelta": 0,
+      "moraleDelta": -5
+    },
+
+    {
+      "id": "cf_boss_loot",
+      "locationTitle": "暗影森林 · 遗迹深处",
+      "musicKey": "victory_theme",
+      "type": "choice",
+      "text": "暗精灵领主死后，它的宝库显露了出来——黑暗魔力维持的幻象消失了。\n\n里面是它从森林中掠夺的宝物——包括一些精良的装备。",
+      "choices": [
+        {
+          "text": "【收获】从宝库中选取合适的装备",
+          "nextNodeId": "cf_forest_victory",
+          "grantedFlags": ["armor_chain", "lvl_10"],
+          "moraleDelta": 10
+        },
+        {
+          "text": "【谨慎】大部分东西可能被黑暗污染——只拿必需品",
+          "nextNodeId": "cf_forest_victory",
+          "grantedFlags": ["has_elixir"],
+          "moraleDelta": 5
+        }
+      ]
+    },
+    {
+      "id": "cf_forest_victory",
+      "locationTitle": "暗影森林 · 出口",
+      "musicKey": "victory_theme",
+      "type": "narrative",
+      "text": "暗影森林的迷雾开始消散——也许是被你驱散的，也许是暗精灵死后自然如此。\n\n你走出了森林。前方——地平线上隐约能看到一座黑色的城堡。\n\n魔王城。\n\n「更可怕的敌人在等着我。」你想。但你同时也知道——你比刚离开启程村时强了不止一倍。\n\n第二章，结束。",
+      "isVictory": true
+    },
+
+    {
+      "id": "cf_defeat",
+      "locationTitle": "暗影森林",
+      "musicKey": "defeat_theme",
+      "type": "narrative",
+      "text": "你倒在了森林的阴影中。\n\n暗影森林不会记住又一个倒下的冒险者——它吞噬过无数勇者的梦想。\n\n你的旅程，在这里画上了句号。\n\n但这片森林的黑暗终有一天会被驱散——也许是下一个到来的人……",
+      "isDefeat": true
+    }
+  ]
+}
