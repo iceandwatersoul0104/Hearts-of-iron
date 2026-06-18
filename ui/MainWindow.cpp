@@ -292,19 +292,82 @@ void MainWindow::onChoiceMade(int index) {
                         }
                     }
 
-                    // Class-appropriate equipment drop
-                    QString classWeapon;
-                    if (m_player.classId == "hero")      classWeapon = QStringLiteral("武器:钢剑");
-                    else if (m_player.classId == "warrior") classWeapon = QStringLiteral("武器:战拳套");
-                    else if (m_player.classId == "archer")  classWeapon = QStringLiteral("武器:长弓");
-                    else if (m_player.classId == "mage")    classWeapon = QStringLiteral("武器:奥术法杖");
-                    else if (m_player.classId == "priest")  classWeapon = QStringLiteral("武器:圣光法典");
-                    m_player.addItem(classWeapon);
-
-                    // Rare drop (15%)
-                    if (QRandomGenerator::global()->bounded(100) < 15) {
-                        m_player.addItem(QStringLiteral("饰品:守护戒指"));
+                    // === Probability-based loot: weapon + armor + accessory ===
+                    int chIdx = 1;
+                    for (int ci = 0; ci < m_currentDlc.chapters.size(); ci++) {
+                        if (m_currentDlc.chapters[ci].id == m_player.currentChapter) {
+                            chIdx = ci + 1; break;
+                        }
                     }
+
+                    // ---- Weapon pool (sum=1, T1≥50%, T4≤50%) ----
+                    QStringList wpnPool;
+                    QList<int> wpnRates;  // T1,T2,T3,T4 weights sum to 100
+                    if (m_player.classId == "hero") {
+                        wpnPool = {"武器:铁剑","武器:钢剑","武器:圣剑","武器:传说之剑"};
+                    } else if (m_player.classId == "warrior") {
+                        wpnPool = {"武器:铁拳套","武器:战拳套","武器:狂战拳套","武器:泰坦拳套"};
+                    } else if (m_player.classId == "archer") {
+                        wpnPool = {"武器:猎弓","武器:长弓","武器:精灵弓","武器:风暴弓"};
+                    } else if (m_player.classId == "mage") {
+                        wpnPool = {"武器:学徒法杖","武器:奥术法杖","武器:长老法杖","武器:大法师杖"};
+                    } else {
+                        wpnPool = {"武器:圣光之书","武器:圣光法典","武器:圣光圣典","武器:神圣启示录"};
+                    }
+                    // Weapon rates: T1≥50%, all sum to 100
+                    if (chIdx == 1)      wpnRates = {70, 20,  8,  2};
+                    else if (chIdx == 2) wpnRates = {60, 20, 15,  5};
+                    else if (chIdx == 3) wpnRates = {55, 15, 17, 13};
+                    else                 wpnRates = {50, 10, 15, 25};
+
+                    // ---- Armor pool (sum=1) ----
+                    QStringList armPool = {"防具:布衣","防具:皮甲","防具:链甲","防具:板甲"};
+                    QList<int> armRates;
+                    if (chIdx == 1)      armRates = {75, 20,  5,  0};
+                    else if (chIdx == 2) armRates = {60, 25, 12,  3};
+                    else if (chIdx == 3) armRates = {55, 20, 18,  7};
+                    else                 armRates = {50, 15, 20, 15};
+
+                    // ---- Accessory pool (sum=1) ----
+                    QStringList accPool = {"饰品:守护戒指","饰品:智慧项链","饰品:敏捷护符","饰品:龙鳞挂饰"};
+                    QList<int> accRates;
+                    if (chIdx == 1)      accRates = {70, 15, 15,  0};
+                    else if (chIdx == 2) accRates = {55, 20, 20,  5};
+                    else if (chIdx == 3) accRates = {45, 20, 20, 15};
+                    else                 accRates = {35, 20, 20, 25};
+
+                    // Roll helper
+                    auto rollDrop = [](const QStringList &pool, const QList<int> &rates) -> QString {
+                        int r = QRandomGenerator::global()->bounded(100);
+                        int cum = 0;
+                        for (int i = 0; i < rates.size() && i < pool.size(); i++) {
+                            cum += rates[i];
+                            if (r < cum) return pool[i];
+                        }
+                        return pool.last();
+                    };
+
+                    QString wpn = rollDrop(wpnPool, wpnRates);
+                    QString arm = rollDrop(armPool, armRates);
+                    QString acc = rollDrop(accPool, accRates);
+                    m_player.addItem(wpn);
+                    m_player.addItem(arm);
+                    m_player.addItem(acc);
+
+                    // Build drop info string
+                    auto ratesStr = [](const QStringList &pool, const QList<int> &rates) -> QString {
+                        QString s;
+                        for (int i = 0; i < pool.size() && i < rates.size(); i++)
+                            s += pool[i].mid(3) + ": " + QString::number(rates[i]) + "%  ";
+                        return s.trimmed();
+                    };
+                    QMessageBox::information(this, QStringLiteral("战利品掉落 (第%1章)").arg(chIdx),
+                        QStringLiteral("⚔ 武器: %1\n🛡 防具: %2\n💍 饰品: %3\n\n"
+                        "【武器概率】%4\n【防具概率】%5\n【饰品概率】%6")
+                        .arg(wpn.mid(3)).arg(arm.mid(3)).arg(acc.mid(3))
+                        .arg(ratesStr(wpnPool, wpnRates))
+                        .arg(ratesStr(armPool, armRates))
+                        .arg(ratesStr(accPool, accRates)));
 
                     // 1 mana potion guaranteed, 30% chance of health potion
                     m_player.addItem(QStringLiteral("魔力药水"));

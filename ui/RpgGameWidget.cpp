@@ -494,16 +494,44 @@ void RpgGameWidget::showStoryNode_impl(const StoryNode *node) {
             continue;
         }
 
-        QPushButton *btn = new QPushButton(choice.text, m_optionsContainer);
-        btn->setObjectName(choice.isCombat ? QStringLiteral("combatOptionBtn") : QStringLiteral("choiceOptionBtn"));
-        btn->setCursor(Qt::PointingHandCursor);
+        // Check requiredFlags — if missing, show as disabled
+        bool flagsMet = true;
+        QStringList missingFlags;
+        for (const QString &f : choice.requiredFlags) {
+            if (!m_player || !m_player->hasFlag(f)) {
+                flagsMet = false;
+                missingFlags.append(f);
+            }
+        }
+
+        QString btnText = choice.text;
+        if (!flagsMet) {
+            // Show what's needed: append requirement hint
+            QString flagHint;
+            if (missingFlags.contains("hero_holy_blade")) flagHint = QStringLiteral(" [需装备:圣剑]");
+            else if (missingFlags.contains("mag_elder_staff")) flagHint = QStringLiteral(" [需装备:长老法杖]");
+            else if (missingFlags.contains("arc_elf_bow")) flagHint = QStringLiteral(" [需装备:精灵弓]");
+            else if (missingFlags.contains("pri_holy_mace")) flagHint = QStringLiteral(" [需装备:圣光圣典]");
+            else if (missingFlags.contains("war_berserk_axe")) flagHint = QStringLiteral(" [需装备:狂战拳套]");
+            else flagHint = QStringLiteral(" [未满足条件]");
+            btnText += flagHint;
+        }
+
+        QPushButton *btn = new QPushButton(btnText, m_optionsContainer);
+        btn->setCursor(flagsMet ? Qt::PointingHandCursor : Qt::ForbiddenCursor);
         btn->setMinimumHeight(38);
         btn->setProperty("choiceIndex", origIdx);
 
-        if (choice.isCombat) {
-            // Combat: two-step — first select action, then show skills
-            btn->setProperty("isCombat", true);
+        if (!flagsMet) {
+            // Disabled — greyed out, not clickable as combat
+            btn->setEnabled(false);
+            btn->setObjectName(QStringLiteral("gameCtrlBtn"));
+        } else {
+            btn->setObjectName(choice.isCombat ? QStringLiteral("combatOptionBtn") : QStringLiteral("choiceOptionBtn"));
+            if (choice.isCombat)
+                btn->setProperty("isCombat", true);
         }
+
         btn->setVisible(false);
         connect(btn, &QPushButton::clicked, this, &RpgGameWidget::onChoiceButtonClicked);
         m_optionsLayout->addWidget(btn);
